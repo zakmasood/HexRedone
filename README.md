@@ -29,7 +29,7 @@
 </div>
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+### About The Project
 
 Hexagonal is an addition to the world of sandbox-based building and automation games. While it shares some similarities with games like Factorio or Shapez.io, Hexagonal distinguishes itself through its distinctive use of hexagonal tilemaps, hence the name. Unlike the more common square or rectangular grid, Hexagonal offers a refreshing and innovative hexagonal grid, providing a unique experience in the gaming industry. This choice of hexagons presents intriguing challenges and benefits, making it an exciting and visually appealing shape to work with.
 
@@ -43,7 +43,7 @@ Hexagonal not only offers a novel approach to gameplay but also caters to those 
 [![.NET C#][csharp]][csharp-url] (。・ω・。) 
 
 <!-- GETTING STARTED -->
-## Getting Started
+### Getting Started
 
 
 ### Prerequisites
@@ -55,14 +55,14 @@ Hexagonal not only offers a novel approach to gameplay but also caters to those 
 <!-- USAGE EXAMPLES -->
 <!-- Pending Usages -->
 <!-- ROADMAP -->
-## Roadmap
+### Roadmap
 Pending.
 <!-- Pending -->
 
 See the [open issues](https://github.com/zakmasood/HexRedone/issues) for a full list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
-## Contributing
+### Contributing
 
 Contributions play a pivotal role in making the game development community an extraordinary space for learning, inspiration, and creation. Your contributions are of immense value to us, and we genuinely appreciate your involvement.
 
@@ -79,19 +79,19 @@ Here are the steps to get started:
 5. Open a Pull Request to have your changes considered and merged into the game.
 
 <!-- LICENSE -->
-## License
+### License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
-## Contact
+### Contact
 
 Email me at: Zakalimasood@gmail.com <br>
 ManoVersa Discord: [Support](https://discord.gg/UQnXZS3bwH) <br>
 Project Link: [https://github.com/zakmasood/HexRedone](https://github.com/zakmasood/HexRedone)
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+### Acknowledgments
 
 * [Choose an Open Source License](https://choosealicense.com)
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
