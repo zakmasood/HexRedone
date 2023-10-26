@@ -1,5 +1,3 @@
-<a name="readme-top"></a>
-
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -11,13 +9,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/zakmasood/HexRedone">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/hexagon.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">HexRedone</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    Hexagonal: 30 degrees can't go wrong.
     <br />
     <a href="https://github.com/zakmasood/HexRedone"><strong>Explore the docs »</strong></a>
     <br />
@@ -59,18 +57,16 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+Hexagonal is an addition to the world of sandbox-based building and automation games. While it shares some similarities with games like Factorio or Shapez.io, Hexagonal distinguishes itself through its distinctive use of hexagonal tilemaps, hence the name. Unlike the more common square or rectangular grid, Hexagonal offers a refreshing and innovative hexagonal grid, providing a unique experience in the gaming industry. This choice of hexagons presents intriguing challenges and benefits, making it an exciting and visually appealing shape to work with.
 
-Hexagonal is one of many upcoming sandbox-based building/ automation games, similar(but not really) to games like Factorio or Shapez.io. However, what sets Hexagonal apart from other such games is its most prominent use of, you guessed it, Hexagonal tilemaps. Apart from being based around a unique shape not commonly used in the game industry, it provides a world-building experience for people who just want to sit back and watch everything work smoothly.
+In the words of CGP Grey, 'Hexagons, are the bestagons.'
 
-Why Hexagonal Tilemaps?
-
-To quote CGP Grey, "Hexagons, are the bestagons".
-Hexagons are a fairly unique shape in the game development industry, posing interesting challenges and benefits, but overall are an awesome shape to work with.
+Hexagonal not only offers a novel approach to gameplay but also caters to those who simply enjoy observing the seamless functioning of their creations in a meticulously designed world.
 
 ### Built With
 
-* [![UnityEngine][unityengine]][unity-url]
+(\^▽^/) [![UnityEngine][unityengine]][unity-url]
+(。・ω・。) [![.NET C#][csharp]][csharp-url]
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -94,16 +90,19 @@ See the [open issues](https://github.com/zakmasood/HexRedone/issues) for a full 
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what makes the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions play a pivotal role in making the game development community an extraordinary space for learning, inspiration, and creation. Your contributions are of immense value to us, and we genuinely appreciate your involvement.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+If you have any suggestions that could enhance our game, we encourage you to get involved in the development process. You can do this by forking the game's repository and creating a pull request. Alternatively, if you have ideas for improvements or new features, you can open an issue with the 'enhancement' tag.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+And don't forget to show your support by giving our project a star! Thank you once again for your contributions.
+
+Here are the steps to get started:
+
+1. Fork the Game Repository
+2. Create a New Feature Branch (e.g., git checkout -b feature/AmazingFeature)
+3. Commit your changes (e.g., git commit -m 'Add some AmazingFeature')
+4. Push your Changes to the Branch (e.g., git push origin feature/AmazingFeature)
+5. Open a Pull Request to have your changes considered and merged into the game.
 
 <!-- LICENSE -->
 ## License
@@ -142,3 +141,5 @@ Project Link: [https://github.com/zakmasood/HexRedone](https://github.com/zakmas
 [product-screenshot]: images/screenshot.png
 [unityengine]: https://img.shields.io/badge/unityEngine-000000?style=for-the-badge&logo=unity&logoColor=white
 [unity-url]: https://unity.com/
+[csharp]: https://img.shields.io/badge/Csharp-000000?style=for-the-badge&logo=csharp&logoColor=blue
+[csharp-url]: https://learn.microsoft.com/en-us/dotnet/csharp/
