@@ -61,6 +61,7 @@
     <Compile Include="Assets\WorldGen.cs" />
     <Compile Include="Assets\CameraController.cs" />
     <Compile Include="Assets\Node.cs" />
+    <Compile Include="Assets\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

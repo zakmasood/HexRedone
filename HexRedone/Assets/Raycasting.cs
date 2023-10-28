@@ -40,11 +40,15 @@ public class Raycasting : MonoBehaviour
                                  * Then set the height of the neighboring tiles to the height of the center tile
                                  */
 
+                                Debug.Log(worldGen.tiles[i, j].name);
+
                                 GameObject centerTile = worldGen.tiles[i, j].gameObject;
+
+                                Debug.Log(centerTile.name);
 
                                 if (i % 2 == 1)
                                 {
-                                    Debug.LogWarning("ODD ROW");
+                                    // Debug.LogWarning("ODD ROW");
 
                                     GameObject leftTile = worldGen.tiles[i, j + 1].gameObject;
                                     GameObject rightTile = worldGen.tiles[i, j - 1].gameObject;
@@ -66,7 +70,7 @@ public class Raycasting : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Debug.LogWarning("EVEN ROW");
+                                    // Debug.LogWarning("EVEN ROW");
 
                                     GameObject leftTile = worldGen.tiles[i, j + 1].gameObject;
                                     GameObject rightTile = worldGen.tiles[i, j - 1].gameObject;

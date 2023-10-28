@@ -17,8 +17,8 @@ public class WorldGen : MonoBehaviour
     public int gridLength = 5;
     public int gridWidth = 5;
 
-    public double horizontalOffset;
-    public double verticalOffset;
+    public int tileWidth;
+    public int tileHeight;
 
     public GameObject[,] tiles; // Declare a 2D array to store the tiles (BASE)
     public GameObject[,] resources; // 2D array to store the resource tiles (RESOURCES)
@@ -29,42 +29,101 @@ public class WorldGen : MonoBehaviour
      *  and declarations.
      */
 
+    [Header("Spriglets")]
+    public GameObject grassPrefab;
+    public float grassAmount;
+
+    [Header("Resources")]
+    public GameObject treePrefab;
+    public float treeAmount;
+
+
     [Header("Perlin Noise Generator")]
     public double pHeight;
     public double pWidth;
+    public float scaleFactor;
+    public int seed;
+    public int octaveAmount;
+    public float lacuAmount;
+    public float persAmount;
 
-    public Vector3 spriglet(float maxX, float maxZ, float height) // Randomizes pos
+    public void Spriglet(GameObject prefab, double X, double height, double Z)
     {
-        return new Vector3(maxX + Random.Range(-0.5f, 0.5f), height + 1.2f, maxZ + Random.Range(-0.5f, 0.5f));
+        GameObject instance = Instantiate(prefab, new Vector3((float)X, (float)height, (float)Z), Quaternion.identity);
+        instance.transform.Rotate(-90, 90, 0); // Fix 90 degree bug
+        instance.transform.position = new Vector3((float)X + Random.Range(-tileWidth, tileWidth), (float)height, (float)Z + Random.Range(-tileHeight, tileHeight));
     }
 
-    public float[,] GenerateNoiseMap(int width, int height, float scale)
+    public float[,] GenerateNoiseMap(int width, int height, float scale, int seed, int octaves, float persistence, float lacunarity)
     {
         float[,] noiseMap = new float[width, height];
 
-        // Loop through each point in the grid
-        for (int x = 0; x < width; x++)
+        System.Random prng = new System.Random(seed);
+        Vector2[] octaveOffsets = new Vector2[octaves];
+
+        for (int i = 0; i < octaves; i++)
         {
-            for (int y = 0; y < height; y++)
-            {
-                // Calculate sample coordinates based on scale and position
-                float sampleX = (float)x / width * scale;
-                float sampleY = (float)y / height * scale;
-
-                // Generate Perlin noise value at the sample coordinates
-                float perlinValue = Mathf.PerlinNoise(sampleX, sampleY);
-
-                // Store the noise value in the noise map
-                noiseMap[x, y] = perlinValue;
-            }
+            float offsetX = prng.Next(-100000, 100000);
+            float offsetY = prng.Next(-100000, 100000);
+            octaveOffsets[i] = new Vector2(offsetX, offsetY);
         }
 
+        if (scale <= 0)
+        {
+            scale = 0.0001f;
+        }
+
+        float maxNoiseHeight = float.MinValue;
+        float minNoiseHeight = float.MaxValue;
+
+        float halfWidth = width / 2f;
+        float halfHeight = height / 2f;
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                float amplitude = 1;
+                float frequency = 1;
+                float noiseHeight = 0;
+
+                for (int i = 0; i < octaves; i++)
+                {
+                    float sampleX = (x - halfWidth + octaveOffsets[i].x) / scale * frequency;
+                    float sampleY = (y - halfHeight + octaveOffsets[i].y) / scale * frequency;
+
+                    float perlinValue = Mathf.PerlinNoise(sampleX, sampleY) * 2 - 1;
+                    noiseHeight += perlinValue * amplitude;
+
+                    amplitude *= persistence;
+                    frequency *= lacunarity;
+                }
+                if (noiseHeight > maxNoiseHeight)
+                {
+                    maxNoiseHeight = noiseHeight;
+                }
+                else if (noiseHeight < minNoiseHeight)
+                {
+                    minNoiseHeight = noiseHeight;
+                }
+
+                noiseMap[x, y] = noiseHeight;
+            }
+        }
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                noiseMap[x, y] = Mathf.InverseLerp(minNoiseHeight, maxNoiseHeight, noiseMap[x, y]);
+            }
+        }
         return noiseMap;
     }
 
+
     void Start()
     {
-        float[,] noiseMap = GenerateNoiseMap(gridWidth, gridLength, 5f);
+        float[,] noiseMap = GenerateNoiseMap(gridWidth, gridLength, scaleFactor, seed, octaveAmount, persAmount, lacuAmount);
         tiles = new GameObject[gridLength, gridWidth];
         resources = new GameObject[gridLength, gridWidth];
 
@@ -72,8 +131,13 @@ public class WorldGen : MonoBehaviour
         {
             for (int r = 0; r < gridWidth; r++)
             {
-                double X = 1.5 * q;
-                double Z = 1.732 * (r + 0.5 * (q % 2));
+                // Base tile generation
+
+                double tileW = tileWidth * 1.732;
+                double tileH = tileHeight * 1.5;
+
+                double X = tileH * q;
+                double Z = tileW * (r + 0.5 * (q % 2));
 
                 // Grab perlin point
                 float perlinValue = noiseMap[q, r];
@@ -92,14 +156,22 @@ public class WorldGen : MonoBehaviour
                 float baseTileX = baseTile.transform.position.x;
                 float baseTileZ = baseTile.transform.position.z;
 
-                // Grass position randomization
-                baseTile.transform.Find("GrassOne").gameObject.transform.position = new Vector3(baseTileX + Random.Range(-0.5f, 0.5f), height + 1.2f , baseTileZ + Random.Range(-0.5f, 0.5f));
-                baseTile.transform.Find("GrassTwo").gameObject.transform.position = new Vector3(baseTileX + Random.Range(-0.5f, 0.5f), height + 1.2f , baseTileZ + Random.Range(-0.5f, 0.5f));
-                baseTile.transform.Find("GrassThree").gameObject.transform.position = new Vector3(baseTileX + Random.Range(-0.5f, 0.5f), height + 1.2f , baseTileZ + Random.Range(-0.5f, 0.5f));
+                /*// Tree generation
+                for (int j = 0; j < treeAmount; j++)
+                {
+                    Spriglet(treePrefab, X, height, Z);
+                }*/
+
+                // Grass generation
+
+                for (int j = 0; j < grassAmount; j++)
+                {
+                    Spriglet(grassPrefab, X, height + 5.2f, Z);
+                }
 
                 tiles[q, r] = baseTile;
 
-                if (Random.Range(0, 4) == 2)
+                /*if (Random.Range(0, 4) == 2)
                 {
                     GameObject stoneTile = Instantiate(stoneTilePrefab, new Vector3((float)X, baseTile.transform.position.y + 1f, (float)Z), Quaternion.identity);
                     stoneTile.transform.Rotate(-90, 30, -105); // Fix 90 degree bug
@@ -111,10 +183,10 @@ public class WorldGen : MonoBehaviour
 
                     // Now we remove the grass at that tile
 
-                    tiles[q, r].transform.Find("GrassOne").gameObject.SetActive(false);
-                    tiles[q, r].transform.Find("GrassTwo").gameObject.SetActive(false);
-                    tiles[q, r].transform.Find("GrassThree").gameObject.SetActive(false);
-                }
+                    //tiles[q, r].transform.Find("GrassOne").gameObject.SetActive(false);
+                    //tiles[q, r].transform.Find("GrassTwo").gameObject.SetActive(false);
+                    //tiles[q, r].transform.Find("GrassThree").gameObject.SetActive(false);
+                }*/
             }
         }
     }
