@@ -31,9 +31,9 @@
 <!-- ABOUT THE PROJECT -->
 ### About The Project
 
-Hexagonal is an addition to the world of sandbox-based building and automation games. While it shares some similarities with games like Factorio or Shapez.io, Hexagonal distinguishes itself through its distinctive use of hexagonal tilemaps, hence the name. Unlike the more common square or rectangular grid, Hexagonal offers a refreshing and innovative hexagonal grid, providing a unique experience in the gaming industry. This choice of hexagons presents intriguing challenges and benefits, making it an exciting and visually appealing shape to work with.
+Hexagonal is an addition to the world of sandbox-based building and automation games. While it shares some similarities with games like Factorio or Shapez.io, Hexagonal distinguishes itself through its distinctive use of hexagonal tilemaps, hence the name. Unlike the more common square or rectangular grid, Hexagonal offers a refreshing and innovative hexagonal grid, providing a unique experience in the gaming industry. This choice of hexagons presents intriguing challenges and benefits, making it an exciting and visually appealing shape to work with.<br>
 
-In the words of CGP Grey, 'Hexagons, are the bestagons.'
+<div align="center">In the words of CGP Grey, 'Hexagons, are the bestagons.'</div><br>
 
 Hexagonal not only offers a novel approach to gameplay but also caters to those who simply enjoy observing the seamless functioning of their creations in a meticulously designed world.
 
@@ -56,8 +56,9 @@ Hexagonal not only offers a novel approach to gameplay but also caters to those 
 <!-- Pending Usages -->
 <!-- ROADMAP -->
 ### Roadmap
-Pending.
-<!-- Pending -->
+- [x] World Generation Revamp
+- [ ] Multi - Tile buildings
+- [ ] V 0.1 Crafters & Mixers Galore!
 
 See the [open issues](https://github.com/zakmasood/HexRedone/issues) for a full list of proposed features (and known issues).
 
