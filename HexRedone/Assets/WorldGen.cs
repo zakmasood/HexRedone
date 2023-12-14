@@ -12,7 +12,6 @@ public class WorldGen : MonoBehaviour
      */
 
     public GameObject baseTilePrefab;
-    public GameObject stoneTilePrefab;
 
     public int gridLength = 5;
     public int gridWidth = 5;
@@ -22,6 +21,7 @@ public class WorldGen : MonoBehaviour
 
     public GameObject[,] tiles; // Declare a 2D array to store the tiles (BASE)
     public GameObject[,] resources; // 2D array to store the resource tiles (RESOURCES)
+    public GameObject[,] buildings;
 
     /*  With Resources array, no need to declare multiple, since we can use tag
      *  comparisons to determine what resources are at the given location.
@@ -36,7 +36,6 @@ public class WorldGen : MonoBehaviour
     [Header("Resources")]
     public GameObject treePrefab;
     public float treeAmount;
-
 
     [Header("Perlin Noise Generator")]
     public double pHeight;
@@ -53,6 +52,13 @@ public class WorldGen : MonoBehaviour
         instance.transform.Rotate(-90, 90, 0); // Fix 90 degree bug
         instance.transform.position = new Vector3((float)X + Random.Range(-tileWidth, tileWidth), (float)height, (float)Z + Random.Range(-tileHeight, tileHeight));
     }
+
+    public void PlaceBuilding(GameObject prefab)
+    {
+
+    }
+
+    // Noise map generation and World creation
 
     public float[,] GenerateNoiseMap(int width, int height, float scale, int seed, int octaves, float persistence, float lacunarity)
     {
@@ -120,12 +126,13 @@ public class WorldGen : MonoBehaviour
         return noiseMap;
     }
 
-
     void Start()
     {
         float[,] noiseMap = GenerateNoiseMap(gridWidth, gridLength, scaleFactor, seed, octaveAmount, persAmount, lacuAmount);
         tiles = new GameObject[gridLength, gridWidth];
         resources = new GameObject[gridLength, gridWidth];
+
+        // Instantiation of tiles ( Put all instantiate - needed objects here ) ( Needs more optimization )
 
         for (int q = 0; q < gridLength; q++)
         {
