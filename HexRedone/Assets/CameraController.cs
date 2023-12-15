@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Camera))]
+//[RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
 {
 	public float acceleration = 50; // how fast you accelerate
@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
 
 	Vector3 velocity; // current velocity
 
-	static bool Focused
+	/*static bool Focused
 	{
 		get => Cursor.lockState == CursorLockMode.Locked;
 		set
@@ -24,17 +24,19 @@ public class CameraController : MonoBehaviour
 	void OnEnable()
 	{
 		if (focusOnEnable) Focused = true;
-	}
-
-	void OnDisable() => Focused = false;
-
+	
+	void OnDisable() => Focused = false;*/
+	
 	void Update()
 	{
 		// Input
+		/*
 		if (Focused)
 			UpdateInput();
 		else if (Input.GetMouseButtonDown(0))
-			Focused = true;
+			Focused = true;*/
+			
+		UpdateInput();
 
 		// Physics
 		velocity = Vector3.Lerp(velocity, Vector3.zero, dampingCoefficient * Time.deltaTime);
@@ -47,15 +49,16 @@ public class CameraController : MonoBehaviour
 		velocity += GetAccelerationVector() * Time.deltaTime;
 
 		// Rotation
-		Vector2 mouseDelta = lookSensitivity * new Vector2(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y"));
+		/*Vector2 mouseDelta = lookSensitivity * new Vector2(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y"));
 		Quaternion rotation = transform.rotation;
 		Quaternion horiz = Quaternion.AngleAxis(mouseDelta.x, Vector3.up);
 		Quaternion vert = Quaternion.AngleAxis(mouseDelta.y, Vector3.right);
-		transform.rotation = horiz * rotation * vert;
+		transform.rotation = horiz * rotation * vert;*/ 
 
 		// Leave cursor lock
+		/*
 		if (Input.GetKeyDown(KeyCode.Escape))
-			Focused = false;
+			Focused = false;*/
 	}
 
 	Vector3 GetAccelerationVector()
