@@ -1,0 +1,3330 @@
+{
+  "Tile_0": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 0.0
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_1": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 1.732
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_2": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 3.464
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_3": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 5.196
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_4": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 6.928
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_5": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 8.66
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_6": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 10.392
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_7": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 12.124
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_8": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 13.856
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_9": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 15.588
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_10": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 17.32
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_11": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 19.052
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_12": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 20.784
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_13": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 22.516
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_14": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 24.248
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_15": {
+    "Coordinates": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 25.98
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_16": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 0.866
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_17": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 2.598
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_18": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 4.33
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_19": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 6.062
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_20": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 7.794
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_21": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 9.526
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_22": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 11.258
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_23": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 12.99
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_24": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 14.722
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_25": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 16.454
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_26": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 18.186
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_27": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 19.918
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_28": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 21.65
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_29": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 23.382
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_30": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 25.114
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_31": {
+    "Coordinates": {
+      "X": 1.5,
+      "Y": 5.0,
+      "Z": 26.846
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_32": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 0.0
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_33": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 1.732
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_34": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 3.464
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_35": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 5.196
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_36": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 6.928
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_37": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 8.66
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_38": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 10.392
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_39": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 12.124
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_40": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 13.856
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_41": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 15.588
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_42": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 17.32
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_43": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 19.052
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_44": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 20.784
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_45": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 22.516
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_46": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 24.248
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_47": {
+    "Coordinates": {
+      "X": 3.0,
+      "Y": 5.0,
+      "Z": 25.98
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_48": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 0.866
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_49": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 2.598
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_50": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 4.33
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_51": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 6.062
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_52": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 7.794
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_53": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 9.526
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_54": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 11.258
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_55": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 12.99
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_56": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 14.722
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_57": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 16.454
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_58": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 18.186
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_59": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 19.918
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_60": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 21.65
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_61": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 23.382
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_62": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 25.114
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_63": {
+    "Coordinates": {
+      "X": 4.5,
+      "Y": 5.0,
+      "Z": 26.846
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_64": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 0.0
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_65": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 1.732
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_66": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 3.464
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_67": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 5.196
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_68": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 6.928
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_69": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 8.66
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_70": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 10.392
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_71": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 12.124
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_72": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 13.856
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_73": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 15.588
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_74": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 17.32
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_75": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 19.052
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_76": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 20.784
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_77": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 22.516
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_78": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 24.248
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_79": {
+    "Coordinates": {
+      "X": 6.0,
+      "Y": 5.0,
+      "Z": 25.98
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_80": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 0.866
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_81": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 2.598
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_82": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 4.33
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_83": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 6.062
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_84": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 7.794
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_85": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 9.526
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_86": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 11.258
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_87": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 12.99
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_88": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 14.722
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_89": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 16.454
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_90": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 18.186
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_91": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 19.918
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_92": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 21.65
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_93": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 23.382
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_94": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 25.114
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_95": {
+    "Coordinates": {
+      "X": 7.5,
+      "Y": 5.0,
+      "Z": 26.846
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_96": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 0.0
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_97": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 1.732
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_98": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 3.464
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_99": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 5.196
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_100": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 6.928
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_101": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 8.66
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_102": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 10.392
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_103": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 12.124
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_104": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 13.856
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_105": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 15.588
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_106": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 17.32
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_107": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 19.052
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_108": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 20.784
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_109": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 22.516
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_110": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 24.248
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_111": {
+    "Coordinates": {
+      "X": 9.0,
+      "Y": 5.0,
+      "Z": 25.98
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_112": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 0.866
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_113": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 2.598
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_114": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 4.33
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_115": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 6.062
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_116": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 7.794
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_117": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 9.526
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_118": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 11.258
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_119": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 12.99
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_120": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 14.722
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_121": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 16.454
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_122": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 18.186
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_123": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 19.918
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_124": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 21.65
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_125": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 23.382
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_126": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 25.114
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_127": {
+    "Coordinates": {
+      "X": 10.5,
+      "Y": 5.0,
+      "Z": 26.846
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_128": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 0.0
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_129": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 1.732
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_130": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 3.464
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_131": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 5.196
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_132": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 6.928
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_133": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 8.66
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_134": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 10.392
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_135": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 12.124
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_136": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 13.856
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_137": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 15.588
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_138": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 17.32
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_139": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 19.052
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_140": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 20.784
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_141": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 22.516
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_142": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 24.248
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_143": {
+    "Coordinates": {
+      "X": 12.0,
+      "Y": 5.0,
+      "Z": 25.98
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_144": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 0.866
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_145": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 2.598
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_146": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 4.33
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_147": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 6.062
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_148": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 7.794
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_149": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 9.526
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_150": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 11.258
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_151": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 12.99
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_152": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 14.722
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_153": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 16.454
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_154": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 18.186
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_155": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 19.918
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_156": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 21.65
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_157": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 23.382
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_158": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 25.114
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_159": {
+    "Coordinates": {
+      "X": 13.5,
+      "Y": 5.0,
+      "Z": 26.846
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_160": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 0.0
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_161": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 1.732
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_162": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 3.464
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_163": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 5.196
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_164": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 6.928
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_165": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 8.66
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_166": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 10.392
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_167": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 12.124
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_168": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 13.856
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_169": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 15.588
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_170": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 17.32
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_171": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 19.052
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_172": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 20.784
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_173": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 22.516
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_174": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 24.248
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_175": {
+    "Coordinates": {
+      "X": 15.0,
+      "Y": 5.0,
+      "Z": 25.98
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_176": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 0.866
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_177": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 2.598
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_178": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 4.33
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_179": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 6.062
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_180": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 7.794
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_181": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 9.526
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_182": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 11.258
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_183": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 12.99
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_184": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 14.722
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_185": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 16.454
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_186": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 18.186
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_187": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 19.918
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_188": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 21.65
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_189": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 23.382
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_190": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 25.114
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_191": {
+    "Coordinates": {
+      "X": 16.5,
+      "Y": 5.0,
+      "Z": 26.846
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_192": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 0.0
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_193": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 1.732
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_194": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 3.464
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_195": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 5.196
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_196": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 6.928
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_197": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 8.66
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_198": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 10.392
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_199": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 12.124
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_200": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 13.856
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_201": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 15.588
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_202": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 17.32
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_203": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 19.052
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_204": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 20.784
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_205": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 22.516
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_206": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 24.248
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_207": {
+    "Coordinates": {
+      "X": 18.0,
+      "Y": 5.0,
+      "Z": 25.98
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_208": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 0.866
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_209": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 2.598
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_210": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 4.33
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_211": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 6.062
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_212": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 7.794
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_213": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 9.526
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_214": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 11.258
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_215": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 12.99
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_216": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 14.722
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_217": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 16.454
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_218": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 18.186
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_219": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 19.918
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_220": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 21.65
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_221": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 23.382
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_222": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 25.114
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_223": {
+    "Coordinates": {
+      "X": 19.5,
+      "Y": 5.0,
+      "Z": 26.846
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_224": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 0.0
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_225": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 1.732
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_226": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 3.464
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_227": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 5.196
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_228": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 6.928
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_229": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 8.66
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_230": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 10.392
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_231": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 12.124
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_232": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 13.856
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_233": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 15.588
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_234": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 17.32
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_235": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 19.052
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_236": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 20.784
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_237": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 22.516
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_238": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 24.248
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_239": {
+    "Coordinates": {
+      "X": 21.0,
+      "Y": 5.0,
+      "Z": 25.98
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_240": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 0.866
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_241": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 2.598
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_242": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 4.33
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_243": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 6.062
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_244": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 7.794
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_245": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 9.526
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_246": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 11.258
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_247": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 12.99
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_248": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 14.722
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_249": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 16.454
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_250": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 18.186
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_251": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 19.918
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_252": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 21.65
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_253": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 23.382
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_254": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 25.114
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  },
+  "Tile_255": {
+    "Coordinates": {
+      "X": 22.5,
+      "Y": 5.0,
+      "Z": 26.846
+    },
+    "Resources": {
+      "Oil": 0,
+      "Stone": 0,
+      "Wood": 0
+    },
+    "Building": null
+  }
+}

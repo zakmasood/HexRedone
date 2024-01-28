@@ -56,23 +56,23 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\ToggleExDrawer.cs" />
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\SplitDrawer.cs" />
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\GradientSettingsManagerEditor.cs" />
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\AssetSingleton.cs" />
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\StandardBaseShaderGUI.cs" />
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\GradientExDrawer.cs" />
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\OtoonUpdateHelper.cs" />
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\OtoonLitShader.cs" />
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\URPSetupHelper.cs" />
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\OtoonTooltip.cs" />
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\LegacyGradientDataTransferWizard.cs" />
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\OtoonShaderGraph.cs" />
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\GradientSettingsManager.cs" />
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\EditorGUIhelper.cs" />
     <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\SavedParameter.cs" />
-    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\OtoonCustomLitShader.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\AssetSingleton.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\SplitDrawer.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\URPSetupHelper.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\OtoonLitShader.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\ToggleExDrawer.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\LegacyGradientDataTransferWizard.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\GradientSettingsManager.cs" />
     <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\MinMaxDrawer.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\GradientSettingsManagerEditor.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\OtoonTooltip.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\OtoonUpdateHelper.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\GradientExDrawer.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\OtoonCustomLitShader.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\OtoonShaderGraph.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\StandardBaseShaderGUI.cs" />
+    <Compile Include="Assets\OToon- URP Toon Shading\Shaders\Editor\EditorGUIhelper.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\OToon- URP Toon Shading\Shaders\Editor\OtoonEditor.asmdef" />
@@ -318,6 +318,9 @@
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.3.2\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
