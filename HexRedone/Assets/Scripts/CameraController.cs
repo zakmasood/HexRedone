@@ -1,86 +1,131 @@
 using UnityEngine;
 
-//[RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
 {
-	public float acceleration = 50; // how fast you accelerate
-	public float accSprintMultiplier = 4; // how much faster you go when "sprinting"
-	public float lookSensitivity = 1; // mouse look sensitivity
-	public float dampingCoefficient = 5; // how quickly you break to a halt after you stop your input
-	public bool focusOnEnable = true; // whether or not to focus and lock cursor immediately on enable
+    public float Acceleration = 50;
+    public float AccSprintMultiplier = 4;
+    public float LookSensitivity = 1;
+    public float DampingCoefficient = 5;
+    public bool FocusOnEnable = true;
 
-	Vector3 velocity; // current velocity
+    public float BobSpeed = 14f;
+    public float BobAmount = 0.1f;
 
-	/*static bool Focused
-	{
-		get => Cursor.lockState == CursorLockMode.Locked;
-		set
-		{
-			Cursor.lockState = value ? CursorLockMode.Locked : CursorLockMode.None;
-			Cursor.visible = value == false;
-		}
-	}
+    private Vector3 _velocity;
+    private float _defaultPosY = 0;
+    private float _timer = 0;
 
-	void OnEnable()
-	{
-		if (focusOnEnable) Focused = true;
-	
-	void OnDisable() => Focused = false;*/
-	
-	void Update()
-	{
-		// Input
-		/*
-		if (Focused)
-			UpdateInput();
-		else if (Input.GetMouseButtonDown(0))
-			Focused = true;*/
-			
-		UpdateInput();
+    private static bool Focused
+    {
+        get => Cursor.lockState == CursorLockMode.Locked;
+        set
+        {
+            Cursor.lockState = value ? CursorLockMode.Locked : CursorLockMode.None;
+            Cursor.visible = !value;
+        }
+    }
 
-		// Physics
-		velocity = Vector3.Lerp(velocity, Vector3.zero, dampingCoefficient * Time.deltaTime);
-		transform.position += velocity * Time.deltaTime;
-	}
+    private void Start()
+    {
+        _defaultPosY = transform.localPosition.y;
+    }
 
-	void UpdateInput()
-	{
-		// Position
-		velocity += GetAccelerationVector() * Time.deltaTime;
+    private void OnEnable()
+    {
+        Debug.Log("Entering OnEnable");
+        if (FocusOnEnable) Focused = true;
+        Debug.Log("Exiting OnEnable");
+    }
 
-		// Rotation
-		/*Vector2 mouseDelta = lookSensitivity * new Vector2(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y"));
-		Quaternion rotation = transform.rotation;
-		Quaternion horiz = Quaternion.AngleAxis(mouseDelta.x, Vector3.up);
-		Quaternion vert = Quaternion.AngleAxis(mouseDelta.y, Vector3.right);
-		transform.rotation = horiz * rotation * vert;*/ 
+    private void OnDisable()
+    {
+        Debug.Log("Entering OnDisable");
+        Focused = false;
+        Debug.Log("Exiting OnDisable");
+    }
 
-		// Leave cursor lock
-		/*
-		if (Input.GetKeyDown(KeyCode.Escape))
-			Focused = false;*/
-	}
+    private void Update()
+    {
+        Debug.Log("Entering Update");
 
-	Vector3 GetAccelerationVector()
-	{
-		Vector3 moveInput = default;
+        if (Focused)
+        {
+            UpdateInput();
+        }
+        else if (Input.GetMouseButtonDown(0))
+        {
+            Focused = true;
+            UpdateInput();
+        }
 
-		void AddMovement(KeyCode key, Vector3 dir)
-		{
-			if (Input.GetKey(key))
-				moveInput += dir;
-		}
+        _velocity = Vector3.Lerp(_velocity, Vector3.zero, DampingCoefficient * Time.deltaTime);
+        transform.position += _velocity * Time.deltaTime;
 
-		AddMovement(KeyCode.W, Vector3.forward);
-		AddMovement(KeyCode.S, Vector3.back);
-		AddMovement(KeyCode.D, Vector3.right);
-		AddMovement(KeyCode.A, Vector3.left);
-		AddMovement(KeyCode.Space, Vector3.up);
-		AddMovement(KeyCode.LeftControl, Vector3.down);
-		Vector3 direction = transform.TransformVector(moveInput.normalized);
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            _timer += Time.deltaTime * BobSpeed;
+            transform.localPosition = new Vector3(transform.localPosition.x, _defaultPosY + Mathf.Sin(_timer) * BobAmount, transform.localPosition.z);
+        }
+        else
+        {
+            _timer = 0;
+            transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Lerp(transform.localPosition.y, _defaultPosY, Time.deltaTime * BobSpeed), transform.localPosition.z);
+        }
 
-		if (Input.GetKey(KeyCode.LeftShift))
-			return direction * (acceleration * accSprintMultiplier); // "sprinting"
-		return direction * acceleration; // "walking"
-	}
+        Debug.Log("Exiting Update");
+    }
+
+    private void UpdateInput()
+    {
+        Debug.Log("Entering UpdateInput");
+
+        _velocity += GetAccelerationVector() * Time.deltaTime;
+
+        Vector2 mouseDelta = LookSensitivity * new Vector2(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y"));
+        Quaternion rotation = transform.rotation;
+        Quaternion horiz = Quaternion.AngleAxis(mouseDelta.x, Vector3.up);
+        Quaternion vert = Quaternion.AngleAxis(mouseDelta.y, Vector3.right);
+        transform.rotation = horiz * rotation * vert;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Focused = false;
+        }
+
+        Debug.Log("Exiting UpdateInput");
+    }
+
+    private Vector3 GetAccelerationVector()
+    {
+        Debug.Log("Entering GetAccelerationVector");
+
+        Vector3 moveInput = default;
+
+        void AddMovement(KeyCode key, Vector3 dir)
+        {
+            Debug.Log($"Entering AddMovement for key: {key}");
+            if (Input.GetKey(key))
+            {
+                moveInput += dir;
+            }
+            Debug.Log($"Exiting AddMovement for key: {key}");
+        }
+
+        AddMovement(KeyCode.W, Vector3.forward);
+        AddMovement(KeyCode.S, Vector3.back);
+        AddMovement(KeyCode.D, Vector3.right);
+        AddMovement(KeyCode.A, Vector3.left);
+        AddMovement(KeyCode.Space, Vector3.up);
+        AddMovement(KeyCode.LeftControl, Vector3.down);
+
+        Vector3 direction = transform.TransformVector(moveInput.normalized);
+
+        Debug.Log("Exiting GetAccelerationVector");
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            return direction * (Acceleration * AccSprintMultiplier);
+        }
+        return direction * Acceleration;
+    }
 }
