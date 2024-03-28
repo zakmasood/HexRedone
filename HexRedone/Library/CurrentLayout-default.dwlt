@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1037
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,10 +119,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 987
-  m_MinSize: {x: 679, y: 492}
-  m_MaxSize: {x: 14002, y: 14042}
+  m_MinSize: {x: 679, y: 342}
+  m_MaxSize: {x: 12004, y: 8042}
   vertical: 0
-  controlID: 77
+  controlID: 3373
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,10 +144,10 @@ MonoBehaviour:
     y: 0
     width: 1432
     height: 987
-  m_MinSize: {x: 403, y: 492}
-  m_MaxSize: {x: 10001, y: 14042}
+  m_MinSize: {x: 403, y: 342}
+  m_MaxSize: {x: 8003, y: 8042}
   vertical: 1
-  controlID: 51
+  controlID: 3311
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 52
+  controlID: 3312
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -247,14 +247,14 @@ MonoBehaviour:
     y: 614
     width: 1432
     height: 373
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 17}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 17}
   - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_UseMipMap: 0
   m_VSyncEnabled: 1
   m_Gizmos: 0
-  m_Stats: 1
+  m_Stats: 0
   m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
     m_HRangeLocked: 0
@@ -398,9 +398,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 4cf6ffff
-      m_LastClickedID: -2484
-      m_ExpandedIDs: d06bfdff306cfdff906cfdff7071fdffd071fdff3072fdff9072fdfff072fdffb076fdff1077fdff7077fdffd077fdff3078fdff9078fdfff078fdfff07bfdff507cfdffb07cfdff107dfdff707dfdffd07dfdff307efdff907efdfff07efdff507ffdfff081fdff5082fdffb082fdff1083fdff7083fdffd083fdff3084fdff9084fdff5088fdffb088fdff1089fdff7089fdffd089fdff508efdffb08efdff108ffdff1095fdff4cf6ffffc6f8ffffc44b0000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 52fbffffae460000b8460000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -416,7 +416,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 10}
+        m_ClientGUIView: {fileID: 8}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -460,9 +460,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.573307, y: 97.88368, z: 5.4024587}
+    m_Target: {x: -3.1258922, y: 103.280624, z: 0.29200694}
     speed: 2
-    m_Value: {x: -0.573307, y: 97.88368, z: 5.4024587}
+    m_Value: {x: -3.1258922, y: 103.280624, z: 0.29200694}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -509,13 +509,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.502549, y: 0.0032820373, z: -0.001978448, w: -0.8646365}
+    m_Target: {x: -0.15257792, y: -0.75072044, z: 0.18607523, w: -0.6153416}
     speed: 2
-    m_Value: {x: -0.50250715, y: 0.0032817642, z: -0.0019782833, w: -0.86456454}
+    m_Value: {x: -0.15256797, y: -0.7506715, z: 0.1860631, w: -0.6153015}
   m_Size:
-    m_Target: 12.124355
+    m_Target: 0.078754775
     speed: 2
-    m_Value: 12.124355
+    m_Value: 0.078754775
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1896,22 +1896,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scripts/BuildingControllers
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 68
   m_LastFolders:
-  - Assets
+  - Assets/Scripts/BuildingControllers
   m_LastFoldersGridSize: 68
   m_LastProjectPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 104d0000
-    m_LastClickedID: 19728
-    m_ExpandedIDs: 00000000104d0000124d0000144d0000164d0000184d00001a4d00001c4d00001e4d0000604d000000ca9a3b
+    m_SelectedIDs: ea4d0000
+    m_LastClickedID: 19946
+    m_ExpandedIDs: 00000000c0490000c2490000c4490000c6490000c8490000ca490000cc490000ce490000ee49000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1939,7 +1939,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000104d0000124d0000144d0000164d0000184d00001a4d00001c4d00001e4d0000
+    m_ExpandedIDs: 00000000c0490000c2490000c4490000c6490000c8490000ca490000cc490000ce49000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1964,8 +1964,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 5c470000
+    m_LastClickedInstanceID: 18268
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000264a0000de510000f2940000144a0000
     m_RenameOverlay:
@@ -1991,7 +1991,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 7}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 68
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 226
@@ -2052,7 +2052,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 208
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_LockTracker:
     m_IsLocked: 0
