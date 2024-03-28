@@ -1,19 +1,19 @@
 m_ProjectFiles:
   m_ManifestFileStatus:
-    m_FilePath: C:/Users/zakal_m9erurp/Documents/GitHub/GHex/HexRedone/Packages/manifest.json
+    m_FilePath: C:/dev/HexRedone/HexRedone/Packages/manifest.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638382559382517829
-    m_Hash: 1939371451
+      ticks: 638472206736496652
+    m_Hash: 1529529393
   m_LockFileStatus:
-    m_FilePath: C:/Users/zakal_m9erurp/Documents/GitHub/GHex/HexRedone/Packages/packages-lock.json
+    m_FilePath: C:/dev/HexRedone/HexRedone/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638382559399032202
+      ticks: 638472214048478615
     m_Hash: 3990763187
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -25,7 +25,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 2.2.4
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.adaptiveperformance@2.2.4
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.adaptiveperformance@2.2.4
       assetPath: Packages/com.unity.adaptiveperformance
       name: com.unity.adaptiveperformance
       displayName: Adaptive Performance
@@ -157,7 +157,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.3.9
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.collab-proxy@1.3.9
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.collab-proxy@1.3.9
       assetPath: Packages/com.unity.collab-proxy
       name: com.unity.collab-proxy
       displayName: Unity Collaborate
@@ -244,6 +244,7 @@ m_PackageAssets:
         - 2.1.0-preview.6
         - 2.1.0
         - 2.2.0
+        - 2.3.1
         compatible:
         - 1.3.9
         - 1.4.9
@@ -313,7 +314,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 2.0.7
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.ide.rider@2.0.7
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.ide.rider@2.0.7
       assetPath: Packages/com.unity.ide.rider
       name: com.unity.ide.rider
       displayName: JetBrains Rider Editor
@@ -371,6 +372,7 @@ m_PackageAssets:
         - 3.0.25
         - 3.0.26
         - 3.0.27
+        - 3.0.28
         compatible:
         - 1.0.2
         - 1.0.6
@@ -413,6 +415,7 @@ m_PackageAssets:
         - 3.0.25
         - 3.0.26
         - 3.0.27
+        - 3.0.28
         verified: 2.0.7
       dependencies:
       - name: com.unity.test-framework
@@ -452,7 +455,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 2.0.7
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.ide.visualstudio@2.0.7
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.ide.visualstudio@2.0.7
       assetPath: Packages/com.unity.ide.visualstudio
       name: com.unity.ide.visualstudio
       displayName: Visual Studio Editor
@@ -557,7 +560,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.2.3
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.ide.vscode@1.2.3
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.ide.vscode@1.2.3
       assetPath: Packages/com.unity.ide.vscode
       name: com.unity.ide.vscode
       displayName: Visual Studio Code Editor
@@ -566,7 +569,7 @@ m_PackageAssets:
         email: 
         url: 
       category: 
-      type: asset
+      type: 
       description: Code editor integration for supporting Visual Studio Code as code
         editor for unity. Adds support for generating csproj files for intellisense
         purposes, auto discovery of installations, etc.
@@ -613,7 +616,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 0
+      hideInEditor: 1
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -630,7 +633,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 3.2.1
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1
       assetPath: Packages/com.unity.nuget.newtonsoft-json
       name: com.unity.nuget.newtonsoft-json
       displayName: Newtonsoft Json
@@ -716,7 +719,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 10.3.2
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.render-pipelines.universal@10.3.2
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.render-pipelines.universal@10.3.2
       assetPath: Packages/com.unity.render-pipelines.universal
       name: com.unity.render-pipelines.universal
       displayName: Universal RP
@@ -837,7 +840,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.1.22
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.test-framework@1.1.22
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.test-framework@1.1.22
       assetPath: Packages/com.unity.test-framework
       name: com.unity.test-framework
       displayName: Test Framework
@@ -898,6 +901,7 @@ m_PackageAssets:
         - 1.4.0
         - 1.4.1
         - 1.4.2
+        - 1.4.3
         - 2.0.1-exp.1
         - 2.0.1-exp.2
         - 2.0.1-pre.12
@@ -923,6 +927,7 @@ m_PackageAssets:
         - 1.4.0
         - 1.4.1
         - 1.4.2
+        - 1.4.3
         - 2.0.1-exp.1
         - 2.0.1-exp.2
         - 2.0.1-pre.12
@@ -970,7 +975,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 3.0.1
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.textmeshpro@3.0.1
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.textmeshpro@3.0.1
       assetPath: Packages/com.unity.textmeshpro
       name: com.unity.textmeshpro
       displayName: TextMeshPro
@@ -1085,12 +1090,17 @@ m_PackageAssets:
         - 3.0.4
         - 3.0.5
         - 3.0.6
+        - 3.0.7
+        - 3.0.8
         - 3.2.0-pre.1
         - 3.2.0-pre.2
         - 3.2.0-pre.3
         - 3.2.0-pre.4
         - 3.2.0-pre.5
         - 3.2.0-pre.6
+        - 3.2.0-pre.7
+        - 3.2.0-pre.8
+        - 3.2.0-pre.9
         - 4.0.0-pre.1
         - 4.0.0-pre.2
         compatible:
@@ -1099,13 +1109,18 @@ m_PackageAssets:
         - 3.0.4
         - 3.0.5
         - 3.0.6
+        - 3.0.7
+        - 3.0.8
         - 3.2.0-pre.1
         - 3.2.0-pre.2
         - 3.2.0-pre.3
         - 3.2.0-pre.4
         - 3.2.0-pre.5
         - 3.2.0-pre.6
-        verified: 3.0.6
+        - 3.2.0-pre.7
+        - 3.2.0-pre.8
+        - 3.2.0-pre.9
+        verified: 3.0.8
       dependencies:
       - name: com.unity.ugui
         version: 1.0.0
@@ -1147,7 +1162,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.4.6
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.timeline@1.4.6
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.timeline@1.4.6
       assetPath: Packages/com.unity.timeline
       name: com.unity.timeline
       displayName: Timeline
@@ -3146,7 +3161,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 1.0.6
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.ext.nunit@1.0.6
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.ext.nunit@1.0.6
       assetPath: Packages/com.unity.ext.nunit
       name: com.unity.ext.nunit
       displayName: Custom NUnit
@@ -3215,7 +3230,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 1.1.0
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.mathematics@1.1.0
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.mathematics@1.1.0
       assetPath: Packages/com.unity.mathematics
       name: com.unity.mathematics
       displayName: Mathematics
@@ -3249,6 +3264,7 @@ m_PackageAssets:
         - 1.2.5
         - 1.2.6
         - 1.3.1
+        - 1.3.2
         compatible:
         - 0.0.12-preview.2
         - 0.0.12-preview.5
@@ -3298,7 +3314,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 10.3.2
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.render-pipelines.core@10.3.2
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.render-pipelines.core@10.3.2
       assetPath: Packages/com.unity.render-pipelines.core
       name: com.unity.render-pipelines.core
       displayName: Core RP Library
@@ -3457,7 +3473,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 10.3.2
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.shadergraph@10.3.2
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.shadergraph@10.3.2
       assetPath: Packages/com.unity.shadergraph
       name: com.unity.shadergraph
       displayName: Shader Graph
@@ -3619,7 +3635,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 1.1.0
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.subsystemregistration@1.1.0
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.subsystemregistration@1.1.0
       assetPath: Packages/com.unity.subsystemregistration
       name: com.unity.subsystemregistration
       displayName: Subsystem Registration
@@ -3685,7 +3701,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 4.3.1
       source: 1
-      resolvedPath: C:\Users\zakal_m9erurp\Documents\GitHub\GHex\HexRedone\Library\PackageCache\com.unity.searcher@4.3.1
+      resolvedPath: C:\dev\HexRedone\HexRedone\Library\PackageCache\com.unity.searcher@4.3.1
       assetPath: Packages/com.unity.searcher
       name: com.unity.searcher
       displayName: Searcher
@@ -3762,5 +3778,5 @@ m_PackageAssets:
         path: 
   m_LocalPackages:
     m_LocalFileStatus: []
-m_ProjectPath: C:/Users/zakal_m9erurp/Documents/GitHub/GHex/HexRedone/Packages
+m_ProjectPath: C:/dev/HexRedone/HexRedone/Packages
 m_EditorVersion: 2020.3.1f1 (77a89f25062f)
