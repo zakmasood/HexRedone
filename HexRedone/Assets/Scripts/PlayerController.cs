@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 public static class StringExtension
 {
@@ -38,6 +39,48 @@ public class BuildingsList
     public List<BuildingData> Buildings { get; set; }
 }
 
+public class Factory
+{
+    public int tileId;
+    private int productionCount;
+    private bool shouldStop;
+    public Factory(int tileId, string oreType)
+    {
+        this.tileId = tileId;
+        OreType = oreType;
+        productionCount = 0;
+        Inventory = 0;
+        IsRunning = false;
+        shouldStop = false;
+    }
+    public string OreType { get; }
+    public int Inventory { get; private set; }
+    public bool IsRunning { get; private set; }
+
+    public async Task StartProduction()
+    {
+        IsRunning = true;
+        shouldStop = false;
+        while (productionCount < 100 && !shouldStop)
+        {
+            await Task.Delay(1000); // Simulate production time
+            productionCount++;
+            Console.WriteLine($"Factory on tile {tileId} producing {OreType}: {productionCount}/100");
+        }
+        if (!shouldStop)
+        {
+            Inventory += productionCount;
+            productionCount = 0;
+            Console.WriteLine($"Factory on tile {tileId} transferred 100 {OreType} to inventory.");
+        }
+        IsRunning = false;
+    }
+    public void StopProduction()
+    {
+        shouldStop = true;
+    }
+}
+
 public class PlayerController : MonoBehaviour
 {
     public WorldGen worldGen;
@@ -52,6 +95,8 @@ public class PlayerController : MonoBehaviour
 
     public Dictionary<string, int> buildingCounts = new Dictionary<string, int>();
     private Dictionary<string, Text> buildingTexts = new Dictionary<string, Text>();
+    private Dictionary<int, Factory> factories = new Dictionary<int, Factory>();
+    private Dictionary<int, Task> factoryTasks = new Dictionary<int, Task>();
 
     public int count;
 
@@ -118,7 +163,7 @@ public class PlayerController : MonoBehaviour
 
     public void BuildFiveBuildingsQuest()
     {
-        if(questController.hasDistinctValues(2, buildingCounts))
+        if (questController.hasDistinctValues(5, buildingCounts))
         {
             print("You win!!".Color("lime"));
         }
@@ -268,6 +313,112 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+            BuildFiveBuildingsQuest();
+        }
+
+    }
+
+    public void createFactory(int tileID)
+    {
+        if (factories.ContainsKey(tileID))
+        {
+            Debug.LogWarning($"Factory Already Exists On Tile {tileID}");
+            return;
+        }
+
+        TileData data = worldGen.GetTileData(tileID);
+        if (data == null)
+        {
+            Debug.LogWarning("Invalid tile ID!");
+            return;
+        }
+
+        var factory = new Factory(tileID, data.resourceType);
+        if (factories.TryAdd(tileID, factory))
+        {
+            StartFactoryProduction(factory);
+            Debug.Log($"Factory created on tile {tileID} producing {data.resourceType}");
         }
     }
+
+    private void StartFactoryProduction(Factory factory)
+    {
+        factoryTasks[factory.tileId] = Task.Run(async () => {
+            while (true)
+            {
+                await factory.StartProduction();
+                if (!factory.IsRunning) break;
+            }
+        });
+    }
+
+    public void StopFactoryProduction(int tileId)
+    {
+        if (factories.TryGetValue(tileId, out Factory factory))
+        {
+            factory.StopProduction();
+            Debug.Log($"Stopping production for factory on tile {tileId}");
+        }
+    }
+
+    public async Task RemoveFactory(int tileId)
+    {
+        if (factories.TryGetValue(tileId, out Factory factory))
+        {
+            factory.StopProduction();
+            if (factoryTasks.TryGetValue(tileId, out Task task))
+            {
+                await task;
+                factoryTasks.Remove(tileId);
+            }
+            factories.Remove(tileId);
+            Debug.Log($"Factory on tile {tileId} has been removed.");
+        }
+    }
+
+    public void CollectFactoryInventory(int tileId)
+    {
+        if (factories.TryGetValue(tileId, out Factory factory))
+        {
+            int inventory = factory.Inventory;
+            Debug.Log($"Collected {inventory} {factory.OreType} from factory on tile {tileId}");
+            // Transfer inventory to global resource management
+        }
+    }
+
+    public void SaveBuildingCounts(string filePath)
+    {
+        try
+        {
+            string json = JsonConvert.SerializeObject(buildingCounts, Formatting.Indented);
+            File.WriteAllText(filePath, json);
+            Debug.Log($"Building counts saved to: {filePath}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error saving building counts: {e.Message}");
+        }
+    }
+
+    public void LoadBuildingCounts(string filePath)
+    {
+        try
+        {
+            if (File.Exists(filePath))
+            {
+                string json = File.ReadAllText(filePath);
+                buildingCounts = JsonConvert.DeserializeObject<Dictionary<string, int>>(json);
+                Debug.Log($"Building counts loaded from: {filePath}");
+            }
+            else
+            {
+                Debug.LogWarning($"File not found: {filePath}");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error loading building counts: {e.Message}");
+        }
+    }
+
 }

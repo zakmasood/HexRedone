@@ -1,6 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
+
+[System.Serializable]
+public class Ore
+{
+    public string name;
+    public GameObject prefab;
+}
 
 public static class Elements
 {
@@ -42,7 +51,27 @@ public class WorldGen : MonoBehaviour
 {
     public GameObject baseTilePrefab;
 
-    public int j;
+    [Range(0f, 1f)]
+    [Header("Coal Ore Range")]
+    public float coaloreRange;
+    [Range(0f, 1f)]
+    [Header("Iron Ore Range")]
+    public float ironoreRange;
+    [Range(0f, 1f)]
+    [Header("Uranium Ore Range")]
+    public float uraniumoreRange;
+    [Range(0f, 1f)]
+    [Header("Gold Ore Range")]
+    public float goldoreRange;
+    [Range(0f, 1f)]
+    [Header("Water Range")]
+    public float waterRange;
+    [Range(0f, 1f)]
+    [Header("Stone Range")]
+    public float stoneRange;
+    [Range(0f, 1f)]
+    [Header("Earth Range")]
+    public float earthRange;
 
     public int gridLength = 5;
     public int gridWidth = 5;
@@ -53,13 +82,14 @@ public class WorldGen : MonoBehaviour
     public GameObject[,] tiles; // Declare a 2D array to store the tiles (BASE)
     public GameObject[,] resources; // 2D array to store the resource tiles (RESOURCES)
     public TileData[,] tileData;
+
     private Dictionary<int, TileData> tileDataDictionary = new Dictionary<int, TileData>();
+    public List<Ore> ores;
 
     [Header("Perlin Noise Generator")]
     public double pHeight;
     public double pWidth;
     public float scaleFactor;
-    public int seed;
     public int octaveAmount;
     public float lacuAmount;
     public float persAmount;
@@ -156,6 +186,22 @@ public class WorldGen : MonoBehaviour
         RegenerateGrid();
     }
 
+   public void InstantiateOre(string name, Vector3 position)
+    {
+        // Finds the Ore in the list with the specified name
+        Ore oreToSpawn = ores.Find(ore => ore.name == name);
+
+        if (oreToSpawn != null)
+        {
+            // Instantiate the prefab at the specified position
+            Instantiate(oreToSpawn.prefab, position, Quaternion.identity);
+        }
+        else
+        {
+            Debug.Log("Ore not found in the list: " + name);
+        }
+    }
+
     public void SetTileResourceType(int tileID, string resourceType)
     {
         TileData data = GetTileData(tileID);
@@ -210,21 +256,27 @@ public class WorldGen : MonoBehaviour
                     break;
                 case "coal-ore":
                     renderer.material.color = materialColors["coal-ore"];
+                    InstantiateOre("coal-ore", new Vector3((float)X, height + 2, (float)Z));
                     break;
                 case "iron-ore":
                     renderer.material.color = materialColors["iron-ore"];
+                    InstantiateOre("iron-ore", new Vector3((float)X, height + 2, (float)Z));
                     break;
                 case "copper-ore":
                     renderer.material.color = materialColors["copper-ore"];
+                    InstantiateOre("copper-ore", new Vector3((float)X, height + 2, (float)Z));
                     break;
                 case "gold-ore":
                     renderer.material.color = materialColors["gold-ore"];
+                    InstantiateOre("gold-ore", new Vector3((float)X, height + 2, (float)Z));
                     break;
                 case "uranium-ore":
                     renderer.material.color = materialColors["uranium-ore"];
+                    InstantiateOre("uranium-ore", new Vector3((float)X, height + 2, (float)Z));
                     break;
                 case "stone":
                     renderer.material.color = materialColors["stone"];
+                    InstantiateOre("stone", new Vector3((float)X, height + 2, (float)Z));
                     break;
                 case "oil":
                     renderer.material.color = materialColors["oil"];
@@ -246,72 +298,90 @@ public class WorldGen : MonoBehaviour
     }
 
 
+    // Regenerates the grid with new tiles and resources.
     public void RegenerateGrid()
     {
         Debug.Log("Regenerating grid...");
+
+        // Initialize tile data
         tileData = new TileData[gridLength, gridWidth];
+
+        // Clear dictionary
         tileDataDictionary.Clear();
 
-        // Clear existing tiles if any
-        if (tiles != null)
-        {
-            for (int q = 0; q < gridLength; q++)
-            {
-                for (int r = 0; r < gridWidth; r++)
-                {
-                    if (tiles[q, r] != null)
-                    {
-                        Destroy(tiles[q, r]);
-                        tiles[q, r] = null; // Set the reference to null after destroying the object
-                    }
-                }
-            }
-        }
+        // Destroy existing tiles if any
+        ClearGrid();
 
-        float[,] noiseMap = GenerateNoiseMap(gridWidth, gridLength, scaleFactor, seed, octaveAmount, persAmount, lacuAmount);
+        // Generate noise map for random terrain generation
+        var noiseMap = GenerateNoiseMap(gridWidth, gridLength, scaleFactor, Random.Range(0, 1000000), octaveAmount, persAmount, lacuAmount);
+
+        // Initialize game object arrays
         tiles = new GameObject[gridLength, gridWidth];
         resources = new GameObject[gridLength, gridWidth];
 
-        for (int q = 0; q < gridLength; q++)
-        {
-            for (int r = 0; r < gridWidth; r++)
-            {
-                int tileID = q * gridWidth + r;
-                float perlinValue = noiseMap[q, r];
-                string resourceType = DetermineResourceType(perlinValue);
-                tileData[q, r] = new TileData(tileID, q, r, resourceType);
-                tileDataDictionary[tileID] = tileData[q, r];
+        // Set up new tiles and resources
+        SetUpTilesAndResources(noiseMap);
 
-                SetupTile(q, r, tileID, resourceType, 0);
+        Debug.Log("Grid regeneration complete.");
+    }
+
+    private void ClearGrid()
+    {
+        Stopwatch stopWatch = new Stopwatch();
+        stopWatch.Start();
+
+        if (tiles == null) return;
+
+        for (int i = 0; i < gridLength * gridWidth; i++)
+        {
+            int q = i / gridWidth;
+            int r = i % gridWidth;
+
+            if (tiles[q, r] != null)
+            {
+                Destroy(tiles[q, r]);
+                tiles[q, r] = null;
             }
         }
-        Debug.Log("Grid regeneration complete.");
+        stopWatch.Stop();
+        Debug.Log($"Cleargrid execution time: {stopWatch.ElapsedMilliseconds}");
+    }
+
+    private void SetUpTilesAndResources(float[,] noiseMap)
+    {
+        Stopwatch stopWatch = new Stopwatch();
+        stopWatch.Start();
+
+        for (int i = 0; i < gridLength * gridWidth; i++)
+        {
+            int q = i / gridWidth;
+            int r = i % gridWidth;
+
+            var tileID = i;
+            var perlinValue = noiseMap[q, r];
+            var resourceType = DetermineResourceType(perlinValue);
+            tileData[q, r] = new TileData(tileID, q, r, resourceType);
+            tileDataDictionary[tileID] = tileData[q, r];
+            SetupTile(q, r, tileID, resourceType, 0);
+        }
+
+        stopWatch.Stop();
+        Debug.Log($"Cleargrid execution time: {stopWatch.ElapsedMilliseconds}");
     }
 
     public string DetermineResourceType(float perlinValue)
     {
-        if (perlinValue < 0.1f)
-            return "water";
-        else if (perlinValue < 0.2f)
-            return "earth";
-        else if (perlinValue < 0.3f)
-            return "coal-ore";
-        else if (perlinValue < 0.4f)
-            return "iron-ore";
-        else if (perlinValue < 0.5f)
-            return "copper-ore";
-        else if (perlinValue < 0.6f)
-            return "gold-ore";
-        else if (perlinValue < 0.7f)
-            return "uranium-ore";
-        else if (perlinValue < 0.8f)
-            return "stone";
-        else if (perlinValue < 0.85f)
-            return "oil";
-        else if (perlinValue < 0.9f)
-            return "natural-gas";
-        else
-            return "tree";
+        return perlinValue < 0.1f ? "water"
+            : perlinValue < 0.15f ? "uranium-ore"
+            : perlinValue < 0.2f ? "gold-ore"
+            : perlinValue < 0.3f ? "coal-ore"
+            : perlinValue < 0.4f ? "iron-ore"
+            : perlinValue < 0.5f ? "copper-ore"
+            : perlinValue < 0.6f ? "oil"
+            : perlinValue < 0.75f ? "earth"
+            : perlinValue < 0.85f ? "stone"
+            : perlinValue < 0.95f ? "natural-gas"
+            : "tree";
     }
 
 
@@ -319,17 +389,16 @@ public class WorldGen : MonoBehaviour
     {
         if (tiles != null)
         {
-            for (int q = 0; q < gridLength; q++)
+            for (int i = 0; i < gridLength * gridWidth; i++)
             {
-                for (int r = 0; r < gridWidth; r++)
+                int q = i / gridWidth;
+                int r = i % gridWidth;
+
+                if (tiles[q, r] != null)
                 {
-                    Debug.Log(tiles[q, r]);
-                    if (tiles[q, r] != null)
-                    {
-                        Debug.Log($"Destroying tile at [{q},{r}] with name {tiles[q, r].name}");
-                        Destroy(tiles[q, r]);
-                        tiles[q, r] = null; // Set the reference to null after destroying the object
-                    }
+                    Debug.Log($"Destroying tile at [{q},{r}] with name {tiles[q, r].name}");
+                    Destroy(tiles[q, r]);
+                    tiles[q, r] = null; // Set the reference to null after destroying the object
                 }
             }
         }
