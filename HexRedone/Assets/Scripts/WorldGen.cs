@@ -3,12 +3,46 @@ using System.IO;
 using UnityEngine;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
+using System.Text;
 
 [System.Serializable]
 public class Ore
 {
     public string name;
     public GameObject prefab;
+}
+
+public class ElementCounters
+{
+    private Dictionary<string, int> elementCounts;
+
+    public ElementCounters()
+    {
+        elementCounts = new Dictionary<string, int>();
+    }
+
+    public void IncrementCount(string element)
+    {
+        if (string.IsNullOrEmpty(element))
+        {
+            // Handle invalid element name (optional)
+            Debug.LogWarning("Invalid element name provided.");
+            return;
+        }
+
+        element = element.ToLower(); // Ensure case-insensitive counting
+
+        if (elementCounts.ContainsKey(element))
+        {
+            elementCounts[element]++;
+        }
+        else
+        {
+            elementCounts[element] = 1;
+        }
+
+        //Debug.Log("Element added/updated: " + element + " Current count: " + elementCounts[element]);
+    }
 }
 
 public static class Elements
@@ -50,6 +84,7 @@ public class TileData
 public class WorldGen : MonoBehaviour
 {
     public GameObject baseTilePrefab;
+    ElementCounters elementCounter = new ElementCounters();
 
     [Range(0f, 1f)]
     [Header("Coal Ore Range")]
@@ -250,42 +285,53 @@ public class WorldGen : MonoBehaviour
             {
                 case "water":
                     renderer.material.color = materialColors["water"];
+                    elementCounter.IncrementCount(Elements.Water);
                     break;
                 case "earth":
                     renderer.material.color = materialColors["earth"];
+                    elementCounter.IncrementCount(Elements.Earth);
                     break;
                 case "coal-ore":
                     renderer.material.color = materialColors["coal-ore"];
                     InstantiateOre("coal-ore", new Vector3((float)X, height + 2, (float)Z));
+                    elementCounter.IncrementCount(Elements.CoalOre);
                     break;
                 case "iron-ore":
                     renderer.material.color = materialColors["iron-ore"];
                     InstantiateOre("iron-ore", new Vector3((float)X, height + 2, (float)Z));
+                    elementCounter.IncrementCount(Elements.IronOre);
                     break;
                 case "copper-ore":
                     renderer.material.color = materialColors["copper-ore"];
                     InstantiateOre("copper-ore", new Vector3((float)X, height + 2, (float)Z));
+                    elementCounter.IncrementCount(Elements.CopperOre);
                     break;
                 case "gold-ore":
                     renderer.material.color = materialColors["gold-ore"];
                     InstantiateOre("gold-ore", new Vector3((float)X, height + 2, (float)Z));
+                    elementCounter.IncrementCount(Elements.GoldOre);
                     break;
                 case "uranium-ore":
                     renderer.material.color = materialColors["uranium-ore"];
                     InstantiateOre("uranium-ore", new Vector3((float)X, height + 2, (float)Z));
+                    elementCounter.IncrementCount(Elements.UraniumOre);
                     break;
                 case "stone":
                     renderer.material.color = materialColors["stone"];
                     InstantiateOre("stone", new Vector3((float)X, height + 2, (float)Z));
+                    elementCounter.IncrementCount(Elements.Stone);
                     break;
                 case "oil":
                     renderer.material.color = materialColors["oil"];
+                    elementCounter.IncrementCount(Elements.Oil);
                     break;
                 case "natural-gas":
                     renderer.material.color = materialColors["natural-gas"];
+                    elementCounter.IncrementCount(Elements.NaturalGas);
                     break;
                 case "tree":
                     renderer.material.color = materialColors["tree"];
+                    elementCounter.IncrementCount(Elements.Tree);
                     break;
                 default:
                     break;
@@ -293,7 +339,6 @@ public class WorldGen : MonoBehaviour
         }
 
         tiles[x, y] = baseTile;
-
         return baseTile;
     }
 

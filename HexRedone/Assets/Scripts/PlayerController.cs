@@ -15,27 +15,114 @@ public static class StringExtension
     public static string Size(this string str, int size) => string.Format("<size={0}>{1}</size>", size, str);
 }
 
+public class Inventory
+{
+    public Dictionary<string, int> resources;
+
+    public Inventory()
+    {
+        this.resources = new Dictionary<string, int>();
+    }
+
+    public void LoadInventory(string filePath)
+    {
+        // Clear existing data
+        resources.Clear();
+
+        // Open the file for reading with error checking
+        try
+        {
+            StreamReader reader = new StreamReader(filePath);
+
+            // Skip header row
+            reader.ReadLine();
+
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                string[] data = line.Split(',');
+                if (data.Length == 2)
+                {
+                    string resourceType = data[0];
+                    int count = int.Parse(data[1]);
+                    resources.Add(resourceType, count);
+                }
+                else
+                {
+                    Debug.LogError($"Invalid format in inventory file: {line}");
+                }
+            }
+
+            reader.Close();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error loading inventory: {e.Message}");
+        }
+    }
+
+    public void SaveInventory(string filePath)
+    {
+        try
+        {
+            Debug.Log($"Saving inventory to {filePath}");
+
+            if (resources == null)
+            {
+                Debug.LogError("Resources dictionary is null.");
+                return;
+            }
+
+            if (resources.Count == 0)
+            {
+                Debug.LogWarning("Resources dictionary is empty. No data to save.");
+                return;
+            }
+
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                // Write header row
+                Debug.Log("Writing header row: ResourceType,Count");
+                writer.WriteLine("ResourceType,Count");
+
+                // Write each resource and its count
+                foreach (var resource in resources)
+                {
+                    if (resource.Key == null)
+                    {
+                        Debug.LogWarning("Encountered a null resource key. Skipping this entry.");
+                        continue;
+                    }
+
+                    Debug.Log($"Writing resource: {resource.Key}, Count: {resource.Value}");
+                    writer.WriteLine($"{resource.Key},{resource.Value}");
+                }
+            }
+
+            Debug.Log("Inventory saved successfully.");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error saving inventory: {e.Message}");
+        }
+    }
+
+
+
+}
+
+
 public class BuildingData
 {
-    [JsonProperty("building-type")]
     public string BuildingType { get; set; }
-
-    [JsonProperty("item-needed")]
     public List<string> ItemNeeded { get; set; }
-
-    [JsonProperty("icon")]
     public string icon { get; set; }
-
-    [JsonProperty("color")]
     public string color { get; set; }
-
-    [JsonProperty("category")]
     public string category { get; set; }
 }
 
 public class BuildingsList
 {
-    [JsonProperty("buildings")]
     public List<BuildingData> Buildings { get; set; }
 }
 
@@ -100,6 +187,8 @@ public class PlayerController : MonoBehaviour
 
     public int count;
 
+    Inventory inventory = new Inventory();
+
     GameObject DetectClickedTile()
     {
         RaycastHit hit;
@@ -130,6 +219,12 @@ public class PlayerController : MonoBehaviour
             return new List<string>();
         }
 
+        if (worldGen == null)
+        {
+            Debug.LogError("worldGen is not assigned in the inspector.");
+            return new List<string>();
+        }
+
         TileData data = worldGen.GetTileData(tileID);
 
         if (data == null)
@@ -145,7 +240,7 @@ public class PlayerController : MonoBehaviour
 
         foreach (BuildingData building in buildings.Buildings)
         {
-            if (building.ItemNeeded.Contains(resourceType))
+            if (building.ItemNeeded != null && building.ItemNeeded.Contains(resourceType))
             {
                 buildingTypes.Add(building.BuildingType);
                 Debug.Log("Building " + building.BuildingType + " can be built on this tile.");
@@ -159,7 +254,6 @@ public class PlayerController : MonoBehaviour
 
         return buildingTypes;
     }
-
 
     public void BuildFiveBuildingsQuest()
     {
@@ -237,11 +331,45 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
+    public void CreateOrUpdateLabel(string buildingToBuild)
+    {
+        // Check if the building already has a label
+        if (buildingTexts.ContainsKey(buildingToBuild))
+        {
+            // Update the text of the existing label
+            buildingTexts[buildingToBuild].text = buildingToBuild + ": " + buildingCounts[buildingToBuild];
+        }
+        else
+        {
+            // Instantiate new label for this type of building
+            GameObject newLabel = Instantiate(labelPrefab, new Vector2(labelsContainer.transform.position.x, labelsContainer.transform.position.y), Quaternion.identity, labelsContainer);
+            Text newLabelText = newLabel.GetComponent<Text>();
+
+            // Set the label's text
+            newLabelText.text = buildingToBuild + ": " + buildingCounts[buildingToBuild];
+
+            // Add the new label to the dictionary
+            buildingTexts.Add(buildingToBuild, newLabelText);
+        }
+    }
+
+    public void IncrementBuildingCount(string buildingToBuild)
+    {
+        if (!buildingCounts.ContainsKey(buildingToBuild))
+        {
+            buildingCounts[buildingToBuild] = 0;
+        }
+
+        buildingCounts[buildingToBuild]++;
+        CreateOrUpdateLabel(buildingToBuild);
+    }
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
             worldGen.SaveWorldData("tileData.json");
+            inventory.SaveInventory("inventory.csv");
             print("Tile data saved to " + Path.Combine(Application.dataPath, "tileData.json"));
         }
         if (Input.GetKeyDown(KeyCode.D))
@@ -286,6 +414,7 @@ public class PlayerController : MonoBehaviour
                 if (CanPlaceBuilding(tileID, buildingToBuild))
                 {
                     Instantiate(buildingPlaceholder, new Vector3(clickedTile.transform.position.x, 3, clickedTile.transform.position.z), Quaternion.identity);
+                    createFactory(tileID);
 
                     if (buildingCounts.ContainsKey(buildingToBuild))
                     {
@@ -303,19 +432,12 @@ public class PlayerController : MonoBehaviour
                     }
                     else
                     {
-                        // Instantiate new label for this type of building
-                        GameObject newLabel = Instantiate(labelPrefab, new Vector2(labelsContainer.transform.position.x, labelsContainer.transform.position.y), Quaternion.identity, labelsContainer);
-                        Text newLabelText = newLabel.GetComponent<Text>();
-
-                        newLabelText.text = buildingToBuild + ": " + buildingCounts[buildingToBuild];
-
-                        buildingTexts.Add(buildingToBuild, newLabelText);
+                        IncrementBuildingCount(buildingToBuild);
                     }
                 }
             }
             BuildFiveBuildingsQuest();
         }
-
     }
 
     public void createFactory(int tileID)
