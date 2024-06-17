@@ -1126,7 +1126,7 @@ Transform:
   m_GameObject: {fileID: 1902648770}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 9.17, y: 26.89, z: 12.02}
+  m_LocalPosition: {x: 10.12, y: 41.91, z: 22.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1145,7 +1145,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseTilePrefab: {fileID: 8008009365237590339}
-  j: 0
+  coaloreRange: 0
+  ironoreRange: 0
+  uraniumoreRange: 0
+  goldoreRange: 0
+  waterRange: 0
+  stoneRange: 0
+  earthRange: 0
   gridLength: 32
   gridWidth: 32
   tileWidth: 1
@@ -1165,11 +1171,10 @@ MonoBehaviour:
     prefab: {fileID: 3631859630900297390}
   pHeight: 8192
   pWidth: 8192
-  scaleFactor: 9
-  seed: 1231425
-  octaveAmount: 10
-  lacuAmount: 5
-  persAmount: 0.2
+  scaleFactor: 9.05
+  octaveAmount: 8
+  lacuAmount: 0.25
+  persAmount: 0.3
 --- !u!114 &1902648776
 MonoBehaviour:
   m_ObjectHideFlags: 0

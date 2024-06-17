@@ -4,6 +4,8 @@ using UnityEngine;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 using System.Text;
+using CustomLogger;
+using Logger = CustomLogger.Logger;
 
 [System.Serializable]
 public class Ore
@@ -26,7 +28,7 @@ public class ElementCounters
         if (string.IsNullOrEmpty(element))
         {
             // Handle invalid element name (optional)
-            Debug.LogWarning("Invalid element name provided.");
+            Logger.Log(LogLevel.Warning, "Invalid element name provided.");
             return;
         }
 
@@ -41,7 +43,8 @@ public class ElementCounters
             elementCounts[element] = 1;
         }
 
-        //Debug.Log("Element added/updated: " + element + " Current count: " + elementCounts[element]);
+        //
+        //("Element added/updated: " + element + " Current count: " + elementCounts[element]);
     }
 }
 
@@ -233,7 +236,7 @@ public class WorldGen : MonoBehaviour
         }
         else
         {
-            Debug.Log("Ore not found in the list: " + name);
+            Logger.Log(LogLevel.Warning, "Ore not found in the list: " + name);
         }
     }
 
@@ -243,13 +246,13 @@ public class WorldGen : MonoBehaviour
 
         if (data.x >= 0 && data.x < tileData.GetLength(0) && data.z >= 0 && data.z < tileData.GetLength(1))
         {
-            Debug.Log("Setting resource type for tile at (" + data.x + ", " + data.z + ")");
+            Logger.Log(LogLevel.Debug, "Setting resource type for tile at (" + data.x + ", " + data.z + ")");
             tileData[data.x, data.z].resourceType = resourceType;
-            Debug.Log("New resource type is: " + tileData[data.x, data.z].resourceType);
+            Logger.Log(LogLevel.Success, "New resource type is: " + tileData[data.x, data.z].resourceType);
         }
         else
         {
-            Debug.Log("Cannot set resource type for tile at (" + data.x + ", " + data.z + ") - out of range");
+            Logger.Log(LogLevel.Error, "Cannot set resource type for tile at (" + data.x + ", " + data.z + ") - out of range");
         }
     }
 
@@ -346,7 +349,7 @@ public class WorldGen : MonoBehaviour
     // Regenerates the grid with new tiles and resources.
     public void RegenerateGrid()
     {
-        Debug.Log("Regenerating grid...");
+        Logger.Log(LogLevel.Debug, "Regenerating grid...");
 
         // Initialize tile data
         tileData = new TileData[gridLength, gridWidth];
@@ -367,7 +370,7 @@ public class WorldGen : MonoBehaviour
         // Set up new tiles and resources
         SetUpTilesAndResources(noiseMap);
 
-        Debug.Log("Grid regeneration complete.");
+        Logger.Log(LogLevel.Success, "Grid regeneration complete.");
     }
 
     private void ClearGrid()
@@ -389,7 +392,7 @@ public class WorldGen : MonoBehaviour
             }
         }
         stopWatch.Stop();
-        Debug.Log($"Cleargrid execution time: {stopWatch.ElapsedMilliseconds}");
+        Logger.Log(LogLevel.Debug, $"Cleargrid execution time: {stopWatch.ElapsedMilliseconds}");
     }
 
     private void SetUpTilesAndResources(float[,] noiseMap)
@@ -411,7 +414,7 @@ public class WorldGen : MonoBehaviour
         }
 
         stopWatch.Stop();
-        Debug.Log($"Cleargrid execution time: {stopWatch.ElapsedMilliseconds}");
+        Logger.Log(LogLevel.Debug, $"GridGen execution time: {stopWatch.ElapsedMilliseconds}");
     }
 
     public string DetermineResourceType(float perlinValue)
@@ -441,7 +444,7 @@ public class WorldGen : MonoBehaviour
 
                 if (tiles[q, r] != null)
                 {
-                    Debug.Log($"Destroying tile at [{q},{r}] with name {tiles[q, r].name}");
+                    Logger.Log(LogLevel.Info, $"Destroying tile at [{q},{r}] with name {tiles[q, r].name}");
                     Destroy(tiles[q, r]);
                     tiles[q, r] = null; // Set the reference to null after destroying the object
                 }
@@ -462,7 +465,7 @@ public class WorldGen : MonoBehaviour
 
     public void LoadWorldData(string filePath)
     {
-        Debug.Log("Loading world data");
+        Logger.Log(LogLevel.Debug, "Loading world data");
 
         // Initialize or clear existing data
         tileData = new TileData[gridLength, gridWidth];
@@ -508,6 +511,6 @@ public class WorldGen : MonoBehaviour
                 SetupTile(tile.x, tile.z, tile.TileID, tile.resourceType, 0);
             }
         }
-        Debug.Log("World data loaded and grid generated.");
+        Logger.Log(LogLevel.Success, "World data loaded and grid generated.");
     }
 }

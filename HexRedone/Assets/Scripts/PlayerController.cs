@@ -6,14 +6,8 @@ using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-
-public static class StringExtension
-{
-    public static string Bold(this string str) => "<b>" + str + "</b>";
-    public static string Color(this string str, string clr) => string.Format("<color={0}>{1}</color>", clr, str);
-    public static string Italic(this string str) => "<i>" + str + "</i>";
-    public static string Size(this string str, int size) => string.Format("<size={0}>{1}</size>", size, str);
-}
+using CustomLogger;
+using Logger = CustomLogger.Logger;
 
 public class Inventory
 {
@@ -49,7 +43,7 @@ public class Inventory
                 }
                 else
                 {
-                    Debug.LogError($"Invalid format in inventory file: {line}");
+                    Logger.Log(LogLevel.Warning, $"Invalid format in inventory file: {line}");
                 }
             }
 
@@ -57,7 +51,7 @@ public class Inventory
         }
         catch (Exception e)
         {
-            Debug.LogError($"Error loading inventory: {e.Message}");
+            Logger.Log(LogLevel.Error, $"Error loading inventory: {e.Message}");
         }
     }
 
@@ -65,24 +59,24 @@ public class Inventory
     {
         try
         {
-            Debug.Log($"Saving inventory to {filePath}");
+            Logger.Log(LogLevel.Info, $"Saving inventory to {filePath}");
 
             if (resources == null)
             {
-                Debug.LogError("Resources dictionary is null.");
+                Logger.Log(LogLevel.Error, "Resources dictionary is null.");
                 return;
             }
 
             if (resources.Count == 0)
             {
-                Debug.LogWarning("Resources dictionary is empty. No data to save.");
+                Logger.Log(LogLevel.Error, "Resources dictionary is empty. No data to save.");
                 return;
             }
 
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 // Write header row
-                Debug.Log("Writing header row: ResourceType,Count");
+                Logger.Log(LogLevel.Info, "Writing header row: ResourceType,Count");
                 writer.WriteLine("ResourceType,Count");
 
                 // Write each resource and its count
@@ -90,32 +84,28 @@ public class Inventory
                 {
                     if (resource.Key == null)
                     {
-                        Debug.LogWarning("Encountered a null resource key. Skipping this entry.");
+                        Logger.Log(LogLevel.Warning, "Encountered a null resource key. Skipping this entry.");
                         continue;
                     }
 
-                    Debug.Log($"Writing resource: {resource.Key}, Count: {resource.Value}");
+                    Logger.Log(LogLevel.Info, $"Writing resource: {resource.Key}, Count: {resource.Value}");
                     writer.WriteLine($"{resource.Key},{resource.Value}");
                 }
             }
 
-            Debug.Log("Inventory saved successfully.");
+            Logger.Log(LogLevel.Success, "Inventory saved successfully.");
         }
         catch (Exception e)
         {
-            Debug.LogError($"Error saving inventory: {e.Message}");
+            Logger.Log(LogLevel.Error, $"Error saving inventory: {e.Message}");
         }
     }
-
-
-
 }
-
 
 public class BuildingData
 {
-    public string BuildingType { get; set; }
-    public List<string> ItemNeeded { get; set; }
+    public string buildingType { get; set; }
+    public List<string> itemNeeded { get; set; }
     public string icon { get; set; }
     public string color { get; set; }
     public string category { get; set; }
@@ -152,13 +142,13 @@ public class Factory
         {
             await Task.Delay(1000); // Simulate production time
             productionCount++;
-            Console.WriteLine($"Factory on tile {tileId} producing {OreType}: {productionCount}/100");
+            Logger.Log(LogLevel.Success, $"Factory on tile {tileId} producing {OreType}: {productionCount}/100");
         }
         if (!shouldStop)
         {
             Inventory += productionCount;
             productionCount = 0;
-            Console.WriteLine($"Factory on tile {tileId} transferred 100 {OreType} to inventory.");
+            Logger.Log(LogLevel.Success, $"Factory on tile {tileId} transferred 100 {OreType} to inventory.");
         }
         IsRunning = false;
     }
@@ -171,7 +161,6 @@ public class Factory
 public class PlayerController : MonoBehaviour
 {
     public WorldGen worldGen;
-    public ValidationEngine validator;
     public QuestController questController;
 
     public Text infoText;
@@ -206,7 +195,7 @@ public class PlayerController : MonoBehaviour
 
         if (!File.Exists(path))
         {
-            Debug.LogError("Json file not found at " + path);
+            Logger.Log(LogLevel.Error, "Json file not found at " + path);
             return new List<string>();
         }
 
@@ -215,13 +204,13 @@ public class PlayerController : MonoBehaviour
 
         if (buildings == null || buildings.Buildings == null || buildings.Buildings.Count == 0)
         {
-            Debug.LogWarning("No building data is available from the JSON file.");
+            Logger.Log(LogLevel.Error, "No building data is available from the JSON file.");
             return new List<string>();
         }
 
         if (worldGen == null)
         {
-            Debug.LogError("worldGen is not assigned in the inspector.");
+            Logger.Log(LogLevel.Error, "worldGen is not assigned in the inspector.");
             return new List<string>();
         }
 
@@ -229,12 +218,12 @@ public class PlayerController : MonoBehaviour
 
         if (data == null)
         {
-            Debug.LogError("TileData is null for tile ID " + tileID);
+            Logger.Log(LogLevel.Warning, "TileData is null for tile ID " + tileID);
             return new List<string>();
         }
 
         string resourceType = data.resourceType;
-        Debug.Log("Resource type on tile " + tileID + ": " + resourceType);
+        Logger.Log(LogLevel.Info, "Resource type on tile " + tileID + ": " + resourceType);
 
         List<string> buildingTypes = new List<string>();
 
@@ -243,13 +232,13 @@ public class PlayerController : MonoBehaviour
             if (building.ItemNeeded != null && building.ItemNeeded.Contains(resourceType))
             {
                 buildingTypes.Add(building.BuildingType);
-                Debug.Log("Building " + building.BuildingType + " can be built on this tile.");
+                Logger.Log(LogLevel.Success, "Building " + building.BuildingType + " can be built on this tile.");
             }
         }
 
         if (buildingTypes.Count == 0)
         {
-            Debug.Log("No buildings can be built on this tile with element type " + resourceType);
+            Logger.Log(LogLevel.Warning, "No buildings can be built on this tile with element type " + resourceType);
         }
 
         return buildingTypes;
@@ -282,7 +271,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Use hardcoded resource types list instead of enum
         List<string> resourceTypeList = new List<string>
         {
             Elements.None,
@@ -301,7 +289,7 @@ public class PlayerController : MonoBehaviour
 
         if (buildings.Buildings.Any(b => b.BuildingType == data.resourceType))
         {
-            Debug.Log("Cannot place building. Tile already has a building.");
+            Logger.Log(LogLevel.Warning, "Cannot place building. Tile already has a building.");
             return false;
         }
 
@@ -309,7 +297,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!resourceTypeList.Contains(item))
             {
-                Debug.Log("Cannot place building. Required item " + item + " not in tile elements.");
+                Logger.Log(LogLevel.Warning, "Cannot place building. Required item " + item + " not in tile elements.");
                 return false;
             }
         }
@@ -317,17 +305,17 @@ public class PlayerController : MonoBehaviour
         // Added check for correct resource exist on the tile
         if (!itemsNeeded.Contains(data.resourceType))
         {
-            Debug.Log($"Cannot place building. Tile does not contain required element for building type {buildingType}.");
+            Logger.Log(LogLevel.Warning, $"Cannot place building. Tile does not contain required element for building type {buildingType}.");
             return false;
         }
 
         if (data.x >= 0 && data.x < worldGen.tileData.GetLength(0) && data.z >= 0 && data.z < worldGen.tileData.GetLength(1))
         {
             worldGen.tileData[data.x, data.z].resourceType = data.resourceType;
-            Debug.Log("Placing tile");
+            Logger.Log(LogLevel.Info, "Placing tile");
             worldGen.SetTileResourceType(tileID, buildingType);
         }
-        Debug.Log("Can place building type " + buildingType + " on tile " + tileID + ".");
+        Logger.Log(LogLevel.Success, "Can place building type " + buildingType + " on tile " + tileID + ".");
         return true;
     }
 
@@ -364,25 +352,38 @@ public class PlayerController : MonoBehaviour
         CreateOrUpdateLabel(buildingToBuild);
     }
 
+    public void Awake()
+    {
+        string customLogPath = Path.Combine(Application.persistentDataPath, "Logs");
+        Logger.SetLogFilePath(customLogPath);
+        Logger.Log(LogLevel.Info, "Game starting . . .");
+    }
+
+    public void OnApplicationQuit()
+    {
+        Logger.Log(LogLevel.Info, "Game closing...");
+        Logger.FlushAndCloseLogFile();
+    }
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
             worldGen.SaveWorldData("tileData.json");
             inventory.SaveInventory("inventory.csv");
-            print("Tile data saved to " + Path.Combine(Application.dataPath, "tileData.json"));
+            Logger.Log(LogLevel.Success, "Tile data saved to " + Path.Combine(Application.dataPath, "tileData.json"));
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
             worldGen.DeleteGrid();
-            Debug.Log("Deleting World");
+            Logger.Log(LogLevel.Warning, "Deleting World");
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
             //worldGen.LoadWorldData(Application.dataPath + "tiledata.json");
             foreach (KeyValuePair<string, int> item in buildingCounts)
             {
-                Debug.Log("Key: " + item.Key + " Value: " + item.Value);
+                Logger.Log(LogLevel.Info, "Key: " + item.Key + " Value: " + item.Value);
             }
         }
 
@@ -394,22 +395,26 @@ public class PlayerController : MonoBehaviour
                 int tileID = worldGen.ExtractTileID(clickedTile.name);
                 TileData data = worldGen.GetTileData(tileID);
 
-                if (data != null)
+                Logger.Log(LogLevel.Info, "TileID For Clicked Tile: " + tileID);
+                Logger.Log(LogLevel.Info, WhatCanIBuild(tileID)[0]);
+
+                /*if (data != null)
                 {
                     infoText.text = $"Tile ID: {tileID}, X: {data.x}, Z: {data.z}, Element: {data.resourceType}";
                 }
                 else
                 {
-                    Debug.Log("TileData not found for tileID: " + tileID);
+                    Logger.Log(LogLevel.Error, "TileData not found for tileID: " + tileID);
                 }
                 List<string> buildableBuildings = WhatCanIBuild(tileID);
 
                 if (buildableBuildings.Count == 0)
                 {
-                    Debug.Log("No buildable buildings for this tile");
+                    Logger.Log(LogLevel.Warning, "No buildable buildings for this tile");
                 }
 
                 string buildingToBuild = buildableBuildings[0];
+                Logger.Log(LogLevel.Info, "Building: " + buildingToBuild);
 
                 if (CanPlaceBuilding(tileID, buildingToBuild))
                 {
@@ -424,7 +429,7 @@ public class PlayerController : MonoBehaviour
                     {
                         buildingCounts[buildingToBuild] = 1;
                     }
-                    Debug.Log("Built " + buildingToBuild + ". Total: " + buildingCounts[buildingToBuild]);
+                    Logger.Log(LogLevel.Success, "Built " + buildingToBuild + ". Total: " + buildingCounts[buildingToBuild]);
 
                     if (buildingTexts.ContainsKey(buildingToBuild))
                     {
@@ -434,9 +439,8 @@ public class PlayerController : MonoBehaviour
                     {
                         IncrementBuildingCount(buildingToBuild);
                     }
-                }
+                }*/
             }
-            BuildFiveBuildingsQuest();
         }
     }
 
@@ -444,14 +448,14 @@ public class PlayerController : MonoBehaviour
     {
         if (factories.ContainsKey(tileID))
         {
-            Debug.LogWarning($"Factory Already Exists On Tile {tileID}");
+            Logger.Log(LogLevel.Warning, $"Factory Already Exists On Tile {tileID}");
             return;
         }
 
         TileData data = worldGen.GetTileData(tileID);
         if (data == null)
         {
-            Debug.LogWarning("Invalid tile ID!");
+            Logger.Log(LogLevel.Error, "Invalid tile ID!");
             return;
         }
 
@@ -459,7 +463,7 @@ public class PlayerController : MonoBehaviour
         if (factories.TryAdd(tileID, factory))
         {
             StartFactoryProduction(factory);
-            Debug.Log($"Factory created on tile {tileID} producing {data.resourceType}");
+            Logger.Log(LogLevel.Success, $"Factory created on tile {tileID} producing {data.resourceType}");
         }
     }
 
@@ -479,7 +483,7 @@ public class PlayerController : MonoBehaviour
         if (factories.TryGetValue(tileId, out Factory factory))
         {
             factory.StopProduction();
-            Debug.Log($"Stopping production for factory on tile {tileId}");
+            Logger.Log(LogLevel.Info, $"Stopping production for factory on tile {tileId}");
         }
     }
 
@@ -494,7 +498,7 @@ public class PlayerController : MonoBehaviour
                 factoryTasks.Remove(tileId);
             }
             factories.Remove(tileId);
-            Debug.Log($"Factory on tile {tileId} has been removed.");
+            Logger.Log(LogLevel.Success, $"Factory on tile {tileId} has been removed.");
         }
     }
 
@@ -503,7 +507,7 @@ public class PlayerController : MonoBehaviour
         if (factories.TryGetValue(tileId, out Factory factory))
         {
             int inventory = factory.Inventory;
-            Debug.Log($"Collected {inventory} {factory.OreType} from factory on tile {tileId}");
+            Logger.Log(LogLevel.Success, $"Collected {inventory} {factory.OreType} from factory on tile {tileId}");
             // Transfer inventory to global resource management
         }
     }
@@ -514,11 +518,11 @@ public class PlayerController : MonoBehaviour
         {
             string json = JsonConvert.SerializeObject(buildingCounts, Formatting.Indented);
             File.WriteAllText(filePath, json);
-            Debug.Log($"Building counts saved to: {filePath}");
+            Logger.Log(LogLevel.Success, $"Building counts saved to: {filePath}");
         }
         catch (Exception e)
         {
-            Debug.LogError($"Error saving building counts: {e.Message}");
+            Logger.Log(LogLevel.Error, $"Error saving building counts: {e.Message}");
         }
     }
 
@@ -530,16 +534,16 @@ public class PlayerController : MonoBehaviour
             {
                 string json = File.ReadAllText(filePath);
                 buildingCounts = JsonConvert.DeserializeObject<Dictionary<string, int>>(json);
-                Debug.Log($"Building counts loaded from: {filePath}");
+                Logger.Log(LogLevel.Success, $"Building counts loaded from: {filePath}");
             }
             else
             {
-                Debug.LogWarning($"File not found: {filePath}");
+                Logger.Log(LogLevel.Error, $"File not found: {filePath}");
             }
         }
         catch (Exception e)
         {
-            Debug.LogError($"Error loading building counts: {e.Message}");
+            Logger.Log(LogLevel.Error, $"Error loading building counts: {e.Message}");
         }
     }
 

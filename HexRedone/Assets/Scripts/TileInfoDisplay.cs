@@ -37,6 +37,5 @@ public class TileInfoDisplay : MonoBehaviour
     {
         // Extract the ID from the tile's name (e.g., "tile62")
         return int.Parse(tileName.Replace("tile", ""));
-        Debug.Log("Extracted!");
     }
 }

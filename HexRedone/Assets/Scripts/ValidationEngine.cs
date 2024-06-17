@@ -1,9 +1,11 @@
+using CustomLogger;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using Logger = CustomLogger.Logger;
 
 [System.Serializable]
 public class BuildingTaxonomy
@@ -21,10 +23,13 @@ public class ValidationEngine : MonoBehaviour
     {
         // Assuming JSON file contains data that matches the structure of BuildingTaxonomy 
         string filePath = Path.Combine(Application.dataPath, "buildingTaxonomy.json");
+        Logger.Log(LogLevel.Info, filePath);
         if (File.Exists(filePath))
         {
             string json = File.ReadAllText(filePath);
+            Logger.Log(LogLevel.Info, json);
             buildingTaxonomies = JsonUtility.FromJson<List<BuildingTaxonomy>>(json);
+            Logger.Log(LogLevel.Info, buildingTaxonomies.ToString());
         }
         else
         {
