@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using CustomLogger;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Logger = CustomLogger.Logger;
 
 public static class Elements
 {
@@ -41,8 +43,6 @@ public class TileData
 public class WorldGen : MonoBehaviour
 {
     public GameObject baseTilePrefab;
-
-    public int j;
 
     public int gridLength = 5;
     public int gridWidth = 5;
@@ -174,6 +174,7 @@ public class WorldGen : MonoBehaviour
 
     public int ExtractTileID(string tileName)
     {
+        Logger.Log(LogLevel.Debug, "Tilename: " + tileName);
         return int.Parse(tileName.Replace("tile", ""));
     }
 

@@ -4,7 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Splash.unity
+    guid: f16c6004dffed094089dbd0f28e8763e
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 09406cb4e31baea43b5de4868e64fce3
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 1833710a5c08f114bac6254b7cfc1f77, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 0939b9a84d457ec4fb04f37d71cd488c, type: 2}
+  m_UseUCBPForAssetBundles: 0

@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Newtonsoft.Json;
 using System.Linq;
+using CustomLogger;
+using Logger = CustomLogger.Logger;
 
 public static class StringExtension
 {
@@ -44,8 +46,15 @@ public class PlayerController : MonoBehaviour
     public QuestController questController;
 
     public Text infoText;
-    public GameObject labelPrefab;
+
+    public GameObject WarningText;
+    public Vector3 WTStartPos;
+    public Vector3 WTEndPos;
+    public float WTime;
+
     public Transform labelsContainer;
+    public GameObject labelPrefab;
+
     public GameObject buildingPlaceholder;
     public GameObject clickedTile;
 
@@ -73,14 +82,14 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("TileData not found for tileID: " + tileID);
+                    Logger.Log(LogLevel.Warning, "TileData not found for tileID: " + tileID);
                 }
 
                 List<string> buildableBuildings = GetBuildableBuildings(tileID);
 
                 if (buildableBuildings.Count == 0)
                 {
-                    Debug.Log("No buildable buildings for this tile");
+                    Logger.Log(LogLevel.Warning, "No buildable buildings for this tile");
                 }
 
                 string buildingToBuild = buildableBuildings[0];
@@ -100,7 +109,7 @@ public class PlayerController : MonoBehaviour
 
         if (!File.Exists(path))
         {
-            Debug.LogError("Json file not found at " + path);
+            Logger.Log(LogLevel.Error, "Json file not found at " + path);
             return new List<string>();
         }
 
@@ -109,7 +118,7 @@ public class PlayerController : MonoBehaviour
 
         if (buildings == null || buildings.Buildings == null || buildings.Buildings.Count == 0)
         {
-            Debug.LogWarning("No building data is available from the JSON file.");
+            Logger.Log(LogLevel.Warning, "No building data is available from the JSON file.");
             return new List<string>();
         }
 
@@ -117,12 +126,23 @@ public class PlayerController : MonoBehaviour
 
         if (data == null)
         {
-            Debug.LogError("TileData is null for tile ID " + tileID);
+            Logger.Log(LogLevel.Error, "TileData is null for tile ID " + tileID);
             return new List<string>();
         }
 
         string resourceType = data.resourceType;
-        Debug.Log("Resource type on tile " + tileID + ": " + resourceType);
+
+        // Check if the resourceType is a building type
+        if (buildings.Buildings.Any(b => b.BuildingType == resourceType))
+        {
+            Logger.Log(LogLevel.Warning, "Cannot place building. Tile already has a building of type: " + resourceType);
+            WarningText.GetComponent<Text>().text = "Cannot Place Building On Tile! Building Already Exists!";
+            LeanTween.moveLocal(WarningText, WTEndPos, WTime).setEaseInOutCubic();
+            LeanTween.delayedCall(5f, () => { resetTweenedObjects(WTStartPos, WarningText); });
+            return new List<string>();
+        }
+
+        Logger.Log(LogLevel.Info, "Resource type on tile " + tileID + ": " + resourceType);
 
         List<string> buildingTypes = buildings.Buildings
             .Where(building => building.ItemNeeded.Contains(resourceType))
@@ -131,10 +151,18 @@ public class PlayerController : MonoBehaviour
 
         if (buildingTypes.Count == 0)
         {
-            Debug.Log("No buildings can be built on this tile with element type " + resourceType);
+            Logger.Log(LogLevel.Info, "No buildings can be built on this tile with element type " + resourceType);
+            WarningText.GetComponent<Text>().text = "No buildings can be built on this tile!";
+            LeanTween.moveLocal(WarningText, WTEndPos, WTime).setEaseInOutCubic();
+            LeanTween.delayedCall(5f, () => { resetTweenedObjects(WTStartPos, WarningText); });
         }
 
         return buildingTypes;
+    }
+
+    public void resetTweenedObjects(Vector3 StartPos, GameObject gameObject)
+    {
+        LeanTween.moveLocal(gameObject, StartPos, 1f).setEaseInOutCubic();
     }
 
     private GameObject DetectClickedTile()
@@ -154,7 +182,7 @@ public class PlayerController : MonoBehaviour
 
         if (!File.Exists(path))
         {
-            Debug.LogError("Json file not found at " + path);
+            Logger.Log(LogLevel.Error, "Json file not found at " + path);
             return new List<string>();
         }
 
@@ -163,7 +191,7 @@ public class PlayerController : MonoBehaviour
 
         if (buildings == null || buildings.Buildings == null || buildings.Buildings.Count == 0)
         {
-            Debug.LogWarning("No building data is available from the JSON file.");
+            Logger.Log(LogLevel.Warning, "No building data is available from the JSON file.");
             return new List<string>();
         }
 
@@ -171,12 +199,12 @@ public class PlayerController : MonoBehaviour
 
         if (data == null)
         {
-            Debug.LogError("TileData is null for tile ID " + tileID);
+            Logger.Log(LogLevel.Warning, "TileData is null for tile ID " + tileID);
             return new List<string>();
         }
 
         string resourceType = data.resourceType;
-        Debug.Log("Resource type on tile " + tileID + ": " + resourceType);
+        Logger.Log(LogLevel.Info, "Resource type on tile " + tileID + ": " + resourceType);
 
         List<string> buildingTypes = new List<string>();
 
@@ -185,24 +213,16 @@ public class PlayerController : MonoBehaviour
             if (building.ItemNeeded.Contains(resourceType))
             {
                 buildingTypes.Add(building.BuildingType);
-                Debug.Log("Building " + building.BuildingType + " can be built on this tile.");
+                Logger.Log(LogLevel.Success, "Building " + building.BuildingType + " can be built on this tile.");
             }
         }
 
         if (buildingTypes.Count == 0)
         {
-            Debug.Log("No buildings can be built on this tile with element type " + resourceType);
+            Logger.Log(LogLevel.Warning, "No buildings can be built on this tile with element type " + resourceType);
         }
 
         return buildingTypes;
-    }
-
-    public void BuildFiveBuildingsQuest()
-    {
-        if (questController.hasDistinctValues(2, buildingCounts))
-        {
-            print("You win!!".Color("lime"));
-        }
     }
 
     private bool CanPlaceBuilding(int tileID, string buildingType)
@@ -223,30 +243,30 @@ public class PlayerController : MonoBehaviour
 
         if (buildings.Buildings.Any(b => b.BuildingType == data.resourceType))
         {
-            Debug.Log("Cannot place building. Tile already has a building.");
+            Logger.Log(LogLevel.Error, "Cannot place building. Tile already has a building.");
             return false;
         }
 
         if (!itemsNeeded.All(item => resourceTypeList.Contains(item)))
         {
-            Debug.Log("Cannot place building. Required item not in tile elements.");
+            Logger.Log(LogLevel.Error, "Cannot place building. Required item not in tile elements.");
             return false;
         }
 
         if (!itemsNeeded.Contains(data.resourceType))
         {
-            Debug.Log($"Cannot place building. Tile does not contain required element for building type {buildingType}.");
+            Logger.Log(LogLevel.Error, $"Cannot place building. Tile does not contain required element for building type {buildingType}.");
             return false;
         }
 
         if (data.x >= 0 && data.x < worldGen.tileData.GetLength(0) && data.z >= 0 && data.z < worldGen.tileData.GetLength(1))
         {
             worldGen.tileData[data.x, data.z].resourceType = data.resourceType;
-            Debug.Log("Placing tile");
+            Logger.Log(LogLevel.Debug, "Placing tile");
             worldGen.SetTileResourceType(tileID, buildingType);
         }
 
-        Debug.Log("Can place building type " + buildingType + " on tile " + tileID + ".");
+        Logger.Log(LogLevel.Success, "Can place building type " + buildingType + " on tile " + tileID + ".");
         return true;
     }
 
@@ -285,7 +305,7 @@ public class PlayerController : MonoBehaviour
             buildingCounts[buildingToBuild] = 1;
         }
 
-        Debug.Log("Built " + buildingToBuild + ". Total: " + buildingCounts[buildingToBuild]);
+        Logger.Log(LogLevel.Success, "Built " + buildingToBuild + ". Total: " + buildingCounts[buildingToBuild]);
 
         if (buildingTexts.ContainsKey(buildingToBuild))
         {
@@ -305,12 +325,12 @@ public class PlayerController : MonoBehaviour
     private void SaveWorldData()
     {
         worldGen.SaveWorldData("tileData.json");
-        Debug.Log("Tile data saved to " + Path.Combine(Application.dataPath, "tileData.json"));
+        Logger.Log(LogLevel.Success, "Tile data saved to " + Path.Combine(Application.dataPath, "tileData.json"));
     }
 
     private void DeleteGrid()
     {
         worldGen.DeleteGrid();
-        Debug.Log("Deleting World");
+        Logger.Log(LogLevel.Debug, "Deleting World");
     }
 }
