@@ -1,4 +1,5 @@
 ﻿using CustomLogger;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -28,15 +29,27 @@ public class TileData
     public int x { get; set; }
     public int z { get; set; }
     public string resourceType { get; set; }
+    public string previousResourceType { get; set; }
 
-    public TileData() { }
+    public TileData()
+    {
+        previousResourceType = string.Empty;
+    }
 
-    public TileData(int tileID, int x, int z, string resourceType)
+    public TileData(int tileID, int x, int z, string resourceType, string previousResourceType)
     {
         this.TileID = tileID;
         this.x = x;
         this.z = z;
         this.resourceType = resourceType;
+        this.previousResourceType = string.Empty;
+    }
+
+    // Method to update the resource type and store the previous state
+    public void UpdateResourceType(string newResourceType)
+    {
+        this.previousResourceType = this.resourceType;
+        this.resourceType = newResourceType;
     }
 }
 
@@ -163,7 +176,9 @@ public class WorldGen : MonoBehaviour
         if (data.x >= 0 && data.x < tileData.GetLength(0) && data.z >= 0 && data.z < tileData.GetLength(1))
         {
             Debug.Log("Setting resource type for tile at (" + data.x + ", " + data.z + ")");
+            data.UpdateResourceType(resourceType);
             tileData[data.x, data.z].resourceType = resourceType;
+            Logger.Log(LogLevel.Warning, "Previous resource type is: " + data.previousResourceType);
             Debug.Log("New resource type is: " + tileData[data.x, data.z].resourceType);
         }
         else
@@ -174,8 +189,27 @@ public class WorldGen : MonoBehaviour
 
     public int ExtractTileID(string tileName)
     {
-        Logger.Log(LogLevel.Debug, "Tilename: " + tileName);
-        return int.Parse(tileName.Replace("tile", ""));
+        // Log the incoming tile name
+        Logger.Log(LogLevel.Debug, "Extracting Tile ID from Tilename: " + tileName);
+
+        // Check if the tileName starts with "tile"
+        if (!tileName.StartsWith("tile"))
+        {
+            Logger.Log(LogLevel.Error, $"Tilename '{tileName}' does not start with 'tile'.");
+            throw new FormatException("Input string does not start with 'tile'.");
+        }
+
+        // Try to extract the number part after "tile"
+        string idPart = tileName.Substring(4); // Get the substring after "tile"
+        if (int.TryParse(idPart, out int tileID))
+        {
+            return tileID;
+        }
+        else
+        {
+            Logger.Log(LogLevel.Error, $"Failed to parse the ID part '{idPart}' from Tilename '{tileName}'.");
+            throw new FormatException($"Unable to parse '{idPart}' as an integer.");
+        }
     }
 
     public TileData GetTileData(int tileID)
@@ -280,7 +314,7 @@ public class WorldGen : MonoBehaviour
                 int tileID = q * gridWidth + r;
                 float perlinValue = noiseMap[q, r];
                 string resourceType = DetermineResourceType(perlinValue);
-                tileData[q, r] = new TileData(tileID, q, r, resourceType);
+                tileData[q, r] = new TileData(tileID, q, r, resourceType, "");
                 tileDataDictionary[tileID] = tileData[q, r];
 
                 SetupTile(q, r, tileID, resourceType, 0);

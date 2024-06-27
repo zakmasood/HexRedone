@@ -1042,7 +1042,7 @@ GameObject:
   - component: {fileID: 1850377066}
   - component: {fileID: 1850377065}
   m_Layer: 5
-  m_Name: DoubleBuildErrorText
+  m_Name: WarningText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1126,6 +1126,7 @@ GameObject:
   - component: {fileID: 1902648779}
   - component: {fileID: 1902648778}
   - component: {fileID: 1902648780}
+  - component: {fileID: 1902648781}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -1264,8 +1265,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseTilePrefab: {fileID: 8008009365237590339}
-  gridLength: 128
-  gridWidth: 128
+  gridLength: 12
+  gridWidth: 12
   tileWidth: 1
   tileHeight: 1
   pHeight: 8192
@@ -1300,18 +1301,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84c47e154aabff4eabd02d359d7ebcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingToBuild: 
   worldGen: {fileID: 1902648775}
-  validator: {fileID: 0}
+  validator: {fileID: 1902648779}
   questController: {fileID: 1902648780}
   infoText: {fileID: 517094242}
-  DoubleBuildWarningText: {fileID: 1850377063}
-  DBWTStartPos: {x: 0, y: -303, z: 0}
-  DBWTEndPos: {x: 0, y: -222.6, z: 0}
-  DBWTime: 0.5
+  WarningText: {fileID: 1850377063}
+  WTStartPos: {x: 0, y: -303, z: 0}
+  WTEndPos: {x: 0, y: -222, z: 0}
+  WTime: 0.5
   labelsContainer: {fileID: 498508918}
   labelPrefab: {fileID: 384283748}
   buildingPlaceholder: {fileID: 130226028}
-  clickedTile: {fileID: 8008009365237590339}
+  clickedTile: {fileID: 0}
 --- !u!114 &1902648779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1340,6 +1342,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldGen: {fileID: 1902648775}
   pController: {fileID: 1902648778}
+--- !u!114 &1902648781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902648770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe1f0ea98e6ba54f80cebfe30db5611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 1902648778}
+  worldGen: {fileID: 1902648775}
 --- !u!33 &534798762230046763
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1720,7 +1736,7 @@ Transform:
   m_GameObject: {fileID: 8008009365237590339}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.44, z: 0}
+  m_LocalPosition: {x: 0, y: -16.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Linq;
 using CustomLogger;
 using Logger = CustomLogger.Logger;
+using System.Threading;
 
 public static class StringExtension
 {
@@ -41,6 +42,8 @@ public class BuildingsList
 
 public class PlayerController : MonoBehaviour
 {
+    public string buildingToBuild;
+
     public WorldGen worldGen;
     public ValidationEngine validator;
     public QuestController questController;
@@ -56,17 +59,29 @@ public class PlayerController : MonoBehaviour
     public GameObject labelPrefab;
 
     public GameObject buildingPlaceholder;
-    public GameObject clickedTile;
+    private GameObject clickedTile;
 
     public Dictionary<string, int> buildingCounts = new Dictionary<string, int>();
     private Dictionary<string, Text> buildingTexts = new Dictionary<string, Text>();
+
 
     private void Update()
     {
         HandleInput();
     }
 
-    private void HandleInput()
+    private GameObject DetectClickedTile()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, 100.0f))
+        {
+            return hit.transform.gameObject;
+        }
+        return null;
+    }
+
+    public void HandleInput()
     {
         if (Input.GetMouseButtonDown(0)) // Left mouse button clicked
         {
@@ -92,7 +107,7 @@ public class PlayerController : MonoBehaviour
                     Logger.Log(LogLevel.Warning, "No buildable buildings for this tile");
                 }
 
-                string buildingToBuild = buildableBuildings[0];
+                buildingToBuild = buildableBuildings[0];
 
                 if (CanPlaceBuilding(tileID, buildingToBuild))
                 {
@@ -165,15 +180,10 @@ public class PlayerController : MonoBehaviour
         LeanTween.moveLocal(gameObject, StartPos, 1f).setEaseInOutCubic();
     }
 
-    private GameObject DetectClickedTile()
+    public string clickedTileData()
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 100.0f))
-        {
-            return hit.transform.gameObject;
-        }
-        return null;
+        clickedTile = DetectClickedTile();
+        return clickedTile.name;
     }
 
     public List<string> WhatCanIBuild(int tileID)

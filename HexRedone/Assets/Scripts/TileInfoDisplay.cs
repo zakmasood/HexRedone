@@ -26,14 +26,13 @@ public class TileInfoDisplay : MonoBehaviour
             GameObject clickedTile = DetectClickedTile();
             if (clickedTile != null)
             {
-                Debug.Log("Cheese");
                 int tileID = ExtractTileID(clickedTile.name);
                 Debug.Log("TileID after extraction: " + tileID);
             }
         }
     }
 
-    int ExtractTileID(string tileName)
+    public int ExtractTileID(string tileName)
     {
         // Extract the ID from the tile's name (e.g., "tile62")
         return int.Parse(tileName.Replace("tile", ""));
