@@ -1,0 +1,113 @@
+\doxysection{Camera\+Controller Class Reference}
+\hypertarget{class_camera_controller}{}\label{class_camera_controller}\index{CameraController@{CameraController}}
+
+
+Manages the camera\textquotesingle{}s position, rotation, and input handling.  
+
+
+Inheritance diagram for Camera\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_camera_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_camera_controller_a0a9b5f558f162be48773bedd0993b281}{Acceleration}} = 50
+\begin{DoxyCompactList}\small\item\em Acceleration factor for camera movement. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_camera_controller_acd74f609aac0ed18ea6e76da23eefc16}{Acc\+Sprint\+Multiplier}} = 4
+\begin{DoxyCompactList}\small\item\em Multiplier applied when sprinting. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_camera_controller_a054e54ffbc4752d611fe1876bb434bb2}{Look\+Sensitivity}} = 1
+\begin{DoxyCompactList}\small\item\em Sensitivity of the camera look movement. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_camera_controller_a8011ed70714f08617090472f899bfe0b}{Damping\+Coefficient}} = 5
+\begin{DoxyCompactList}\small\item\em Damping coefficient for smoothing camera movement. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_camera_controller_ac6721b309e4076b777cb85e80a33112b}{Focus\+On\+Enable}} = true
+\begin{DoxyCompactList}\small\item\em Determines whether the camera should focus when enabled. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_camera_controller_a7da3762fc93e548c08fc3eeddb9a68df}{Bob\+Speed}} = 14f
+\begin{DoxyCompactList}\small\item\em Speed of the bobbing effect. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_camera_controller_aed77d8a5a38290115469db3bdf2875c4}{Bob\+Amount}} = 0.\+1f
+\begin{DoxyCompactList}\small\item\em Amount of bobbing applied to the camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the camera\textquotesingle{}s position, rotation, and input handling. 
+
+This class allows the camera to move and look around based on player input. It supports acceleration, sprinting, and a bobbing effect when moving. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_camera_controller_a0a9b5f558f162be48773bedd0993b281}\index{CameraController@{CameraController}!Acceleration@{Acceleration}}
+\index{Acceleration@{Acceleration}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{Acceleration}{Acceleration}}
+{\footnotesize\ttfamily \label{class_camera_controller_a0a9b5f558f162be48773bedd0993b281} 
+float Camera\+Controller.\+Acceleration = 50}
+
+
+
+Acceleration factor for camera movement. 
+
+\Hypertarget{class_camera_controller_acd74f609aac0ed18ea6e76da23eefc16}\index{CameraController@{CameraController}!AccSprintMultiplier@{AccSprintMultiplier}}
+\index{AccSprintMultiplier@{AccSprintMultiplier}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{AccSprintMultiplier}{AccSprintMultiplier}}
+{\footnotesize\ttfamily \label{class_camera_controller_acd74f609aac0ed18ea6e76da23eefc16} 
+float Camera\+Controller.\+Acc\+Sprint\+Multiplier = 4}
+
+
+
+Multiplier applied when sprinting. 
+
+\Hypertarget{class_camera_controller_aed77d8a5a38290115469db3bdf2875c4}\index{CameraController@{CameraController}!BobAmount@{BobAmount}}
+\index{BobAmount@{BobAmount}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{BobAmount}{BobAmount}}
+{\footnotesize\ttfamily \label{class_camera_controller_aed77d8a5a38290115469db3bdf2875c4} 
+float Camera\+Controller.\+Bob\+Amount = 0.\+1f}
+
+
+
+Amount of bobbing applied to the camera. 
+
+\Hypertarget{class_camera_controller_a7da3762fc93e548c08fc3eeddb9a68df}\index{CameraController@{CameraController}!BobSpeed@{BobSpeed}}
+\index{BobSpeed@{BobSpeed}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{BobSpeed}{BobSpeed}}
+{\footnotesize\ttfamily \label{class_camera_controller_a7da3762fc93e548c08fc3eeddb9a68df} 
+float Camera\+Controller.\+Bob\+Speed = 14f}
+
+
+
+Speed of the bobbing effect. 
+
+\Hypertarget{class_camera_controller_a8011ed70714f08617090472f899bfe0b}\index{CameraController@{CameraController}!DampingCoefficient@{DampingCoefficient}}
+\index{DampingCoefficient@{DampingCoefficient}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{DampingCoefficient}{DampingCoefficient}}
+{\footnotesize\ttfamily \label{class_camera_controller_a8011ed70714f08617090472f899bfe0b} 
+float Camera\+Controller.\+Damping\+Coefficient = 5}
+
+
+
+Damping coefficient for smoothing camera movement. 
+
+\Hypertarget{class_camera_controller_ac6721b309e4076b777cb85e80a33112b}\index{CameraController@{CameraController}!FocusOnEnable@{FocusOnEnable}}
+\index{FocusOnEnable@{FocusOnEnable}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{FocusOnEnable}{FocusOnEnable}}
+{\footnotesize\ttfamily \label{class_camera_controller_ac6721b309e4076b777cb85e80a33112b} 
+bool Camera\+Controller.\+Focus\+On\+Enable = true}
+
+
+
+Determines whether the camera should focus when enabled. 
+
+\Hypertarget{class_camera_controller_a054e54ffbc4752d611fe1876bb434bb2}\index{CameraController@{CameraController}!LookSensitivity@{LookSensitivity}}
+\index{LookSensitivity@{LookSensitivity}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{LookSensitivity}{LookSensitivity}}
+{\footnotesize\ttfamily \label{class_camera_controller_a054e54ffbc4752d611fe1876bb434bb2} 
+float Camera\+Controller.\+Look\+Sensitivity = 1}
+
+
+
+Sensitivity of the camera look movement. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/zakal\+\_\+m9erurp/\+Documents/\+Git\+Hub/\+Hex\+Redone/\+Hex\+Redone/\+Assets/\+Scripts/\mbox{\hyperlink{_camera_controller_8cs}{Camera\+Controller.\+cs}}\end{DoxyCompactItemize}

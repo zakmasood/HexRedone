@@ -1,0 +1,225 @@
+\doxysection{World\+Gen Class Reference}
+\hypertarget{class_world_gen}{}\label{class_world_gen}\index{WorldGen@{WorldGen}}
+Inheritance diagram for World\+Gen\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_world_gen}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+float\mbox{[},\mbox{]} \mbox{\hyperlink{class_world_gen_a5ef4d09b6d4843a7c1975427c8d5f1fd}{Generate\+Noise\+Map}} (int width, int height, float scale, int \mbox{\hyperlink{class_world_gen_a7c15adc21a2c6edaf757e55b6380dc64}{seed}}, int octaves, float persistence, float lacunarity)
+\item 
+void \mbox{\hyperlink{class_world_gen_a89e7dcd06cf79ca3c23fc4d3b19371bd}{Set\+Tile\+Resource\+Type}} (int tile\+ID, string resource\+Type)
+\item 
+int \mbox{\hyperlink{class_world_gen_afa8832aaef02adced31f6724ba6374ae}{Extract\+Tile\+ID}} (string tile\+Name)
+\item 
+\mbox{\hyperlink{class_tile_data}{Tile\+Data}} \mbox{\hyperlink{class_world_gen_a74299200d86a5f0ed40581ecd0ac2199}{Get\+Tile\+Data}} (int tile\+ID)
+\item 
+Game\+Object \mbox{\hyperlink{class_world_gen_adf6dc9ccadf5342c5d8553f00eb31993}{Setup\+Tile}} (int x, int y, int tile\+ID, string resource\+Type, float height)
+\item 
+void \mbox{\hyperlink{class_world_gen_a3a95718a2e4da5649cb8e71c643256b1}{Regenerate\+Grid}} ()
+\item 
+string \mbox{\hyperlink{class_world_gen_aa37fce16b809f5519771708792e38484}{Determine\+Resource\+Type}} (float perlin\+Value)
+\item 
+void \mbox{\hyperlink{class_world_gen_af87cba9bad94cc01e640807a4ddfcee3}{Delete\+Grid}} ()
+\item 
+void \mbox{\hyperlink{class_world_gen_a365c65d52b11f47bd385cc97fbc5baf7}{Save\+World\+Data}} (string file\+Path)
+\item 
+void \mbox{\hyperlink{class_world_gen_afea6d8f2760c4e0e9fd71f6b73e3f170}{Load\+World\+Data}} (string file\+Path)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \mbox{\hyperlink{class_world_gen_a849ccbc47e0d14b3ac4b3655ea05e295}{base\+Tile\+Prefab}}
+\item 
+int \mbox{\hyperlink{class_world_gen_a02318f6cc691bedae4e80b5a0d6a5610}{grid\+Length}} = 5
+\item 
+int \mbox{\hyperlink{class_world_gen_af05a3818627a4641daf7d0663dccd824}{grid\+Width}} = 5
+\item 
+int \mbox{\hyperlink{class_world_gen_a40415f17db367ac37fc0957ba20f3a59}{tile\+Width}}
+\item 
+int \mbox{\hyperlink{class_world_gen_a6256d4e654e5c1727c67521b43a7377d}{tile\+Height}}
+\item 
+Game\+Object\mbox{[},\mbox{]} \mbox{\hyperlink{class_world_gen_a8078dd9e4084f4ddd6e4efc3d757f30e}{tiles}}
+\item 
+Game\+Object\mbox{[},\mbox{]} \mbox{\hyperlink{class_world_gen_a2e4bae4d3188eb1cf35dfa23fda51bce}{resources}}
+\item 
+\mbox{\hyperlink{class_tile_data}{Tile\+Data}}\mbox{[},\mbox{]} \mbox{\hyperlink{class_world_gen_a91153b222c84f7c0356f8dcdf3b70d32}{tile\+Data}}
+\item 
+double \mbox{\hyperlink{class_world_gen_a2ab18eb11bcace0bd3421729734fa07a}{p\+Height}}
+\item 
+double \mbox{\hyperlink{class_world_gen_a507f535d301f79098e297ef5a8a89ed1}{p\+Width}}
+\item 
+float \mbox{\hyperlink{class_world_gen_a926223d3586c11fe203b7d9e488df281}{scale\+Factor}}
+\item 
+int \mbox{\hyperlink{class_world_gen_a7c15adc21a2c6edaf757e55b6380dc64}{seed}}
+\item 
+int \mbox{\hyperlink{class_world_gen_a1402c24cde16583cec483d2c7da34b16}{octave\+Amount}}
+\item 
+float \mbox{\hyperlink{class_world_gen_ae924d95403b4a1bf6cb75f982046a765}{lacu\+Amount}}
+\item 
+float \mbox{\hyperlink{class_world_gen_a25d8460b0c07497a84e019df556c195f}{pers\+Amount}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_world_gen_af87cba9bad94cc01e640807a4ddfcee3}\index{WorldGen@{WorldGen}!DeleteGrid@{DeleteGrid}}
+\index{DeleteGrid@{DeleteGrid}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{DeleteGrid()}{DeleteGrid()}}
+{\footnotesize\ttfamily \label{class_world_gen_af87cba9bad94cc01e640807a4ddfcee3} 
+void World\+Gen.\+Delete\+Grid (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_world_gen_aa37fce16b809f5519771708792e38484}\index{WorldGen@{WorldGen}!DetermineResourceType@{DetermineResourceType}}
+\index{DetermineResourceType@{DetermineResourceType}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{DetermineResourceType()}{DetermineResourceType()}}
+{\footnotesize\ttfamily \label{class_world_gen_aa37fce16b809f5519771708792e38484} 
+string World\+Gen.\+Determine\+Resource\+Type (\begin{DoxyParamCaption}\item[{float}]{perlin\+Value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_world_gen_afa8832aaef02adced31f6724ba6374ae}\index{WorldGen@{WorldGen}!ExtractTileID@{ExtractTileID}}
+\index{ExtractTileID@{ExtractTileID}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{ExtractTileID()}{ExtractTileID()}}
+{\footnotesize\ttfamily \label{class_world_gen_afa8832aaef02adced31f6724ba6374ae} 
+int World\+Gen.\+Extract\+Tile\+ID (\begin{DoxyParamCaption}\item[{string}]{tile\+Name}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_world_gen_a5ef4d09b6d4843a7c1975427c8d5f1fd}\index{WorldGen@{WorldGen}!GenerateNoiseMap@{GenerateNoiseMap}}
+\index{GenerateNoiseMap@{GenerateNoiseMap}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{GenerateNoiseMap()}{GenerateNoiseMap()}}
+{\footnotesize\ttfamily \label{class_world_gen_a5ef4d09b6d4843a7c1975427c8d5f1fd} 
+float\mbox{[},\mbox{]} World\+Gen.\+Generate\+Noise\+Map (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{, }\item[{float}]{scale}{, }\item[{int}]{seed}{, }\item[{int}]{octaves}{, }\item[{float}]{persistence}{, }\item[{float}]{lacunarity}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_world_gen_a74299200d86a5f0ed40581ecd0ac2199}\index{WorldGen@{WorldGen}!GetTileData@{GetTileData}}
+\index{GetTileData@{GetTileData}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{GetTileData()}{GetTileData()}}
+{\footnotesize\ttfamily \label{class_world_gen_a74299200d86a5f0ed40581ecd0ac2199} 
+\mbox{\hyperlink{class_tile_data}{Tile\+Data}} World\+Gen.\+Get\+Tile\+Data (\begin{DoxyParamCaption}\item[{int}]{tile\+ID}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_world_gen_afea6d8f2760c4e0e9fd71f6b73e3f170}\index{WorldGen@{WorldGen}!LoadWorldData@{LoadWorldData}}
+\index{LoadWorldData@{LoadWorldData}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{LoadWorldData()}{LoadWorldData()}}
+{\footnotesize\ttfamily \label{class_world_gen_afea6d8f2760c4e0e9fd71f6b73e3f170} 
+void World\+Gen.\+Load\+World\+Data (\begin{DoxyParamCaption}\item[{string}]{file\+Path}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_world_gen_a3a95718a2e4da5649cb8e71c643256b1}\index{WorldGen@{WorldGen}!RegenerateGrid@{RegenerateGrid}}
+\index{RegenerateGrid@{RegenerateGrid}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{RegenerateGrid()}{RegenerateGrid()}}
+{\footnotesize\ttfamily \label{class_world_gen_a3a95718a2e4da5649cb8e71c643256b1} 
+void World\+Gen.\+Regenerate\+Grid (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_world_gen_a365c65d52b11f47bd385cc97fbc5baf7}\index{WorldGen@{WorldGen}!SaveWorldData@{SaveWorldData}}
+\index{SaveWorldData@{SaveWorldData}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{SaveWorldData()}{SaveWorldData()}}
+{\footnotesize\ttfamily \label{class_world_gen_a365c65d52b11f47bd385cc97fbc5baf7} 
+void World\+Gen.\+Save\+World\+Data (\begin{DoxyParamCaption}\item[{string}]{file\+Path}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_world_gen_a89e7dcd06cf79ca3c23fc4d3b19371bd}\index{WorldGen@{WorldGen}!SetTileResourceType@{SetTileResourceType}}
+\index{SetTileResourceType@{SetTileResourceType}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{SetTileResourceType()}{SetTileResourceType()}}
+{\footnotesize\ttfamily \label{class_world_gen_a89e7dcd06cf79ca3c23fc4d3b19371bd} 
+void World\+Gen.\+Set\+Tile\+Resource\+Type (\begin{DoxyParamCaption}\item[{int}]{tile\+ID}{, }\item[{string}]{resource\+Type}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_world_gen_adf6dc9ccadf5342c5d8553f00eb31993}\index{WorldGen@{WorldGen}!SetupTile@{SetupTile}}
+\index{SetupTile@{SetupTile}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{SetupTile()}{SetupTile()}}
+{\footnotesize\ttfamily \label{class_world_gen_adf6dc9ccadf5342c5d8553f00eb31993} 
+Game\+Object World\+Gen.\+Setup\+Tile (\begin{DoxyParamCaption}\item[{int}]{x}{, }\item[{int}]{y}{, }\item[{int}]{tile\+ID}{, }\item[{string}]{resource\+Type}{, }\item[{float}]{height}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_world_gen_a849ccbc47e0d14b3ac4b3655ea05e295}\index{WorldGen@{WorldGen}!baseTilePrefab@{baseTilePrefab}}
+\index{baseTilePrefab@{baseTilePrefab}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{baseTilePrefab}{baseTilePrefab}}
+{\footnotesize\ttfamily \label{class_world_gen_a849ccbc47e0d14b3ac4b3655ea05e295} 
+Game\+Object World\+Gen.\+base\+Tile\+Prefab}
+
+\Hypertarget{class_world_gen_a02318f6cc691bedae4e80b5a0d6a5610}\index{WorldGen@{WorldGen}!gridLength@{gridLength}}
+\index{gridLength@{gridLength}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{gridLength}{gridLength}}
+{\footnotesize\ttfamily \label{class_world_gen_a02318f6cc691bedae4e80b5a0d6a5610} 
+int World\+Gen.\+grid\+Length = 5}
+
+\Hypertarget{class_world_gen_af05a3818627a4641daf7d0663dccd824}\index{WorldGen@{WorldGen}!gridWidth@{gridWidth}}
+\index{gridWidth@{gridWidth}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{gridWidth}{gridWidth}}
+{\footnotesize\ttfamily \label{class_world_gen_af05a3818627a4641daf7d0663dccd824} 
+int World\+Gen.\+grid\+Width = 5}
+
+\Hypertarget{class_world_gen_ae924d95403b4a1bf6cb75f982046a765}\index{WorldGen@{WorldGen}!lacuAmount@{lacuAmount}}
+\index{lacuAmount@{lacuAmount}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{lacuAmount}{lacuAmount}}
+{\footnotesize\ttfamily \label{class_world_gen_ae924d95403b4a1bf6cb75f982046a765} 
+float World\+Gen.\+lacu\+Amount}
+
+\Hypertarget{class_world_gen_a1402c24cde16583cec483d2c7da34b16}\index{WorldGen@{WorldGen}!octaveAmount@{octaveAmount}}
+\index{octaveAmount@{octaveAmount}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{octaveAmount}{octaveAmount}}
+{\footnotesize\ttfamily \label{class_world_gen_a1402c24cde16583cec483d2c7da34b16} 
+int World\+Gen.\+octave\+Amount}
+
+\Hypertarget{class_world_gen_a25d8460b0c07497a84e019df556c195f}\index{WorldGen@{WorldGen}!persAmount@{persAmount}}
+\index{persAmount@{persAmount}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{persAmount}{persAmount}}
+{\footnotesize\ttfamily \label{class_world_gen_a25d8460b0c07497a84e019df556c195f} 
+float World\+Gen.\+pers\+Amount}
+
+\Hypertarget{class_world_gen_a2ab18eb11bcace0bd3421729734fa07a}\index{WorldGen@{WorldGen}!pHeight@{pHeight}}
+\index{pHeight@{pHeight}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{pHeight}{pHeight}}
+{\footnotesize\ttfamily \label{class_world_gen_a2ab18eb11bcace0bd3421729734fa07a} 
+double World\+Gen.\+p\+Height}
+
+\Hypertarget{class_world_gen_a507f535d301f79098e297ef5a8a89ed1}\index{WorldGen@{WorldGen}!pWidth@{pWidth}}
+\index{pWidth@{pWidth}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{pWidth}{pWidth}}
+{\footnotesize\ttfamily \label{class_world_gen_a507f535d301f79098e297ef5a8a89ed1} 
+double World\+Gen.\+p\+Width}
+
+\Hypertarget{class_world_gen_a2e4bae4d3188eb1cf35dfa23fda51bce}\index{WorldGen@{WorldGen}!resources@{resources}}
+\index{resources@{resources}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{resources}{resources}}
+{\footnotesize\ttfamily \label{class_world_gen_a2e4bae4d3188eb1cf35dfa23fda51bce} 
+Game\+Object \mbox{[},\mbox{]} World\+Gen.\+resources}
+
+\Hypertarget{class_world_gen_a926223d3586c11fe203b7d9e488df281}\index{WorldGen@{WorldGen}!scaleFactor@{scaleFactor}}
+\index{scaleFactor@{scaleFactor}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{scaleFactor}{scaleFactor}}
+{\footnotesize\ttfamily \label{class_world_gen_a926223d3586c11fe203b7d9e488df281} 
+float World\+Gen.\+scale\+Factor}
+
+\Hypertarget{class_world_gen_a7c15adc21a2c6edaf757e55b6380dc64}\index{WorldGen@{WorldGen}!seed@{seed}}
+\index{seed@{seed}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{seed}{seed}}
+{\footnotesize\ttfamily \label{class_world_gen_a7c15adc21a2c6edaf757e55b6380dc64} 
+int World\+Gen.\+seed}
+
+\Hypertarget{class_world_gen_a91153b222c84f7c0356f8dcdf3b70d32}\index{WorldGen@{WorldGen}!tileData@{tileData}}
+\index{tileData@{tileData}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{tileData}{tileData}}
+{\footnotesize\ttfamily \label{class_world_gen_a91153b222c84f7c0356f8dcdf3b70d32} 
+\mbox{\hyperlink{class_tile_data}{Tile\+Data}} \mbox{[},\mbox{]} World\+Gen.\+tile\+Data}
+
+\Hypertarget{class_world_gen_a6256d4e654e5c1727c67521b43a7377d}\index{WorldGen@{WorldGen}!tileHeight@{tileHeight}}
+\index{tileHeight@{tileHeight}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{tileHeight}{tileHeight}}
+{\footnotesize\ttfamily \label{class_world_gen_a6256d4e654e5c1727c67521b43a7377d} 
+int World\+Gen.\+tile\+Height}
+
+\Hypertarget{class_world_gen_a8078dd9e4084f4ddd6e4efc3d757f30e}\index{WorldGen@{WorldGen}!tiles@{tiles}}
+\index{tiles@{tiles}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{tiles}{tiles}}
+{\footnotesize\ttfamily \label{class_world_gen_a8078dd9e4084f4ddd6e4efc3d757f30e} 
+Game\+Object \mbox{[},\mbox{]} World\+Gen.\+tiles}
+
+\Hypertarget{class_world_gen_a40415f17db367ac37fc0957ba20f3a59}\index{WorldGen@{WorldGen}!tileWidth@{tileWidth}}
+\index{tileWidth@{tileWidth}!WorldGen@{WorldGen}}
+\doxysubsubsection{\texorpdfstring{tileWidth}{tileWidth}}
+{\footnotesize\ttfamily \label{class_world_gen_a40415f17db367ac37fc0957ba20f3a59} 
+int World\+Gen.\+tile\+Width}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/zakal\+\_\+m9erurp/\+Documents/\+Git\+Hub/\+Hex\+Redone/\+Hex\+Redone/\+Assets/\+Scripts/\mbox{\hyperlink{_world_gen_8cs}{World\+Gen.\+cs}}\end{DoxyCompactItemize}

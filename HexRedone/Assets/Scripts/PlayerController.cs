@@ -8,14 +8,41 @@ using CustomLogger;
 using Logger = CustomLogger.Logger;
 using System.Threading;
 
+/// @brief Provides extension methods for strings.
 public static class StringExtension
 {
+    /**
+     * @brief Makes the string bold.
+     * @param str The input string.
+     * @return The bolded string.
+     */
     public static string Bold(this string str) => "<b>" + str + "</b>";
+
+    /**
+     * @brief Colors the string with the specified color.
+     * @param str The input string.
+     * @param clr The color to apply.
+     * @return The colored string.
+     */
     public static string Color(this string str, string clr) => string.Format("<color={0}>{1}</color>", clr, str);
+
+    /**
+     * @brief Italicizes the string.
+     * @param str The input string.
+     * @return The italicized string.
+     */
     public static string Italic(this string str) => "<i>" + str + "</i>";
+
+    /**
+     * @brief Sets the size of the string.
+     * @param str The input string.
+     * @param size The size to apply.
+     * @return The resized string.
+     */
     public static string Size(this string str, int size) => string.Format("<size={0}>{1}</size>", size, str);
 }
 
+/// @brief Represents the building data.
 public class BuildingData
 {
     [JsonProperty("building-type")]
@@ -34,42 +61,69 @@ public class BuildingData
     public string Category { get; set; }
 }
 
+/// @brief Represents the list of buildings.
 public class BuildingsList
 {
     [JsonProperty("buildings")]
     public List<BuildingData> Buildings { get; set; }
 }
 
+/// @brief Controls the player actions and interactions in the game world.
 public class PlayerController : MonoBehaviour
 {
+    /// The building type to build.
     public string buildingToBuild;
 
+    /// The world generator instance.
     public WorldGen worldGen;
+
+    /// The validation engine instance.
     public ValidationEngine validator;
+
+    /// The quest controller instance.
     public QuestController questController;
 
+    /// The info text UI element.
     public Text infoText;
 
+    /// The warning text UI element.
     public GameObject WarningText;
+
+    /// The start position of the warning text.
     public Vector3 WTStartPos;
+
+    /// The end position of the warning text.
     public Vector3 WTEndPos;
+
+    /// The time duration for warning text animation.
     public float WTime;
 
+    /// The container for labels.
     public Transform labelsContainer;
+
+    /// The label prefab.
     public GameObject labelPrefab;
 
+    /// The building placeholder.
     public GameObject buildingPlaceholder;
+
     private GameObject clickedTile;
 
     public Dictionary<string, int> buildingCounts = new Dictionary<string, int>();
     private Dictionary<string, Text> buildingTexts = new Dictionary<string, Text>();
 
-
+    /**
+    * @brief Called every frame, handles player input.
+    */
     private void Update()
     {
         HandleInput();
     }
 
+    /**
+    * @brief Detects the clicked tile by the player.
+    * @return The clicked tile game object.
+    */
     private GameObject DetectClickedTile()
     {
         RaycastHit hit;
@@ -81,6 +135,9 @@ public class PlayerController : MonoBehaviour
         return null;
     }
 
+    /**
+    * @brief Handles player input for placing buildings.
+    */
     public void HandleInput()
     {
         if (Input.GetMouseButtonDown(0)) // Left mouse button clicked
@@ -118,6 +175,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /**
+    * @brief Gets the list of buildable buildings for a given tile.
+    * @param tileID The ID of the tile.
+    * @return A list of buildable building types.
+    */
     private List<string> GetBuildableBuildings(int tileID)
     {
         string path = Application.dataPath + "/buildingTaxonomy.json";
@@ -175,17 +237,31 @@ public class PlayerController : MonoBehaviour
         return buildingTypes;
     }
 
+    /**
+    * @brief Resets the position of tweened objects.
+    * @param StartPos The start position.
+    * @param gameObject The game object to reset.
+    */
     public void resetTweenedObjects(Vector3 StartPos, GameObject gameObject)
     {
         LeanTween.moveLocal(gameObject, StartPos, 1f).setEaseInOutCubic();
     }
 
+    /**
+    * @brief Gets the name of the clicked tile.
+    * @return The name of the clicked tile.
+    */
     public string clickedTileData()
     {
         clickedTile = DetectClickedTile();
         return clickedTile.name;
     }
 
+    /**
+    * @brief Gets the list of buildings that can be built on a given tile.
+    * @param tileID The ID of the tile.
+    * @return A list of buildable building types.
+    */
     public List<string> WhatCanIBuild(int tileID)
     {
         string path = Application.dataPath + "/buildingTaxonomy.json";
@@ -235,6 +311,12 @@ public class PlayerController : MonoBehaviour
         return buildingTypes;
     }
 
+    /**
+    * @brief Determines whether a building can be placed on a tile.
+    * @param tileID The ID of the tile.
+    * @param buildingType The building type to place.
+    * @return A boolean indicating whether the building can be placed.
+    */
     private bool CanPlaceBuilding(int tileID, string buildingType)
     {
         string path = Application.dataPath + "/buildingTaxonomy.json";
@@ -280,6 +362,10 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
+    /**
+    * @brief Gets the list of resource types.
+    * @return A list of resource types.
+    */
     private List<string> GetResourceTypeList()
     {
         return new List<string>
@@ -299,11 +385,19 @@ public class PlayerController : MonoBehaviour
         };
     }
 
+    /**
+    * @brief Instantiates a building placeholder at the specified position.
+    * @param position The position to place the building placeholder.
+    */
     private void InstantiateBuildingPlaceholder(Vector3 position)
     {
         Instantiate(buildingPlaceholder, new Vector3(position.x, 3, position.z), Quaternion.identity);
     }
 
+    /**
+    * @brief Updates the count of buildings of the specified type.
+    * @param buildingToBuild The building type to update the count for.
+    */
     private void UpdateBuildingCounts(string buildingToBuild)
     {
         if (buildingCounts.ContainsKey(buildingToBuild))
@@ -332,12 +426,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /**
+    * @brief Saves the world data to a file.
+    */
     private void SaveWorldData()
     {
         worldGen.SaveWorldData("tileData.json");
         Logger.Log(LogLevel.Success, "Tile data saved to " + Path.Combine(Application.dataPath, "tileData.json"));
     }
 
+    /**
+    * @brief Deletes the existing world grid.
+    */
     private void DeleteGrid()
     {
         worldGen.DeleteGrid();

@@ -1,0 +1,119 @@
+\doxysection{Validation\+Engine Class Reference}
+\hypertarget{class_validation_engine}{}\label{class_validation_engine}\index{ValidationEngine@{ValidationEngine}}
+
+
+The core validation engine for placing buildings on tiles.  
+
+
+Inheritance diagram for Validation\+Engine\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_validation_engine}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_validation_engine_a0165cbefcaa6bc466fb2969c0b9c496f}{Load\+Taxonomy}} ()
+\begin{DoxyCompactList}\small\item\em Loads the building taxonomy data from a JSON file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_validation_engine_a2a4f8033852fccbaf47c888bcc9ee243}{Load\+Tiles}} ()
+\begin{DoxyCompactList}\small\item\em Loads the tile data from a JSON file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_validation_engine_a7dd63735b23057f2c2fd96107965c7be}{Start}} ()
+\begin{DoxyCompactList}\small\item\em Called when the script instance is being loaded. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_validation_engine_a817a17ca943a7517f10da2dc9eda34e1}{Can\+Place\+Building}} (string building\+Type, int tile\+ID)
+\begin{DoxyCompactList}\small\item\em Validates whether a building can be placed on a specific tile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \mbox{\hyperlink{class_building_taxonomy}{Building\+Taxonomy}} $>$ \mbox{\hyperlink{class_validation_engine_ae38ac709b5223006615fc6dddb33ac8d}{building\+Taxonomies}}
+\begin{DoxyCompactList}\small\item\em The list of building taxonomies. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_tile_data}{Tile\+Data}} $>$ \mbox{\hyperlink{class_validation_engine_a2850fdfd318f0d7a3999e1e28e2e0d25}{tiles}}
+\begin{DoxyCompactList}\small\item\em The list of tiles in the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The core validation engine for placing buildings on tiles. 
+
+This class manages the relationships between buildings and tiles and validates if a building can be placed based on the available resources. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_validation_engine_a817a17ca943a7517f10da2dc9eda34e1}\index{ValidationEngine@{ValidationEngine}!CanPlaceBuilding@{CanPlaceBuilding}}
+\index{CanPlaceBuilding@{CanPlaceBuilding}!ValidationEngine@{ValidationEngine}}
+\doxysubsubsection{\texorpdfstring{CanPlaceBuilding()}{CanPlaceBuilding()}}
+{\footnotesize\ttfamily \label{class_validation_engine_a817a17ca943a7517f10da2dc9eda34e1} 
+bool Validation\+Engine.\+Can\+Place\+Building (\begin{DoxyParamCaption}\item[{string}]{building\+Type}{, }\item[{int}]{tile\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Validates whether a building can be placed on a specific tile. 
+
+Checks if the required resources for a building are available on the given tile.
+
+
+\begin{DoxyParams}{Parameters}
+{\em building\+Type} & The type of the building to place. \\
+\hline
+{\em tile\+ID} & The ID of the tile to place the building on. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the building can be placed, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_validation_engine_a0165cbefcaa6bc466fb2969c0b9c496f}\index{ValidationEngine@{ValidationEngine}!LoadTaxonomy@{LoadTaxonomy}}
+\index{LoadTaxonomy@{LoadTaxonomy}!ValidationEngine@{ValidationEngine}}
+\doxysubsubsection{\texorpdfstring{LoadTaxonomy()}{LoadTaxonomy()}}
+{\footnotesize\ttfamily \label{class_validation_engine_a0165cbefcaa6bc466fb2969c0b9c496f} 
+void Validation\+Engine.\+Load\+Taxonomy (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Loads the building taxonomy data from a JSON file. 
+
+This method reads a JSON file containing building taxonomy data and stores it in the building\+Taxonomies list. \Hypertarget{class_validation_engine_a2a4f8033852fccbaf47c888bcc9ee243}\index{ValidationEngine@{ValidationEngine}!LoadTiles@{LoadTiles}}
+\index{LoadTiles@{LoadTiles}!ValidationEngine@{ValidationEngine}}
+\doxysubsubsection{\texorpdfstring{LoadTiles()}{LoadTiles()}}
+{\footnotesize\ttfamily \label{class_validation_engine_a2a4f8033852fccbaf47c888bcc9ee243} 
+void Validation\+Engine.\+Load\+Tiles (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Loads the tile data from a JSON file. 
+
+This method reads a JSON file containing tile data and stores it in the tiles list. \Hypertarget{class_validation_engine_a7dd63735b23057f2c2fd96107965c7be}\index{ValidationEngine@{ValidationEngine}!Start@{Start}}
+\index{Start@{Start}!ValidationEngine@{ValidationEngine}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily \label{class_validation_engine_a7dd63735b23057f2c2fd96107965c7be} 
+void Validation\+Engine.\+Start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Called when the script instance is being loaded. 
+
+Initializes the validation engine by loading the building taxonomy data. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_validation_engine_ae38ac709b5223006615fc6dddb33ac8d}\index{ValidationEngine@{ValidationEngine}!buildingTaxonomies@{buildingTaxonomies}}
+\index{buildingTaxonomies@{buildingTaxonomies}!ValidationEngine@{ValidationEngine}}
+\doxysubsubsection{\texorpdfstring{buildingTaxonomies}{buildingTaxonomies}}
+{\footnotesize\ttfamily \label{class_validation_engine_ae38ac709b5223006615fc6dddb33ac8d} 
+List$<$\mbox{\hyperlink{class_building_taxonomy}{Building\+Taxonomy}}$>$ Validation\+Engine.\+building\+Taxonomies}
+
+
+
+The list of building taxonomies. 
+
+\Hypertarget{class_validation_engine_a2850fdfd318f0d7a3999e1e28e2e0d25}\index{ValidationEngine@{ValidationEngine}!tiles@{tiles}}
+\index{tiles@{tiles}!ValidationEngine@{ValidationEngine}}
+\doxysubsubsection{\texorpdfstring{tiles}{tiles}}
+{\footnotesize\ttfamily \label{class_validation_engine_a2850fdfd318f0d7a3999e1e28e2e0d25} 
+List$<$\mbox{\hyperlink{class_tile_data}{Tile\+Data}}$>$ Validation\+Engine.\+tiles}
+
+
+
+The list of tiles in the game. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/zakal\+\_\+m9erurp/\+Documents/\+Git\+Hub/\+Hex\+Redone/\+Hex\+Redone/\+Assets/\+Scripts/\mbox{\hyperlink{_validation_engine_8cs}{Validation\+Engine.\+cs}}\end{DoxyCompactItemize}

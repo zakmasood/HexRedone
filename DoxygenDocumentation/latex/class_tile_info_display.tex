@@ -1,0 +1,93 @@
+\doxysection{Tile\+Info\+Display Class Reference}
+\hypertarget{class_tile_info_display}{}\label{class_tile_info_display}\index{TileInfoDisplay@{TileInfoDisplay}}
+
+
+Handles the display of tile information.  
+
+
+Inheritance diagram for Tile\+Info\+Display\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tile_info_display}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_tile_info_display_a7f844c9d30857e9b8b0160d90aaf8a9c}{Extract\+Tile\+ID}} (string tile\+Name)
+\begin{DoxyCompactList}\small\item\em Extracts the tile ID from its name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_world_gen}{World\+Gen}} \mbox{\hyperlink{class_tile_info_display_a8d3b14bcda1735d84d1533e5a4adcca6}{world\+Gen}}
+\begin{DoxyCompactList}\small\item\em The world generation reference. \end{DoxyCompactList}\item 
+Text \mbox{\hyperlink{class_tile_info_display_a5d685b96c7715fa58386761e6b6c5798}{info\+Text}}
+\begin{DoxyCompactList}\small\item\em The UI text element where tile information will be displayed. \end{DoxyCompactList}\item 
+Camera \mbox{\hyperlink{class_tile_info_display_a56fb5da232955346df982bdca64868e2}{main\+Cam}}
+\begin{DoxyCompactList}\small\item\em The main camera used for detecting clicks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles the display of tile information. 
+
+This class interacts with the game\textquotesingle{}s world generation system and the UI to show details about tiles when they are clicked. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_tile_info_display_a7f844c9d30857e9b8b0160d90aaf8a9c}\index{TileInfoDisplay@{TileInfoDisplay}!ExtractTileID@{ExtractTileID}}
+\index{ExtractTileID@{ExtractTileID}!TileInfoDisplay@{TileInfoDisplay}}
+\doxysubsubsection{\texorpdfstring{ExtractTileID()}{ExtractTileID()}}
+{\footnotesize\ttfamily \label{class_tile_info_display_a7f844c9d30857e9b8b0160d90aaf8a9c} 
+int Tile\+Info\+Display.\+Extract\+Tile\+ID (\begin{DoxyParamCaption}\item[{string}]{tile\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Extracts the tile ID from its name. 
+
+Assumes the tile name is in the format "{}tile$<$\+ID$>$"{} and extracts the integer ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tile\+Name} & The name of the tile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The extracted tile ID as an integer. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_tile_info_display_a5d685b96c7715fa58386761e6b6c5798}\index{TileInfoDisplay@{TileInfoDisplay}!infoText@{infoText}}
+\index{infoText@{infoText}!TileInfoDisplay@{TileInfoDisplay}}
+\doxysubsubsection{\texorpdfstring{infoText}{infoText}}
+{\footnotesize\ttfamily \label{class_tile_info_display_a5d685b96c7715fa58386761e6b6c5798} 
+Text Tile\+Info\+Display.\+info\+Text}
+
+
+
+The UI text element where tile information will be displayed. 
+
+\Hypertarget{class_tile_info_display_a56fb5da232955346df982bdca64868e2}\index{TileInfoDisplay@{TileInfoDisplay}!mainCam@{mainCam}}
+\index{mainCam@{mainCam}!TileInfoDisplay@{TileInfoDisplay}}
+\doxysubsubsection{\texorpdfstring{mainCam}{mainCam}}
+{\footnotesize\ttfamily \label{class_tile_info_display_a56fb5da232955346df982bdca64868e2} 
+Camera Tile\+Info\+Display.\+main\+Cam}
+
+
+
+The main camera used for detecting clicks. 
+
+\Hypertarget{class_tile_info_display_a8d3b14bcda1735d84d1533e5a4adcca6}\index{TileInfoDisplay@{TileInfoDisplay}!worldGen@{worldGen}}
+\index{worldGen@{worldGen}!TileInfoDisplay@{TileInfoDisplay}}
+\doxysubsubsection{\texorpdfstring{worldGen}{worldGen}}
+{\footnotesize\ttfamily \label{class_tile_info_display_a8d3b14bcda1735d84d1533e5a4adcca6} 
+\mbox{\hyperlink{class_world_gen}{World\+Gen}} Tile\+Info\+Display.\+world\+Gen}
+
+
+
+The world generation reference. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/zakal\+\_\+m9erurp/\+Documents/\+Git\+Hub/\+Hex\+Redone/\+Hex\+Redone/\+Assets/\+Scripts/\mbox{\hyperlink{_tile_info_display_8cs}{Tile\+Info\+Display.\+cs}}\end{DoxyCompactItemize}
