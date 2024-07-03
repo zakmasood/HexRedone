@@ -1,446 +1,195 @@
-using System.Collections.Generic;
-using System.IO;
+/**
+ * @file CameraController.cs
+ * @brief Controls the camera movement and behavior in the game.
+ *
+ * This script handles the camera movement, including acceleration, damping, and bobbing effects.
+ */
+
 using UnityEngine;
-using UnityEngine.UI;
-using Newtonsoft.Json;
-using System.Linq;
-using CustomLogger;
-using Logger = CustomLogger.Logger;
-using System.Threading;
 
-/// @brief Provides extension methods for strings.
-public static class StringExtension
+/**
+ * @class CameraController
+ * @brief Manages the camera's position, rotation, and input handling.
+ *
+ * This class allows the camera to move and look around based on player input. It supports acceleration, sprinting, and a bobbing effect when moving.
+ */
+public class CameraController : MonoBehaviour
 {
+    /// Acceleration factor for camera movement.
+    public float Acceleration = 50;
+
+    /// Multiplier applied when sprinting.
+    public float AccSprintMultiplier = 4;
+
+    /// Sensitivity of the camera look movement.
+    public float LookSensitivity = 1;
+
+    /// Damping coefficient for smoothing camera movement.
+    public float DampingCoefficient = 5;
+
+    /// Determines whether the camera should focus when enabled.
+    public bool FocusOnEnable = true;
+
+    /// Speed of the bobbing effect.
+    public float BobSpeed = 14f;
+
+    /// Amount of bobbing applied to the camera.
+    public float BobAmount = 0.1f;
+
+    private Vector3 _velocity; ///< Current velocity of the camera.
+    private float _defaultPosY = 0; ///< Default Y position of the camera.
+    private float _timer = 0; ///< Timer used for the bobbing effect.
+
     /**
-     * @brief Makes the string bold.
-     * @param str The input string.
-     * @return The bolded string.
+     * @brief Checks if the cursor is locked and visible.
+     * 
+     * Locks or unlocks the cursor based on its state.
      */
-    public static string Bold(this string str) => "<b>" + str + "</b>";
+    private static bool Focused
+    {
+        get => Cursor.lockState == CursorLockMode.Locked;
+        set
+        {
+            Cursor.lockState = value ? CursorLockMode.Locked : CursorLockMode.None;
+            Cursor.visible = !value;
+        }
+    }
 
     /**
-     * @brief Colors the string with the specified color.
-     * @param str The input string.
-     * @param clr The color to apply.
-     * @return The colored string.
+     * @brief Initializes the default Y position of the camera.
      */
-    public static string Color(this string str, string clr) => string.Format("<color={0}>{1}</color>", clr, str);
+    private void Start()
+    {
+        _defaultPosY = transform.localPosition.y;
+    }
 
     /**
-     * @brief Italicizes the string.
-     * @param str The input string.
-     * @return The italicized string.
+     * @brief Called when the script is enabled.
+     *
+     * Optionally focuses the camera when it is enabled.
      */
-    public static string Italic(this string str) => "<i>" + str + "</i>";
+    private void OnEnable()
+    {
+        Debug.Log("Entering OnEnable");
+        if (FocusOnEnable) Focused = true;
+        Debug.Log("Exiting OnEnable");
+    }
 
     /**
-     * @brief Sets the size of the string.
-     * @param str The input string.
-     * @param size The size to apply.
-     * @return The resized string.
+     * @brief Called when the script is disabled.
+     *
+     * Unfocuses the camera when it is disabled.
      */
-    public static string Size(this string str, int size) => string.Format("<size={0}>{1}</size>", size, str);
-}
-
-/// @brief Represents the building data.
-public class BuildingData
-{
-    [JsonProperty("building-type")]
-    public string BuildingType { get; set; }
-
-    [JsonProperty("item-needed")]
-    public List<string> ItemNeeded { get; set; }
-
-    [JsonProperty("icon")]
-    public string Icon { get; set; }
-
-    [JsonProperty("color")]
-    public string Color { get; set; }
-
-    [JsonProperty("category")]
-    public string Category { get; set; }
-}
-
-/// @brief Represents the list of buildings.
-public class BuildingsList
-{
-    [JsonProperty("buildings")]
-    public List<BuildingData> Buildings { get; set; }
-}
-
-/// @brief Controls the player actions and interactions in the game world.
-public class PlayerController : MonoBehaviour
-{
-    /// The building type to build.
-    public string buildingToBuild;
-
-    /// The world generator instance.
-    public WorldGen worldGen;
-
-    /// The validation engine instance.
-    public ValidationEngine validator;
-
-    /// The quest controller instance.
-    public QuestController questController;
-
-    /// The info text UI element.
-    public Text infoText;
-
-    /// The warning text UI element.
-    public GameObject WarningText;
-
-    /// The start position of the warning text.
-    public Vector3 WTStartPos;
-
-    /// The end position of the warning text.
-    public Vector3 WTEndPos;
-
-    /// The time duration for warning text animation.
-    public float WTime;
-
-    /// The container for labels.
-    public Transform labelsContainer;
-
-    /// The label prefab.
-    public GameObject labelPrefab;
-
-    /// The building placeholder.
-    public GameObject buildingPlaceholder;
-
-    private GameObject clickedTile;
-
-    public Dictionary<string, int> buildingCounts = new Dictionary<string, int>();
-    private Dictionary<string, Text> buildingTexts = new Dictionary<string, Text>();
+    private void OnDisable()
+    {
+        Debug.Log("Entering OnDisable");
+        Focused = false;
+        Debug.Log("Exiting OnDisable");
+    }
 
     /**
-    * @brief Called every frame, handles player input.
-    */
+     * @brief Updates the camera position and rotation every frame.
+     *
+     * Handles input for moving and rotating the camera, applies damping and bobbing effects.
+     */
     private void Update()
     {
-        HandleInput();
-    }
+        Debug.Log("Entering Update");
 
-    /**
-    * @brief Detects the clicked tile by the player.
-    * @return The clicked tile game object.
-    */
-    private GameObject DetectClickedTile()
-    {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 100.0f))
+        if (Focused)
         {
-            return hit.transform.gameObject;
+            UpdateInput();
         }
-        return null;
-    }
-
-    /**
-    * @brief Handles player input for placing buildings.
-    */
-    public void HandleInput()
-    {
-        if (Input.GetMouseButtonDown(0)) // Left mouse button clicked
+        else if (Input.GetMouseButtonDown(0))
         {
-            clickedTile = DetectClickedTile();
-            if (clickedTile != null)
-            {
-                int tileID = worldGen.ExtractTileID(clickedTile.name);
-                TileData data = worldGen.GetTileData(tileID);
-
-                if (data != null)
-                {
-                    infoText.text = $"Tile ID: {tileID}, X: {data.x}, Z: {data.z}, Element: {data.resourceType}";
-                }
-                else
-                {
-                    Logger.Log(LogLevel.Warning, "TileData not found for tileID: " + tileID);
-                }
-
-                List<string> buildableBuildings = GetBuildableBuildings(tileID);
-
-                if (buildableBuildings.Count == 0)
-                {
-                    Logger.Log(LogLevel.Warning, "No buildable buildings for this tile");
-                }
-
-                buildingToBuild = buildableBuildings[0];
-
-                if (CanPlaceBuilding(tileID, buildingToBuild))
-                {
-                    InstantiateBuildingPlaceholder(clickedTile.transform.position);
-                    UpdateBuildingCounts(buildingToBuild);
-                }
-            }
-        }
-    }
-
-    /**
-    * @brief Gets the list of buildable buildings for a given tile.
-    * @param tileID The ID of the tile.
-    * @return A list of buildable building types.
-    */
-    private List<string> GetBuildableBuildings(int tileID)
-    {
-        string path = Application.dataPath + "/buildingTaxonomy.json";
-
-        if (!File.Exists(path))
-        {
-            Logger.Log(LogLevel.Error, "Json file not found at " + path);
-            return new List<string>();
+            Focused = true;
+            UpdateInput();
         }
 
-        string json = File.ReadAllText(path);
-        BuildingsList buildings = JsonConvert.DeserializeObject<BuildingsList>(json);
+        _velocity = Vector3.Lerp(_velocity, Vector3.zero, DampingCoefficient * Time.deltaTime);
+        transform.position += _velocity * Time.deltaTime;
 
-        if (buildings == null || buildings.Buildings == null || buildings.Buildings.Count == 0)
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
-            Logger.Log(LogLevel.Warning, "No building data is available from the JSON file.");
-            return new List<string>();
-        }
-
-        TileData data = worldGen.GetTileData(tileID);
-
-        if (data == null)
-        {
-            Logger.Log(LogLevel.Error, "TileData is null for tile ID " + tileID);
-            return new List<string>();
-        }
-
-        string resourceType = data.resourceType;
-
-        // Check if the resourceType is a building type
-        if (buildings.Buildings.Any(b => b.BuildingType == resourceType))
-        {
-            Logger.Log(LogLevel.Warning, "Cannot place building. Tile already has a building of type: " + resourceType);
-            WarningText.GetComponent<Text>().text = "Cannot Place Building On Tile! Building Already Exists!";
-            LeanTween.moveLocal(WarningText, WTEndPos, WTime).setEaseInOutCubic();
-            LeanTween.delayedCall(5f, () => { resetTweenedObjects(WTStartPos, WarningText); });
-            return new List<string>();
-        }
-
-        Logger.Log(LogLevel.Info, "Resource type on tile " + tileID + ": " + resourceType);
-
-        List<string> buildingTypes = buildings.Buildings
-            .Where(building => building.ItemNeeded.Contains(resourceType))
-            .Select(building => building.BuildingType)
-            .ToList();
-
-        if (buildingTypes.Count == 0)
-        {
-            Logger.Log(LogLevel.Info, "No buildings can be built on this tile with element type " + resourceType);
-            WarningText.GetComponent<Text>().text = "No buildings can be built on this tile!";
-            LeanTween.moveLocal(WarningText, WTEndPos, WTime).setEaseInOutCubic();
-            LeanTween.delayedCall(5f, () => { resetTweenedObjects(WTStartPos, WarningText); });
-        }
-
-        return buildingTypes;
-    }
-
-    /**
-    * @brief Resets the position of tweened objects.
-    * @param StartPos The start position.
-    * @param gameObject The game object to reset.
-    */
-    public void resetTweenedObjects(Vector3 StartPos, GameObject gameObject)
-    {
-        LeanTween.moveLocal(gameObject, StartPos, 1f).setEaseInOutCubic();
-    }
-
-    /**
-    * @brief Gets the name of the clicked tile.
-    * @return The name of the clicked tile.
-    */
-    public string clickedTileData()
-    {
-        clickedTile = DetectClickedTile();
-        return clickedTile.name;
-    }
-
-    /**
-    * @brief Gets the list of buildings that can be built on a given tile.
-    * @param tileID The ID of the tile.
-    * @return A list of buildable building types.
-    */
-    public List<string> WhatCanIBuild(int tileID)
-    {
-        string path = Application.dataPath + "/buildingTaxonomy.json";
-
-        if (!File.Exists(path))
-        {
-            Logger.Log(LogLevel.Error, "Json file not found at " + path);
-            return new List<string>();
-        }
-
-        string json = File.ReadAllText(path);
-        BuildingsList buildings = JsonConvert.DeserializeObject<BuildingsList>(json);
-
-        if (buildings == null || buildings.Buildings == null || buildings.Buildings.Count == 0)
-        {
-            Logger.Log(LogLevel.Warning, "No building data is available from the JSON file.");
-            return new List<string>();
-        }
-
-        TileData data = worldGen.GetTileData(tileID);
-
-        if (data == null)
-        {
-            Logger.Log(LogLevel.Warning, "TileData is null for tile ID " + tileID);
-            return new List<string>();
-        }
-
-        string resourceType = data.resourceType;
-        Logger.Log(LogLevel.Info, "Resource type on tile " + tileID + ": " + resourceType);
-
-        List<string> buildingTypes = new List<string>();
-
-        foreach (BuildingData building in buildings.Buildings)
-        {
-            if (building.ItemNeeded.Contains(resourceType))
-            {
-                buildingTypes.Add(building.BuildingType);
-                Logger.Log(LogLevel.Success, "Building " + building.BuildingType + " can be built on this tile.");
-            }
-        }
-
-        if (buildingTypes.Count == 0)
-        {
-            Logger.Log(LogLevel.Warning, "No buildings can be built on this tile with element type " + resourceType);
-        }
-
-        return buildingTypes;
-    }
-
-    /**
-    * @brief Determines whether a building can be placed on a tile.
-    * @param tileID The ID of the tile.
-    * @param buildingType The building type to place.
-    * @return A boolean indicating whether the building can be placed.
-    */
-    private bool CanPlaceBuilding(int tileID, string buildingType)
-    {
-        string path = Application.dataPath + "/buildingTaxonomy.json";
-        string json = File.ReadAllText(path);
-
-        BuildingsList buildings = JsonConvert.DeserializeObject<BuildingsList>(json);
-
-        TileData data = worldGen.GetTileData(tileID);
-
-        List<string> itemsNeeded = buildings.Buildings
-            .Where(building => building.BuildingType == buildingType)
-            .SelectMany(building => building.ItemNeeded)
-            .ToList();
-
-        List<string> resourceTypeList = GetResourceTypeList();
-
-        if (buildings.Buildings.Any(b => b.BuildingType == data.resourceType))
-        {
-            Logger.Log(LogLevel.Error, "Cannot place building. Tile already has a building.");
-            return false;
-        }
-
-        if (!itemsNeeded.All(item => resourceTypeList.Contains(item)))
-        {
-            Logger.Log(LogLevel.Error, "Cannot place building. Required item not in tile elements.");
-            return false;
-        }
-
-        if (!itemsNeeded.Contains(data.resourceType))
-        {
-            Logger.Log(LogLevel.Error, $"Cannot place building. Tile does not contain required element for building type {buildingType}.");
-            return false;
-        }
-
-        if (data.x >= 0 && data.x < worldGen.tileData.GetLength(0) && data.z >= 0 && data.z < worldGen.tileData.GetLength(1))
-        {
-            worldGen.tileData[data.x, data.z].resourceType = data.resourceType;
-            Logger.Log(LogLevel.Debug, "Placing tile");
-            worldGen.SetTileResourceType(tileID, buildingType);
-        }
-
-        Logger.Log(LogLevel.Success, "Can place building type " + buildingType + " on tile " + tileID + ".");
-        return true;
-    }
-
-    /**
-    * @brief Gets the list of resource types.
-    * @return A list of resource types.
-    */
-    private List<string> GetResourceTypeList()
-    {
-        return new List<string>
-        {
-            Elements.None,
-            Elements.Tree,
-            Elements.Water,
-            Elements.Earth,
-            Elements.CoalOre,
-            Elements.IronOre,
-            Elements.CopperOre,
-            Elements.GoldOre,
-            Elements.UraniumOre,
-            Elements.Stone,
-            Elements.Oil,
-            Elements.NaturalGas
-        };
-    }
-
-    /**
-    * @brief Instantiates a building placeholder at the specified position.
-    * @param position The position to place the building placeholder.
-    */
-    private void InstantiateBuildingPlaceholder(Vector3 position)
-    {
-        Instantiate(buildingPlaceholder, new Vector3(position.x, 3, position.z), Quaternion.identity);
-    }
-
-    /**
-    * @brief Updates the count of buildings of the specified type.
-    * @param buildingToBuild The building type to update the count for.
-    */
-    private void UpdateBuildingCounts(string buildingToBuild)
-    {
-        if (buildingCounts.ContainsKey(buildingToBuild))
-        {
-            buildingCounts[buildingToBuild]++;
+            _timer += Time.deltaTime * BobSpeed;
+            transform.localPosition = new Vector3(transform.localPosition.x, _defaultPosY + Mathf.Sin(_timer) * BobAmount, transform.localPosition.z);
         }
         else
         {
-            buildingCounts[buildingToBuild] = 1;
+            _timer = 0;
+            transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Lerp(transform.localPosition.y, _defaultPosY, Time.deltaTime * BobSpeed), transform.localPosition.z);
         }
 
-        Logger.Log(LogLevel.Success, "Built " + buildingToBuild + ". Total: " + buildingCounts[buildingToBuild]);
-
-        if (buildingTexts.ContainsKey(buildingToBuild))
-        {
-            buildingTexts[buildingToBuild].text = buildingToBuild + ": " + buildingCounts[buildingToBuild];
-        }
-        else
-        {
-            GameObject newLabel = Instantiate(labelPrefab, new Vector2(labelsContainer.transform.position.x, labelsContainer.transform.position.y), Quaternion.identity, labelsContainer);
-            Text newLabelText = newLabel.GetComponent<Text>();
-
-            newLabelText.text = buildingToBuild + ": " + buildingCounts[buildingToBuild];
-
-            buildingTexts.Add(buildingToBuild, newLabelText);
-        }
+        Debug.Log("Exiting Update");
     }
 
     /**
-    * @brief Saves the world data to a file.
-    */
-    private void SaveWorldData()
+     * @brief Handles user input for accelerating and rotating the camera.
+     */
+    private void UpdateInput()
     {
-        worldGen.SaveWorldData("tileData.json");
-        Logger.Log(LogLevel.Success, "Tile data saved to " + Path.Combine(Application.dataPath, "tileData.json"));
+        Debug.Log("Entering UpdateInput");
+
+        _velocity += GetAccelerationVector() * Time.deltaTime;
+
+        Vector2 mouseDelta = LookSensitivity * new Vector2(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y"));
+        Quaternion rotation = transform.rotation;
+        Quaternion horiz = Quaternion.AngleAxis(mouseDelta.x, Vector3.up);
+        Quaternion vert = Quaternion.AngleAxis(mouseDelta.y, Vector3.right);
+        transform.rotation = horiz * rotation * vert;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Focused = false;
+        }
+
+        Debug.Log("Exiting UpdateInput");
     }
 
     /**
-    * @brief Deletes the existing world grid.
-    */
-    private void DeleteGrid()
+     * @brief Computes the acceleration vector based on user input.
+     *
+     * Handles movement keys and applies appropriate acceleration.
+     *
+     * @return The acceleration vector.
+     */
+    private Vector3 GetAccelerationVector()
     {
-        worldGen.DeleteGrid();
-        Logger.Log(LogLevel.Debug, "Deleting World");
+        Debug.Log("Entering GetAccelerationVector");
+
+        Vector3 moveInput = default;
+
+        /**
+         * @brief Adds movement to the acceleration vector based on a key press.
+         * 
+         * @param key The key to check for input.
+         * @param dir The direction vector to add.
+         */
+        void AddMovement(KeyCode key, Vector3 dir)
+        {
+            Debug.Log($"Entering AddMovement for key: {key}");
+            if (Input.GetKey(key))
+            {
+                moveInput += dir;
+            }
+            Debug.Log($"Exiting AddMovement for key: {key}");
+        }
+
+        AddMovement(KeyCode.W, Vector3.forward);
+        AddMovement(KeyCode.S, Vector3.back);
+        AddMovement(KeyCode.D, Vector3.right);
+        AddMovement(KeyCode.A, Vector3.left);
+        AddMovement(KeyCode.Space, Vector3.up);
+        AddMovement(KeyCode.LeftControl, Vector3.down);
+
+        Vector3 direction = transform.TransformVector(moveInput.normalized);
+
+        Debug.Log("Exiting GetAccelerationVector");
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            return direction * (Acceleration * AccSprintMultiplier);
+        }
+        return direction * Acceleration;
     }
 }

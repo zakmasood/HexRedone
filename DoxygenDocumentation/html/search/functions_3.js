@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['enqueuemainthreadtask_0',['EnqueueMainThreadTask',['../class_factory_manager.html#aa2fc44110326f82cc343bfa72278b923',1,'FactoryManager']]],
-  ['extracttileid_1',['ExtractTileID',['../class_tile_info_display.html#a7f844c9d30857e9b8b0160d90aaf8a9c',1,'TileInfoDisplay.ExtractTileID()'],['../class_world_gen.html#afa8832aaef02adced31f6724ba6374ae',1,'WorldGen.ExtractTileID()']]]
+  ['generatenoisemap_0',['GenerateNoiseMap',['../class_world_gen.html#a5ef4d09b6d4843a7c1975427c8d5f1fd',1,'WorldGen']]],
+  ['gettiledata_1',['GetTileData',['../class_world_gen.html#a74299200d86a5f0ed40581ecd0ac2199',1,'WorldGen']]]
 ];

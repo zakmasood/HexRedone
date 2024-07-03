@@ -51,6 +51,12 @@ public class TileData
         this.previousResourceType = this.resourceType;
         this.resourceType = newResourceType;
     }
+
+    // Method to reset to previous resource type
+    public void ResetToPreviousResourceType()
+    {
+        this.resourceType = this.previousResourceType;
+    }
 }
 
 public class WorldGen : MonoBehaviour
@@ -190,24 +196,34 @@ public class WorldGen : MonoBehaviour
     public int ExtractTileID(string tileName)
     {
         // Log the incoming tile name
-        Logger.Log(LogLevel.Debug, "Extracting Tile ID from Tilename: " + tileName);
+        Logger.Log(LogLevel.Debug, "Extracting ID from Name: " + tileName);
 
-        // Check if the tileName starts with "tile"
-        if (!tileName.StartsWith("tile"))
+        if (tileName.StartsWith("tile"))
         {
-            Logger.Log(LogLevel.Error, $"Tilename '{tileName}' does not start with 'tile'.");
-            throw new FormatException("Input string does not start with 'tile'.");
+            return ExtractID(tileName, "tile", 4);
         }
-
-        // Try to extract the number part after "tile"
-        string idPart = tileName.Substring(4); // Get the substring after "tile"
-        if (int.TryParse(idPart, out int tileID))
+        else if (tileName.StartsWith("Factory"))
         {
-            return tileID;
+            return ExtractID(tileName, "Factory", 7);
         }
         else
         {
-            Logger.Log(LogLevel.Error, $"Failed to parse the ID part '{idPart}' from Tilename '{tileName}'.");
+            Logger.Log(LogLevel.Error, $"Name '{tileName}' does not start with 'tile' or 'Factory'.");
+            throw new FormatException("Input string does not start with 'tile' or 'Factory'.");
+        }
+    }
+
+    public int ExtractID(string name, string prefix, int prefixLength)
+    {
+        // Try to extract the number part after the prefix
+        string idPart = name.Substring(prefixLength); // Get the substring after the prefix
+        if (int.TryParse(idPart, out int id))
+        {
+            return id;
+        }   
+        else
+        {
+            Logger.Log(LogLevel.Error, $"Failed to parse the ID part '{idPart}' from Name '{name}'.");
             throw new FormatException($"Unable to parse '{idPart}' as an integer.");
         }
     }

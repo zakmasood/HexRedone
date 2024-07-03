@@ -6,6 +6,7 @@
  */
 
 using CustomLogger;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,6 +44,9 @@ public class ValidationEngine : MonoBehaviour
 
     /// The list of tiles in the game.
     public List<TileData> tiles;
+
+    /// The instance of WorldGen
+    public WorldGen worldGen;
 
     /**
      * @brief Loads the building taxonomy data from a JSON file.
@@ -134,4 +138,54 @@ public class ValidationEngine : MonoBehaviour
             return false;
         }
     }
+
+    public List<string> WhatCanIBuild(int tileID)
+    {
+        string path = Application.dataPath + "/buildingTaxonomy.json";
+
+        if (!File.Exists(path))
+        {
+            Logger.Log(LogLevel.Error, "Json file not found at " + path);
+            return new List<string>();
+        }
+
+        string json = File.ReadAllText(path);
+        BuildingsList buildings = JsonConvert.DeserializeObject<BuildingsList>(json);
+
+        if (buildings == null || buildings.Buildings == null || buildings.Buildings.Count == 0)
+        {
+            Logger.Log(LogLevel.Warning, "No building data is available from the JSON file.");
+            return new List<string>();
+        }
+
+        TileData data = worldGen.GetTileData(tileID);
+
+        if (data == null)
+        {
+            Logger.Log(LogLevel.Warning, "TileData is null for tile ID " + tileID);
+            return new List<string>();
+        }
+
+        string resourceType = data.resourceType;
+        Logger.Log(LogLevel.Info, "Resource type on tile " + tileID + ": " + resourceType);
+
+        List<string> buildingTypes = new List<string>();
+
+        foreach (BuildingData building in buildings.Buildings)
+        {
+            if (building.ItemNeeded.Contains(resourceType))
+            {
+                buildingTypes.Add(building.BuildingType);
+                Logger.Log(LogLevel.Success, "Building " + building.BuildingType + " can be built on this tile.");
+            }
+        }
+
+        if (buildingTypes.Count == 0)
+        {
+            Logger.Log(LogLevel.Warning, "No buildings can be built on this tile with element type " + resourceType);
+        }
+
+        return buildingTypes;
+    }
+
 }

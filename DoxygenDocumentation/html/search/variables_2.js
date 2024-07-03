@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['factories_0',['factories',['../class_factory_manager.html#a244e08c174de3a59566c6599c1c79284',1,'FactoryManager']]]
+  ['dampingcoefficient_0',['DampingCoefficient',['../class_camera_controller.html#a8011ed70714f08617090472f899bfe0b',1,'CameraController']]]
 ];

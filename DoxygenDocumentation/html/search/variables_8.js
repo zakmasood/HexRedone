@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['octaveamount_0',['octaveAmount',['../class_world_gen.html#a1402c24cde16583cec483d2c7da34b16',1,'WorldGen']]]
+  ['nextscenename_0',['nextSceneName',['../class_splash_manager.html#ac22acb59045af6a234c73d616c2ed9bb',1,'SplashManager']]]
 ];

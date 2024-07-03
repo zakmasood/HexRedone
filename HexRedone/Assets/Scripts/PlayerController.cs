@@ -6,9 +6,10 @@ using Newtonsoft.Json;
 using System.Linq;
 using CustomLogger;
 using Logger = CustomLogger.Logger;
-using System.Threading;
+using System.Threading.Tasks;
 
-/// @brief Provides extension methods for strings.
+/// @brief Provides extension methods for strings. 
+
 public static class StringExtension
 {
     /**
@@ -41,6 +42,7 @@ public static class StringExtension
      */
     public static string Size(this string str, int size) => string.Format("<size={0}>{1}</size>", size, str);
 }
+
 
 /// @brief Represents the building data.
 public class BuildingData
@@ -76,12 +78,6 @@ public class PlayerController : MonoBehaviour
 
     /// The world generator instance.
     public WorldGen worldGen;
-
-    /// The validation engine instance.
-    public ValidationEngine validator;
-
-    /// The quest controller instance.
-    public QuestController questController;
 
     /// The info text UI element.
     public Text infoText;
@@ -124,13 +120,15 @@ public class PlayerController : MonoBehaviour
     * @brief Detects the clicked tile by the player.
     * @return The clicked tile game object.
     */
-    private GameObject DetectClickedTile()
+    private GameObject DetectClickedObject()
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 100.0f))
         {
-            return hit.transform.gameObject;
+            GameObject clickedObject = hit.transform.gameObject;
+
+            return clickedObject;
         }
         return null;
     }
@@ -140,40 +138,90 @@ public class PlayerController : MonoBehaviour
     */
     public void HandleInput()
     {
-        if (Input.GetMouseButtonDown(0)) // Left mouse button clicked
-        {
-            clickedTile = DetectClickedTile();
-            if (clickedTile != null)
-            {
-                int tileID = worldGen.ExtractTileID(clickedTile.name);
-                TileData data = worldGen.GetTileData(tileID);
+        // Return early if the left mouse button is not clicked
+        if (!Input.GetMouseButtonDown(0)) return;
 
-                if (data != null)
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, 100.0f))
+        {
+            GameObject clickedObject = hit.transform.gameObject;
+
+            // Check and log based on the tag
+            if (clickedObject.CompareTag("Factory"))
+            {
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 {
-                    infoText.text = $"Tile ID: {tileID}, X: {data.x}, Z: {data.z}, Element: {data.resourceType}";
+                    // Shift + left-click detected, get the associated TileData
+                    int factoryID = worldGen.ExtractTileID(clickedObject.name);
+                    TileData tileData = worldGen.GetTileData(factoryID);
+
+                    if (tileData != null)
+                    {
+                        // Reset the resource type to the previous one
+                        tileData.ResetToPreviousResourceType();
+                        Logger.Log(LogLevel.Info, $"Resource type for Tile ID {factoryID} reset to {tileData.resourceType}");
+                    }
+
+                    LeanTween.delayedCall(1f, () => { Destroy(clickedObject); });
+                    Logger.Log(LogLevel.Info, $"Factory at position {clickedObject.transform.position} has been deleted.");
+
+                    buildingCounts[buildingToBuild]--; // This directly decrements the count by 1
+                    Logger.Log(LogLevel.Success, "Deleted " + buildingToBuild + ". Total: " + buildingCounts[buildingToBuild].ToString());
+
+                    return; // Exit early as factory deletion does not require further actions
                 }
                 else
                 {
-                    Logger.Log(LogLevel.Warning, "TileData not found for tileID: " + tileID);
+                    Logger.Log(LogLevel.Info, $"Factory clicked at position {clickedObject.transform.position}");
+                    return; // Exit early as clicking a factory without shift does not require further actions
                 }
+            }
+            else if (clickedObject.CompareTag("Tile"))
+            {
+                Logger.Log(LogLevel.Info, $"Tile clicked with ID: {clickedObject.name}");
+            }
 
-                List<string> buildableBuildings = GetBuildableBuildings(tileID);
+            // Extract tile ID from the clicked tile's name
+            int tileID = worldGen.ExtractTileID(clickedObject.name);
+            // Retrieve tile data using the tile ID
+            TileData data = worldGen.GetTileData(tileID);
 
-                if (buildableBuildings.Count == 0)
-                {
-                    Logger.Log(LogLevel.Warning, "No buildable buildings for this tile");
-                }
+            if (data != null)
+            {
+                // Update info text with tile details
+                infoText.text = $"Tile ID: {tileID}, X: {data.x}, Z: {data.z}, Element: {data.resourceType}";
+            }
+            else
+            {
+                // Log a warning if tile data is not found
+                Logger.Log(LogLevel.Warning, $"TileData not found for tileID: {tileID}");
+                return;
+            }
 
-                buildingToBuild = buildableBuildings[0];
+            // Get a list of buildable buildings for the clicked tile
+            List<string> buildableBuildings = GetBuildableBuildings(tileID);
+            // Log a warning if no buildable buildings are available for this tile
+            if (buildableBuildings.Count == 0)
+            {
+                Logger.Log(LogLevel.Warning, "No buildable buildings for this tile");
+                return;
+            }
 
-                if (CanPlaceBuilding(tileID, buildingToBuild))
-                {
-                    InstantiateBuildingPlaceholder(clickedTile.transform.position);
-                    UpdateBuildingCounts(buildingToBuild);
-                }
+            // Select the first buildable building from the list
+            buildingToBuild = buildableBuildings.First();
+
+            // Check if the selected building can be placed on the tile
+            if (CanPlaceBuilding(tileID, buildingToBuild))
+            {
+                // Instantiate the building placeholder at the clicked tile's position
+                InstantiateBuildingPlaceholder(clickedObject.transform.position, tileID);
+                // Update the count of the built buildings
+                UpdateBuildingCounts(buildingToBuild);
             }
         }
     }
+
 
     /**
     * @brief Gets the list of buildable buildings for a given tile.
@@ -253,7 +301,7 @@ public class PlayerController : MonoBehaviour
     */
     public string clickedTileData()
     {
-        clickedTile = DetectClickedTile();
+        clickedTile = DetectClickedObject();
         return clickedTile.name;
     }
 
@@ -262,54 +310,7 @@ public class PlayerController : MonoBehaviour
     * @param tileID The ID of the tile.
     * @return A list of buildable building types.
     */
-    public List<string> WhatCanIBuild(int tileID)
-    {
-        string path = Application.dataPath + "/buildingTaxonomy.json";
 
-        if (!File.Exists(path))
-        {
-            Logger.Log(LogLevel.Error, "Json file not found at " + path);
-            return new List<string>();
-        }
-
-        string json = File.ReadAllText(path);
-        BuildingsList buildings = JsonConvert.DeserializeObject<BuildingsList>(json);
-
-        if (buildings == null || buildings.Buildings == null || buildings.Buildings.Count == 0)
-        {
-            Logger.Log(LogLevel.Warning, "No building data is available from the JSON file.");
-            return new List<string>();
-        }
-
-        TileData data = worldGen.GetTileData(tileID);
-
-        if (data == null)
-        {
-            Logger.Log(LogLevel.Warning, "TileData is null for tile ID " + tileID);
-            return new List<string>();
-        }
-
-        string resourceType = data.resourceType;
-        Logger.Log(LogLevel.Info, "Resource type on tile " + tileID + ": " + resourceType);
-
-        List<string> buildingTypes = new List<string>();
-
-        foreach (BuildingData building in buildings.Buildings)
-        {
-            if (building.ItemNeeded.Contains(resourceType))
-            {
-                buildingTypes.Add(building.BuildingType);
-                Logger.Log(LogLevel.Success, "Building " + building.BuildingType + " can be built on this tile.");
-            }
-        }
-
-        if (buildingTypes.Count == 0)
-        {
-            Logger.Log(LogLevel.Warning, "No buildings can be built on this tile with element type " + resourceType);
-        }
-
-        return buildingTypes;
-    }
 
     /**
     * @brief Determines whether a building can be placed on a tile.
@@ -317,7 +318,7 @@ public class PlayerController : MonoBehaviour
     * @param buildingType The building type to place.
     * @return A boolean indicating whether the building can be placed.
     */
-    private bool CanPlaceBuilding(int tileID, string buildingType)
+    public bool CanPlaceBuilding(int tileID, string buildingType)
     {
         string path = Application.dataPath + "/buildingTaxonomy.json";
         string json = File.ReadAllText(path);
@@ -369,32 +370,36 @@ public class PlayerController : MonoBehaviour
     private List<string> GetResourceTypeList()
     {
         return new List<string>
-        {
-            Elements.None,
-            Elements.Tree,
-            Elements.Water,
-            Elements.Earth,
-            Elements.CoalOre,
-            Elements.IronOre,
-            Elements.CopperOre,
-            Elements.GoldOre,
-            Elements.UraniumOre,
-            Elements.Stone,
-            Elements.Oil,
-            Elements.NaturalGas
-        };
+            {
+                Elements.None,
+                Elements.Tree,
+                Elements.Water,
+                Elements.Earth,
+                Elements.CoalOre,
+                Elements.IronOre,
+                Elements.CopperOre,
+                Elements.GoldOre,
+                Elements.UraniumOre,
+                Elements.Stone,
+                Elements.Oil,
+                Elements.NaturalGas
+            };
     }
 
     /**
     * @brief Instantiates a building placeholder at the specified position.
     * @param position The position to place the building placeholder.
     */
-    private void InstantiateBuildingPlaceholder(Vector3 position)
+    private void InstantiateBuildingPlaceholder(Vector3 position, int tileID)
     {
-        Instantiate(buildingPlaceholder, new Vector3(position.x, 3, position.z), Quaternion.identity);
+        // Instantiate the building placeholder at the specified position
+        GameObject placeholder = Instantiate(buildingPlaceholder, new Vector3(position.x, 1, position.z), Quaternion.identity);
+
+        // Set the name of the placeholder to the tileID + "Factory"
+        placeholder.name = $"Factory{tileID}";
     }
 
-    /**
+    /** 
     * @brief Updates the count of buildings of the specified type.
     * @param buildingToBuild The building type to update the count for.
     */

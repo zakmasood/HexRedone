@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['resources_0',['resources',['../class_world_gen.html#a2e4bae4d3188eb1cf35dfa23fda51bce',1,'WorldGen']]],
-  ['resourcetype_1',['resourceType',['../class_factory.html#a15fd1f61d2f5b173decca654d9133a38',1,'Factory']]]
+  ['quests_0',['quests',['../class_quest_controller.html#a16919833f11365e2b45a50c28ed6b5ab',1,'QuestController']]]
 ];

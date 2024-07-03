@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['factory_0',['Factory',['../class_factory.html',1,'']]],
-  ['factorymanager_1',['FactoryManager',['../class_factory_manager.html',1,'']]]
+  ['cameracontroller_0',['CameraController',['../class_camera_controller.html',1,'']]]
 ];

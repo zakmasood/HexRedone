@@ -117,6 +117,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a817a17ca943a7517f10da2dc9eda34e1" id="r_a817a17ca943a7517f10da2dc9eda34e1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a817a17ca943a7517f10da2dc9eda34e1">CanPlaceBuilding</a> (string buildingType, int tileID)</td></tr>
 <tr class="memdesc:a817a17ca943a7517f10da2dc9eda34e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates whether a building can be placed on a specific tile.  <br /></td></tr>
 <tr class="separator:a817a17ca943a7517f10da2dc9eda34e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e9ac840d4b076a3e1372f8b7df0ca81" id="r_a2e9ac840d4b076a3e1372f8b7df0ca81"><td class="memItemLeft" align="right" valign="top">List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e9ac840d4b076a3e1372f8b7df0ca81">WhatCanIBuild</a> (int tileID)</td></tr>
+<tr class="separator:a2e9ac840d4b076a3e1372f8b7df0ca81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -126,6 +128,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a2850fdfd318f0d7a3999e1e28e2e0d25" id="r_a2850fdfd318f0d7a3999e1e28e2e0d25"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_tile_data.html">TileData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2850fdfd318f0d7a3999e1e28e2e0d25">tiles</a></td></tr>
 <tr class="memdesc:a2850fdfd318f0d7a3999e1e28e2e0d25"><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of tiles in the game.  <br /></td></tr>
 <tr class="separator:a2850fdfd318f0d7a3999e1e28e2e0d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a394903f988d062200ca6b8e9584c3e6c" id="r_a394903f988d062200ca6b8e9584c3e6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_world_gen.html">WorldGen</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a394903f988d062200ca6b8e9584c3e6c">worldGen</a></td></tr>
+<tr class="memdesc:a394903f988d062200ca6b8e9584c3e6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The instance of <a class="el" href="class_world_gen.html">WorldGen</a>.  <br /></td></tr>
+<tr class="separator:a394903f988d062200ca6b8e9584c3e6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The core validation engine for placing buildings on tiles. </p>
@@ -223,6 +228,23 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a2e9ac840d4b076a3e1372f8b7df0ca81" name="a2e9ac840d4b076a3e1372f8b7df0ca81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e9ac840d4b076a3e1372f8b7df0ca81">&#9670;&#160;</a></span>WhatCanIBuild()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; string &gt; ValidationEngine.WhatCanIBuild </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>tileID</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="ae38ac709b5223006615fc6dddb33ac8d" name="ae38ac709b5223006615fc6dddb33ac8d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae38ac709b5223006615fc6dddb33ac8d">&#9670;&#160;</a></span>buildingTaxonomies</h2>
@@ -253,6 +275,22 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The list of tiles in the game. </p>
+
+</div>
+</div>
+<a id="a394903f988d062200ca6b8e9584c3e6c" name="a394903f988d062200ca6b8e9584c3e6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a394903f988d062200ca6b8e9584c3e6c">&#9670;&#160;</a></span>worldGen</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_world_gen.html">WorldGen</a> ValidationEngine.worldGen</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The instance of <a class="el" href="class_world_gen.html">WorldGen</a>. </p>
 
 </div>
 </div>

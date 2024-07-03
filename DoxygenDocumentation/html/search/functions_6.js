@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['incrementresourcecounter_0',['IncrementResourceCounter',['../class_factory_manager.html#a9a24a1a782960876be0f7af1bb86af62',1,'FactoryManager']]]
+  ['printtiledata_0',['PrintTileData',['../class_world_printer.html#a2e1d0a13c4d56bff30a0357ac31e5335',1,'WorldPrinter']]]
 ];

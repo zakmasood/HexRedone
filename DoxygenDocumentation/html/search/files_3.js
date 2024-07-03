@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['questcontroller_2ecs_0',['QuestController.cs',['../_quest_controller_8cs.html',1,'']]]
+  ['splashmanager_2ecs_0',['SplashManager.cs',['../_splash_manager_8cs.html',1,'']]]
 ];

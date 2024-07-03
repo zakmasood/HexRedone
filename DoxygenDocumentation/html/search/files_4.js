@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['splashmanager_2ecs_0',['SplashManager.cs',['../_splash_manager_8cs.html',1,'']]]
+  ['tileinfodisplay_2ecs_0',['TileInfoDisplay.cs',['../_tile_info_display_8cs.html',1,'']]]
 ];

@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 130226029}
   m_Layer: 0
   m_Name: BuildingPlaceHolder
-  m_TagString: Untagged
+  m_TagString: Factory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,7 +152,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -221,7 +221,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 937.4101, y: 340.91647, z: -2.9712462}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1123,10 +1123,10 @@ GameObject:
   - component: {fileID: 1902648771}
   - component: {fileID: 1902648775}
   - component: {fileID: 1902648776}
-  - component: {fileID: 1902648779}
   - component: {fileID: 1902648778}
   - component: {fileID: 1902648780}
   - component: {fileID: 1902648781}
+  - component: {fileID: 1902648782}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -1303,8 +1303,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingToBuild: 
   worldGen: {fileID: 1902648775}
-  validator: {fileID: 1902648779}
-  questController: {fileID: 1902648780}
+  factory: {fileID: 1902648782}
+  factoryManager: {fileID: 1902648781}
   infoText: {fileID: 517094242}
   WarningText: {fileID: 1850377063}
   WTStartPos: {x: 0, y: -303, z: 0}
@@ -1313,21 +1313,6 @@ MonoBehaviour:
   labelsContainer: {fileID: 498508918}
   labelPrefab: {fileID: 384283748}
   buildingPlaceholder: {fileID: 130226028}
-  clickedTile: {fileID: 0}
---- !u!114 &1902648779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1902648770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e806bc15141885c4690cf8cf913cbebe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildingTaxonomies: []
-  tiles: []
 --- !u!114 &1902648780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1354,8 +1339,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe1f0ea98e6ba54f80cebfe30db5611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  factories: []
   playerController: {fileID: 1902648778}
+  factory: {fileID: 1902648782}
   worldGen: {fileID: 1902648775}
+--- !u!114 &1902648782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902648770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c202be164a9c446408301ba1eacec0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 
+  worldGen: {fileID: 1902648775}
+  playerController: {fileID: 1902648778}
 --- !u!33 &534798762230046763
 MeshFilter:
   m_ObjectHideFlags: 0
