@@ -103,22 +103,6 @@ public class Factory
         }
     }
 
-    // Simulate user interaction to restart the task
-    public void UserClick()
-    {
-        lock (lockObj)
-        {
-            if (!isRunning)
-            {
-                RestartTask(factoryId);
-            }
-            else
-            {
-                Logger.Log(LogLevel.Error, $"Factory {factoryId} is currently running. Cannot restart.");
-            }
-        }
-    }
-
     // Check if the task is complete
     public bool IsTaskComplete()
     {
@@ -134,6 +118,14 @@ public class FactoryManager : MonoBehaviour
 {
     private List<Factory> factories = new List<Factory>();
     private int[] factoryIds = { };
+
+    void OnApplicationQuit()
+    {
+        foreach (var factory in factories)
+        {
+            factory.StopTask();
+        }
+    }
 
     public void AddFactory(int factoryID, string resource)
     {

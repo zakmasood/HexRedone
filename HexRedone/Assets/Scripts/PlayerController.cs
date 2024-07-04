@@ -111,6 +111,20 @@ public class PlayerController : MonoBehaviour
     public Dictionary<string, int> buildingCounts = new Dictionary<string, int>();
     private Dictionary<string, Text> buildingTexts = new Dictionary<string, Text>();
 
+    public void Awake()
+    {
+        Logger.Log(LogLevel.Error, Application.streamingAssetsPath);
+
+        string pathToAssets = Application.dataPath + "/StreamingAssets";
+
+        string[] assetFiles = Directory.GetFiles(pathToAssets);
+
+        foreach (string filePath in assetFiles)
+        {
+            Debug.Log("Found asset: " + Path.GetFileName(filePath));
+        }
+    }
+
     /**
     * @brief Called every frame, handles player input.
     */
@@ -239,7 +253,8 @@ public class PlayerController : MonoBehaviour
     */
     private List<string> GetBuildableBuildings(int tileID)
     {
-        string path = Application.dataPath + "/buildingTaxonomy.json";
+        string path = Path.Combine(Application.streamingAssetsPath, "buildingTaxonomy.json");
+        Logger.Log(LogLevel.Warning, "Filepath: " + path);
 
         if (!File.Exists(path))
         {
@@ -329,7 +344,7 @@ public class PlayerController : MonoBehaviour
     */
     public bool CanPlaceBuilding(int tileID, string buildingType)
     {
-        string path = Application.dataPath + "/buildingTaxonomy.json";
+        string path = Path.Combine(Application.streamingAssetsPath, "buildingTaxonomy.json");
         string json = File.ReadAllText(path);
 
         BuildingsList buildings = JsonConvert.DeserializeObject<BuildingsList>(json);

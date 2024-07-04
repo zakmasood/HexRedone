@@ -56,7 +56,7 @@ public class ValidationEngine : MonoBehaviour
     public void LoadTaxonomy()
     {
         // Assuming JSON file contains data that matches the structure of BuildingTaxonomy 
-        string filePath = Path.Combine(Application.dataPath, "buildingTaxonomy.json");
+        string filePath = Path.Combine(Application.streamingAssetsPath, "/buildingTaxonomy.json");
         Logger.Log(LogLevel.Info, filePath);
         if (File.Exists(filePath))
         {
@@ -79,7 +79,7 @@ public class ValidationEngine : MonoBehaviour
     public void LoadTiles()
     {
         // Assuming JSON file contains data that matches the structure of TileData
-        string filePath = Path.Combine(Application.dataPath, "tiles.json");
+        string filePath = Path.Combine(Application.streamingAssetsPath, "/tiles.json");
         if (File.Exists(filePath))
         {
             string json = File.ReadAllText(filePath);
@@ -141,7 +141,7 @@ public class ValidationEngine : MonoBehaviour
 
     public List<string> WhatCanIBuild(int tileID)
     {
-        string path = Application.dataPath + "/buildingTaxonomy.json";
+        string path = Application.streamingAssetsPath + "/buildingTaxonomy.json";
 
         if (!File.Exists(path))
         {
