@@ -79,6 +79,9 @@ public class PlayerController : MonoBehaviour
     /// The world generator instance.
     public WorldGen worldGen;
 
+    /// The Factory Manager Instance.
+    public FactoryManager factoryManager;
+
     /// The info text UI element.
     public Text infoText;
 
@@ -147,33 +150,39 @@ public class PlayerController : MonoBehaviour
         {
             GameObject clickedObject = hit.transform.gameObject;
 
+            // Shift + left-click detected, get the associated TileData
+            int factoryID = worldGen.ExtractTileID(clickedObject.name);
+            TileData tileData = worldGen.GetTileData(factoryID);
+
             // Check and log based on the tag
             if (clickedObject.CompareTag("Factory"))
             {
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                Logger.Log(LogLevel.Warning, factoryManager.IsFactoryTaskComplete(factoryID).ToString());
+                if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && factoryManager.IsFactoryTaskComplete(factoryID))
                 {
-                    // Shift + left-click detected, get the associated TileData
-                    int factoryID = worldGen.ExtractTileID(clickedObject.name);
-                    TileData tileData = worldGen.GetTileData(factoryID);
-
                     if (tileData != null)
                     {
                         // Reset the resource type to the previous one
                         tileData.ResetToPreviousResourceType();
                         Logger.Log(LogLevel.Info, $"Resource type for Tile ID {factoryID} reset to {tileData.resourceType}");
                     }
-
-                    LeanTween.delayedCall(1f, () => { Destroy(clickedObject); });
+                    
                     Logger.Log(LogLevel.Info, $"Factory at position {clickedObject.transform.position} has been deleted.");
+                    Destroy(clickedObject);
 
                     buildingCounts[buildingToBuild]--; // This directly decrements the count by 1
                     Logger.Log(LogLevel.Success, "Deleted " + buildingToBuild + ". Total: " + buildingCounts[buildingToBuild].ToString());
+                    UpdateBuildingCounts(buildingToBuild, buildingCounts[buildingToBuild]);
 
                     return; // Exit early as factory deletion does not require further actions
                 }
-                else
+                else if (factoryManager.IsFactoryTaskComplete(factoryID))
                 {
                     Logger.Log(LogLevel.Info, $"Factory clicked at position {clickedObject.transform.position}");
+                    Logger.Log(LogLevel.Info, "Restarting Factory!");
+
+                    factoryManager.RestartFactory(factoryID);
+
                     return; // Exit early as clicking a factory without shift does not require further actions
                 }
             }
@@ -217,7 +226,7 @@ public class PlayerController : MonoBehaviour
                 // Instantiate the building placeholder at the clicked tile's position
                 InstantiateBuildingPlaceholder(clickedObject.transform.position, tileID);
                 // Update the count of the built buildings
-                UpdateBuildingCounts(buildingToBuild);
+                UpdateBuildingCounts(buildingToBuild, 1);
             }
         }
     }
@@ -349,11 +358,13 @@ public class PlayerController : MonoBehaviour
         if (!itemsNeeded.Contains(data.resourceType))
         {
             Logger.Log(LogLevel.Error, $"Cannot place building. Tile does not contain required element for building type {buildingType}.");
+            UpdateBuildingCounts(buildingToBuild, 0);
             return false;
         }
 
         if (data.x >= 0 && data.x < worldGen.tileData.GetLength(0) && data.z >= 0 && data.z < worldGen.tileData.GetLength(1))
         {
+            factoryManager.AddFactory(tileID, data.resourceType);
             worldGen.tileData[data.x, data.z].resourceType = data.resourceType;
             Logger.Log(LogLevel.Debug, "Placing tile");
             worldGen.SetTileResourceType(tileID, buildingType);
@@ -403,29 +414,28 @@ public class PlayerController : MonoBehaviour
     * @brief Updates the count of buildings of the specified type.
     * @param buildingToBuild The building type to update the count for.
     */
-    private void UpdateBuildingCounts(string buildingToBuild)
+    private void UpdateBuildingCounts(string buildingToBuild, int amount)
     {
         if (buildingCounts.ContainsKey(buildingToBuild))
         {
-            buildingCounts[buildingToBuild]++;
+            buildingCounts[buildingToBuild] += amount;
         }
         else
         {
-            buildingCounts[buildingToBuild] = 1;
+            buildingCounts[buildingToBuild] = amount;
         }
 
-        Logger.Log(LogLevel.Success, "Built " + buildingToBuild + ". Total: " + buildingCounts[buildingToBuild]);
+        Logger.Log(LogLevel.Success, $"Built {buildingToBuild}. Total: {buildingCounts[buildingToBuild]}");
 
         if (buildingTexts.ContainsKey(buildingToBuild))
         {
-            buildingTexts[buildingToBuild].text = buildingToBuild + ": " + buildingCounts[buildingToBuild];
+            buildingTexts[buildingToBuild].text = $"{buildingToBuild}: {buildingCounts[buildingToBuild]}";
         }
         else
         {
-            GameObject newLabel = Instantiate(labelPrefab, new Vector2(labelsContainer.transform.position.x, labelsContainer.transform.position.y), Quaternion.identity, labelsContainer);
+            GameObject newLabel = Instantiate(labelPrefab, labelsContainer);
             Text newLabelText = newLabel.GetComponent<Text>();
-
-            newLabelText.text = buildingToBuild + ": " + buildingCounts[buildingToBuild];
+            newLabelText.text = $"{buildingToBuild}: {buildingCounts[buildingToBuild]}";
 
             buildingTexts.Add(buildingToBuild, newLabelText);
         }
