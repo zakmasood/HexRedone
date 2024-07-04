@@ -83,9 +83,22 @@ Here are the steps to get started:
 5. Open a Pull Request to have your changes considered and merged into the game.
 
 <!-- LICENSE -->
+
 ### License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+This project is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0). 
+
+Here’s what this means for you:
+
+- **Attribution (BY):** You must give appropriate credit to the original creators, provide a link to the license, and indicate if any changes were made. This ensures that the original developers are recognized for their hard work. Credit must be given in any reasonable manner but not in a way that suggests the original creators endorse you or your use of the work.
+  
+- **NonCommercial (NC):** You may not use this material for commercial purposes. This restriction prevents others from profiting from your work and helps maintain Hexagonal as a community-driven project. You can freely use, modify, and share the project as long as it is not for commercial gain.
+
+- **ShareAlike (SA):** If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original. This ensures that any derivatives or modifications remain open and freely available to the community, promoting ongoing collaboration and improvement.
+
+By using this license, we aim to create a collaborative and respectful environment where developers can learn from and build upon each other's work while ensuring that the original creators are credited and their efforts are not commercially exploited.
+
+For more details, please refer to the full license text in the license file included in this repository.
 
 <!-- CONTACT -->
 ### Contact
