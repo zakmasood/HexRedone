@@ -43,31 +43,34 @@ Hexagonal not only offers a novel approach to gameplay but also caters to those 
 [![.NET C#][csharp]][csharp-url] (。・ω・。) 
 
 <!-- GETTING STARTED -->
-### Getting Started
-
 
 ### Prerequisites
-
+VS 2019+
+Unity Editor (6000.0.5f1)
 
 ### Installation
-
+Install Unity (Version 6000.0.5f1)
+Install Visual Studio (Any version greater than 2019)
+Download/fork this project
+Goto assets -> Scenes -> Double click Main.unity
+The project will open, ready for editing!
 
 <!-- USAGE EXAMPLES -->
 <!-- Pending Usages -->
 <!-- ROADMAP -->
 ### Roadmap
-- [x] World Generation Revamp
-- [ ] Multi - Tile buildings
-- [ ] V 0.1 Crafters & Mixers Galore!
+- [x] World Generation Revamp.
+- [x] V 0! Initial World And Gameplay.
+- [ ] V 0.1! The Smeltery.
 
 See the [open issues](https://github.com/zakmasood/HexRedone/issues) for a full list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
 ### Contributing
 
-Contributions play a pivotal role in making the game development community an extraordinary space for learning, inspiration, and creation. Your contributions are of immense value to us, and we genuinely appreciate your involvement.
+Contributions are pivotal in making the game development community an extraordinary space for learning, inspiration, and creation. Your contributions are of immense value to us, and we genuinely appreciate your involvement.
 
-If you have any suggestions that could enhance our game, we encourage you to get involved in the development process. You can do this by forking the game's repository and creating a pull request. Alternatively, if you have ideas for improvements or new features, you can open an issue with the 'enhancement' tag.
+If you have any suggestions to enhance our game, we encourage you to participate in the development process. You can do this by forking the game's repository and creating a pull request. Alternatively, you can open an issue with the 'enhancement' tag if you have ideas for improvements or new features.
 
 And don't forget to show your support by giving our project a star! Thank you once again for your contributions.
 
@@ -87,7 +90,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ### Contact
 
-Email me at: Zakalimasood@gmail.com <br>
 ManoVersa Discord: [Support](https://discord.gg/UQnXZS3bwH) <br>
 Project Link: [https://github.com/zakmasood/HexRedone](https://github.com/zakmasood/HexRedone)
 
