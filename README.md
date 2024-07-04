@@ -1,8 +1,8 @@
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
@@ -29,13 +29,13 @@
 </div>
 
 <!-- ABOUT THE PROJECT -->
-### About The Project
+### About The Hexagonal Game
 
-Hexagonal is an addition to the world of sandbox-based building and automation games. While it shares some similarities with games like Factorio or Shapez.io, Hexagonal distinguishes itself through its distinctive use of hexagonal tilemaps, hence the name. Unlike the more common square or rectangular grid, Hexagonal offers a refreshing and innovative hexagonal grid, providing a unique experience in the gaming industry. This choice of hexagons presents intriguing challenges and benefits, making it an exciting and visually appealing shape to work with.<br>
+Hexagonal is a journey into the world of automation, building, and the pursuit of civilization. Dive into a universe where your creativity knows no bounds, and every decision shapes the landscape around you. Hexagonal stands out with its innovative use of hexagonal tilemaps. This unique grid system not only challenges your strategic thinking but also enhances the visual appeal, offering a fresh and captivating gaming experience. 
 
 <div align="center">In the words of CGP Grey, 'Hexagons, are the bestagons.'</div><br>
 
-Hexagonal not only offers a novel approach to gameplay but also caters to those who simply enjoy observing the seamless functioning of their creations in a meticulously designed world.
+We've poured countless hours into learning, and improving different aspect of Hexagonal, ensuring it provides a seamless and rewarding experience for builders and automation enthusiasts alike. However, like any indie game, there is a lot of room for improvement. Now, we're excited to open source this project under Creative Commons Attribution-NonCommercial-ShareAlike (CC BY-NC-SA) License, inviting the community to learn from our work and contribute to its evolution.
 
 ### Built With
 
@@ -43,31 +43,34 @@ Hexagonal not only offers a novel approach to gameplay but also caters to those 
 [![.NET C#][csharp]][csharp-url] (。・ω・。) 
 
 <!-- GETTING STARTED -->
-### Getting Started
-
 
 ### Prerequisites
-
+VS 2019+
+Unity Editor (6000.0.5f1)
 
 ### Installation
-
+1. Install Unity (Version 6000.0.5f1)
+2. Install Visual Studio (Any version greater than 2019)
+3. Download/fork this project
+4. Goto assets -> Scenes -> Double click Main.unity
+5. The project will open, ready for editing!
 
 <!-- USAGE EXAMPLES -->
 <!-- Pending Usages -->
 <!-- ROADMAP -->
 ### Roadmap
-- [x] World Generation Revamp
-- [ ] Multi - Tile buildings
-- [ ] V 0.1 Crafters & Mixers Galore!
+- [x] World Generation Revamp.
+- [x] V 0! Initial World And Gameplay.
+- [ ] V 0.1! The Smeltery.
 
 See the [open issues](https://github.com/zakmasood/HexRedone/issues) for a full list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
 ### Contributing
 
-Contributions play a pivotal role in making the game development community an extraordinary space for learning, inspiration, and creation. Your contributions are of immense value to us, and we genuinely appreciate your involvement.
+Contributions are pivotal in making the game development community an extraordinary space for learning, inspiration, and creation. Your contributions are of immense value to us, and we genuinely appreciate your involvement.
 
-If you have any suggestions that could enhance our game, we encourage you to get involved in the development process. You can do this by forking the game's repository and creating a pull request. Alternatively, if you have ideas for improvements or new features, you can open an issue with the 'enhancement' tag.
+If you have any suggestions to enhance our game, we encourage you to participate in the development process. You can do this by forking the game's repository and creating a pull request. Alternatively, you can open an issue with the 'enhancement' tag if you have ideas for improvements or new features.
 
 And don't forget to show your support by giving our project a star! Thank you once again for your contributions.
 
@@ -80,14 +83,26 @@ Here are the steps to get started:
 5. Open a Pull Request to have your changes considered and merged into the game.
 
 <!-- LICENSE -->
+
 ### License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+This project is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0). 
+
+Here’s what this means for you:
+
+- **Attribution (BY):** You must give appropriate credit to the original creators, provide a link to the license, and indicate if any changes were made. This ensures that the original developers are recognized for their hard work. Credit must be given in any reasonable manner but not in a way that suggests the original creators endorse you or your use of the work.
+  
+- **NonCommercial (NC):** You may not use this material for commercial purposes. This restriction prevents others from profiting from your work and helps maintain Hexagonal as a community-driven project. You can freely use, modify, and share the project as long as it is not for commercial gain.
+
+- **ShareAlike (SA):** If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original. This ensures that any derivatives or modifications remain open and freely available to the community, promoting ongoing collaboration and improvement.
+
+By using this license, we aim to create a collaborative and respectful environment where developers can learn from and build upon each other's work while ensuring that the original creators are credited and their efforts are not commercially exploited.
+
+For more details, please refer to the full license text in the license file included in this repository.
 
 <!-- CONTACT -->
 ### Contact
 
-Email me at: Zakalimasood@gmail.com <br>
 ManoVersa Discord: [Support](https://discord.gg/UQnXZS3bwH) <br>
 Project Link: [https://github.com/zakmasood/HexRedone](https://github.com/zakmasood/HexRedone)
 
