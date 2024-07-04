@@ -49,11 +49,11 @@ VS 2019+
 Unity Editor (6000.0.5f1)
 
 ### Installation
-Install Unity (Version 6000.0.5f1)
-Install Visual Studio (Any version greater than 2019)
-Download/fork this project
-Goto assets -> Scenes -> Double click Main.unity
-The project will open, ready for editing!
+1. Install Unity (Version 6000.0.5f1)
+2. Install Visual Studio (Any version greater than 2019)
+3. Download/fork this project
+4. Goto assets -> Scenes -> Double click Main.unity
+5. The project will open, ready for editing!
 
 <!-- USAGE EXAMPLES -->
 <!-- Pending Usages -->
