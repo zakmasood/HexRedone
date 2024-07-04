@@ -1,8 +1,8 @@
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
@@ -29,13 +29,13 @@
 </div>
 
 <!-- ABOUT THE PROJECT -->
-### About The Project
+### About The Hexagonal Game
 
-Hexagonal is an addition to the world of sandbox-based building and automation games. While it shares some similarities with games like Factorio or Shapez.io, Hexagonal distinguishes itself through its distinctive use of hexagonal tilemaps, hence the name. Unlike the more common square or rectangular grid, Hexagonal offers a refreshing and innovative hexagonal grid, providing a unique experience in the gaming industry. This choice of hexagons presents intriguing challenges and benefits, making it an exciting and visually appealing shape to work with.<br>
+Hexagonal is a journey into the world of automation, building, and the pursuit of civilization. Dive into a universe where your creativity knows no bounds, and every decision shapes the landscape around you. Hexagonal stands out with its innovative use of hexagonal tilemaps. This unique grid system not only challenges your strategic thinking but also enhances the visual appeal, offering a fresh and captivating gaming experience. 
 
 <div align="center">In the words of CGP Grey, 'Hexagons, are the bestagons.'</div><br>
 
-Hexagonal not only offers a novel approach to gameplay but also caters to those who simply enjoy observing the seamless functioning of their creations in a meticulously designed world.
+We've poured countless hours into learning, and improving different aspect of Hexagonal, ensuring it provides a seamless and rewarding experience for builders and automation enthusiasts alike. However, like any indie game, there is a lot of room for improvement. Now, we're excited to open source this project under Creative Commons Attribution-NonCommercial-ShareAlike (CC BY-NC-SA) License, inviting the community to learn from our work and contribute to its evolution.
 
 ### Built With
 
