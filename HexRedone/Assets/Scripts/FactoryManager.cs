@@ -11,9 +11,10 @@ public class Factory
     private const int maxMaterials = 100;
     private bool isRunning;
     private bool isTaskComplete;
-    private string materialType; // Changed to string for material type
+    private string materialType;
     private static readonly object lockObj = new object();
     private int factoryId;
+    public static bool debugMode = false; // Static flag for debug mode
 
     public Factory(int id, string type)
     {
@@ -27,6 +28,12 @@ public class Factory
     public int GetFactoryId()
     {
         return factoryId;
+    }
+
+    // Set debug mode
+    public static void SetDebugMode(bool isDebug)
+    {
+        debugMode = isDebug;
     }
 
     // Restart the production task for the factory with the given ID
@@ -76,20 +83,21 @@ public class Factory
             lock (lockObj)
             {
                 producedMaterials++;
-                Logger.Log(LogLevel.Info, $"Factory {factoryId} producing {materialType}: {producedMaterials}");
+                // Logger.Log(LogLevel.Info, $"Factory {factoryId} producing {materialType}: {producedMaterials}");
 
                 if (producedMaterials >= maxMaterials)
                 {
-                    Logger.Log(LogLevel.Success, $"Task complete. Factory {factoryId} produced {producedMaterials} {materialType}.");
                     isRunning = false;
                     isTaskComplete = true;
+
+                    Logger.Log(LogLevel.Success, $"Task complete. Factory {factoryId} produced {producedMaterials} {materialType} and set isComplete to {isTaskComplete}");
 
                     // Add produced materials to global resource counter
                     producedMaterials = 0; // Reset produced materials for the next task
                 }
             }
             ResourceManager.Instance.AddResources(materialType, 1);
-            await Task.Delay(1000); // Simulate work by delaying for 1000 milliseconds
+            await Task.Delay(debugMode ? 50 : 1000); // 50ms in debug mode, 1000ms otherwise
         }
     }
 
@@ -108,7 +116,18 @@ public class Factory
     {
         lock (lockObj)
         {
+            Logger.Log(LogLevel.Debug, $"Factory {factoryId} isTaskComplete status: {isTaskComplete}");
             return isTaskComplete;
+        }
+    }
+
+    // Reset the task completion status
+    public void ResetTaskComplete()
+    {
+        lock (lockObj)
+        {
+            isTaskComplete = false;
+            Logger.Log(LogLevel.Debug, $"Factory {factoryId} task completion status reset to {isTaskComplete}");
         }
     }
 }
@@ -118,6 +137,7 @@ public class FactoryManager : MonoBehaviour
 {
     private List<Factory> factories = new List<Factory>();
     private int[] factoryIds = { };
+    public bool isDebug;
 
     void OnApplicationQuit()
     {
@@ -125,6 +145,26 @@ public class FactoryManager : MonoBehaviour
         {
             factory.StopTask();
         }
+    }
+
+    private void Start()
+    {
+        Factory.SetDebugMode(isDebug);
+    }
+
+    // Reset the task completion status for a specific factory by ID
+    public void ResetFactoryTaskComplete(int factoryId)
+    {
+        foreach (var factory in factories)
+        {
+            if (factory.GetFactoryId() == factoryId)
+            {
+                factory.ResetTaskComplete();
+                Debug.Log($"Task completion status reset for factory with ID: {factoryId}");
+                return;
+            }
+        }
+        Debug.LogWarning($"Factory with ID {factoryId} not found. Cannot reset task completion status.");
     }
 
     public void AddFactory(int factoryID, string resource)
@@ -146,7 +186,8 @@ public class FactoryManager : MonoBehaviour
         {
             if (factory.GetFactoryId() == factoryId)
             {
-                return factory.IsTaskComplete();
+                bool isComplete = factory.IsTaskComplete();
+                return isComplete;
             }
         }
         Debug.LogWarning($"Factory with ID {factoryId} not found.");
@@ -165,5 +206,34 @@ public class FactoryManager : MonoBehaviour
             }
         }
         Debug.LogWarning($"Factory with ID {factoryId} not found. Cannot restart.");
+    }
+
+    // Stop all factories
+    public void StopAllFactories()
+    {
+        foreach (var factory in factories)
+        {
+            factory.StopTask();
+        }
+    }
+
+    // Delete a specific factory by ID
+    public void DeleteFactory(int factoryId)
+    {
+        for (int i = 0; i < factories.Count; i++)
+        {
+            if (factories[i].GetFactoryId() == factoryId)
+            {
+                // Stop the factory's task
+                factories[i].StopTask();
+
+                // Remove the factory from the list
+                factories.RemoveAt(i);
+
+                Debug.Log($"Factory with ID {factoryId} has been deleted.");
+                return;
+            }
+        }
+        Debug.LogWarning($"Factory with ID {factoryId} not found. Cannot delete.");
     }
 }

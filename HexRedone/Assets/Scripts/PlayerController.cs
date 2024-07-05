@@ -171,26 +171,35 @@ public class PlayerController : MonoBehaviour
             // Check and log based on the tag
             if (clickedObject.CompareTag("Factory"))
             {
-                Logger.Log(LogLevel.Warning, factoryManager.IsFactoryTaskComplete(factoryID).ToString());
-                if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && factoryManager.IsFactoryTaskComplete(factoryID))
+                bool isFactoryTaskComplete = factoryManager.IsFactoryTaskComplete(factoryID);
+                Logger.Log(LogLevel.Warning, isFactoryTaskComplete.ToString());
+
+                // Check if either Shift key is pressed and the factory's task is complete
+                if (isFactoryTaskComplete && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
                 {
                     if (tileData != null)
                     {
+                        factoryManager.DeleteFactory(factoryID);
+
+                        Destroy(clickedObject);
+
                         // Reset the resource type to the previous one
                         tileData.ResetToPreviousResourceType();
                         Logger.Log(LogLevel.Info, $"Resource type for Tile ID {factoryID} reset to {tileData.resourceType}");
                     }
-                    
-                    Logger.Log(LogLevel.Info, $"Factory at position {clickedObject.transform.position} has been deleted.");
-                    Destroy(clickedObject);
-
-                    buildingCounts[buildingToBuild]--; // This directly decrements the count by 1
-                    Logger.Log(LogLevel.Success, "Deleted " + buildingToBuild + ". Total: " + buildingCounts[buildingToBuild].ToString());
-                    UpdateBuildingCounts(buildingToBuild, buildingCounts[buildingToBuild]);
+                    // Update the building counts
+                    if (buildingCounts.ContainsKey(buildingToBuild))
+                    {
+                        buildingCounts[buildingToBuild]--;
+                        
+                        Logger.Log(LogLevel.Info, $"Factory at position {clickedObject.transform.position} has been deleted.");
+                        Logger.Log(LogLevel.Success, "Deleted " + buildingToBuild + ". Total: " + buildingCounts[buildingToBuild].ToString());
+                    }
 
                     return; // Exit early as factory deletion does not require further actions
                 }
-                else if (factoryManager.IsFactoryTaskComplete(factoryID))
+                // Check if the factory's task is complete and Shift key is not pressed
+                else if (isFactoryTaskComplete)
                 {
                     Logger.Log(LogLevel.Info, $"Factory clicked at position {clickedObject.transform.position}");
                     Logger.Log(LogLevel.Info, "Restarting Factory!");
@@ -379,9 +388,9 @@ public class PlayerController : MonoBehaviour
 
         if (data.x >= 0 && data.x < worldGen.tileData.GetLength(0) && data.z >= 0 && data.z < worldGen.tileData.GetLength(1))
         {
-            factoryManager.AddFactory(tileID, data.resourceType);
             worldGen.tileData[data.x, data.z].resourceType = data.resourceType;
             Logger.Log(LogLevel.Debug, "Placing tile");
+            factoryManager.AddFactory(tileID, data.resourceType);
             worldGen.SetTileResourceType(tileID, buildingType);
         }
 
@@ -453,6 +462,18 @@ public class PlayerController : MonoBehaviour
             newLabelText.text = $"{buildingToBuild}: {buildingCounts[buildingToBuild]}";
 
             buildingTexts.Add(buildingToBuild, newLabelText);
+        }
+
+        // Debugging: Print all building counts
+        DebugBuildingCounts();
+    }
+
+    private void DebugBuildingCounts()
+    {
+        Logger.Log(LogLevel.Debug, "Current Building Counts:");
+        foreach (var building in buildingCounts)
+        {
+            Logger.Log(LogLevel.Debug, $"{building.Key}: {building.Value}");
         }
     }
 

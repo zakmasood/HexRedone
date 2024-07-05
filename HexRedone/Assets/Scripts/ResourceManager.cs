@@ -78,7 +78,7 @@ public class ResourceManager : MonoBehaviour
         if (resourceCounters.ContainsKey(type))
         {
             resourceCounters[type] += amount;
-            Debug.Log($"Added {amount} {type} to global resources. Total {type}: {resourceCounters[type]}");
+            // Debug.Log($"Added {amount} {type} to global resources. Total {type}: {resourceCounters[type]}");
         }
         else
         {
