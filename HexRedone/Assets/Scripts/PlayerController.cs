@@ -181,6 +181,8 @@ public class PlayerController : MonoBehaviour
                     {
                         factoryManager.DeleteFactory(factoryID);
 
+                        buildingCounts[buildingToBuild]--;
+
                         Destroy(clickedObject);
 
                         // Reset the resource type to the previous one
@@ -190,13 +192,11 @@ public class PlayerController : MonoBehaviour
                     // Update the building counts
                     if (buildingCounts.ContainsKey(buildingToBuild))
                     {
-                        buildingCounts[buildingToBuild]--;
-                        
                         Logger.Log(LogLevel.Info, $"Factory at position {clickedObject.transform.position} has been deleted.");
                         Logger.Log(LogLevel.Success, "Deleted " + buildingToBuild + ". Total: " + buildingCounts[buildingToBuild].ToString());
                     }
 
-                    return; // Exit early as factory deletion does not require further actions
+                    return;
                 }
                 // Check if the factory's task is complete and Shift key is not pressed
                 else if (isFactoryTaskComplete)
@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour
 
                     factoryManager.RestartFactory(factoryID);
 
-                    return; // Exit early as clicking a factory without shift does not require further actions
+                    return;
                 }
             }
             else if (clickedObject.CompareTag("Tile"))
@@ -466,6 +466,11 @@ public class PlayerController : MonoBehaviour
 
         // Debugging: Print all building counts
         DebugBuildingCounts();
+    }
+
+    public void FixedUpdate()
+    {
+        UpdateBuildingCounts(buildingToBuild, 0); // Update every lateFrame to prevent issues
     }
 
     private void DebugBuildingCounts()
