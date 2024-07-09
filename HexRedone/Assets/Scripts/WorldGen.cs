@@ -1,4 +1,4 @@
-﻿using CustomLogger;
+using CustomLogger;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -61,6 +61,17 @@ public class TileData
 
 public class WorldGen : MonoBehaviour
 {
+    // Resource prefabs
+    public GameObject coalPrefab;
+    public GameObject ironPrefab;
+    public GameObject goldPrefab;
+    public GameObject waterPrefab;
+    public GameObject copperPrefab;
+    public GameObject uraniumPrefab;
+    public GameObject stonePrefab;
+    public GameObject treePrefab;
+    public GameObject defaultPrefab;
+
     public GameObject baseTilePrefab;
 
     public int gridLength = 5;
@@ -73,6 +84,7 @@ public class WorldGen : MonoBehaviour
     public GameObject[,] resources; // 2D array to store the resource tiles (RESOURCES)
     public TileData[,] tileData;
     private Dictionary<int, TileData> tileDataDictionary = new Dictionary<int, TileData>();
+    private Dictionary<string, GameObject> resourcePrefabs;
 
     [Header("Perlin Noise Generator")]
     public double pHeight;
@@ -87,7 +99,7 @@ public class WorldGen : MonoBehaviour
 
     private void InitializeMaterials()
     {
-        materialColors = new Dictionary<string, Color>
+        /*materialColors = new Dictionary<string, Color>
         {
             { "water", new Color(0.0f, 0.0f, 1.0f) },          // Blue
             { "earth", new Color(0.545f, 0.271f, 0.075f) },    // Brown
@@ -98,6 +110,20 @@ public class WorldGen : MonoBehaviour
             { "uranium-ore", new Color(0.4f, 1.0f, 0.4f) },    // Light Green
             { "stone", new Color(0.5f, 0.5f, 0.5f) },          // Gray
             { "oil", new Color(0.1f, 0.1f, 0.1f) },            // Black
+            { "natural-gas", new Color(0.68f, 0.85f, 0.9f) },  // Light Blue
+            { "tree", new Color(0.13f, 0.55f, 0.13f) }         // Forest Green
+        };*/
+        materialColors = new Dictionary<string, Color>
+        {
+            { "water", new Color(0.0f, 0.0f, 1.0f) },          // Blue
+            { "earth", new Color(0.545f, 0.271f, 0.075f) },    // Brown
+            { "coal-ore", new Color(0.13f, 0.55f, 0.13f) },       // Dark Gray
+            { "iron-ore", new Color(0.13f, 0.55f, 0.13f) },       // Iron Brown
+            { "copper-ore", new Color(0.13f, 0.55f, 0.13f) },   // Copper Brown
+            { "gold-ore", new Color(0.13f, 0.55f, 0.13f) },      // Gold
+            { "uranium-ore", new Color(0.13f, 0.55f, 0.13f) },    // Light Green
+            { "stone", new Color(0.13f, 0.55f, 0.13f) },          // Gray
+            { "oil", new Color(0.13f, 0.55f, 0.13f) },            // Black
             { "natural-gas", new Color(0.68f, 0.85f, 0.9f) },  // Light Blue
             { "tree", new Color(0.13f, 0.55f, 0.13f) }         // Forest Green
         };
@@ -171,6 +197,19 @@ public class WorldGen : MonoBehaviour
 
     void Start()
     {
+        resourcePrefabs = new Dictionary<string, GameObject>
+        {
+            { "coal-ore", coalPrefab },
+            { "iron-ore", ironPrefab },
+            { "gold-ore", goldPrefab },
+            { "copper-ore", copperPrefab },
+            { "uranium-ore", uraniumPrefab },
+            { "stone", stonePrefab },
+            { "tree", treePrefab },
+            { "water", waterPrefab },
+            { "default-ore", defaultPrefab }
+        };
+
         InitializeMaterials();
         RegenerateGrid();
     }
@@ -182,8 +221,11 @@ public class WorldGen : MonoBehaviour
         if (data.x >= 0 && data.x < tileData.GetLength(0) && data.z >= 0 && data.z < tileData.GetLength(1))
         {
             Debug.Log("Setting resource type for tile at (" + data.x + ", " + data.z + ")");
+
             data.UpdateResourceType(resourceType);
+
             tileData[data.x, data.z].resourceType = resourceType;
+
             Logger.Log(LogLevel.Warning, "Previous resource type is: " + data.previousResourceType);
             Debug.Log("New resource type is: " + tileData[data.x, data.z].resourceType);
         }
@@ -238,63 +280,43 @@ public class WorldGen : MonoBehaviour
     }
 
     public GameObject SetupTile(int x, int y, int tileID, string resourceType, float height)
+{
+    double tileW = tileWidth * 1.732;
+    double tileH = tileHeight * 1.5;
+
+    double X = tileH * x;
+    double Z = tileW * (y + 0.5 * (x % 2));
+
+    GameObject baseTile = Instantiate(baseTilePrefab, new Vector3((float)X, height, (float)Z), Quaternion.identity);
+    baseTile.name = "tile" + tileID;
+
+    if (resourcePrefabs.TryGetValue(resourceType, out GameObject resourcePrefab))
     {
-        double tileW = tileWidth * 1.732;
-        double tileH = tileHeight * 1.5;
-
-        double X = tileH * x;
-        double Z = tileW * (y + 0.5 * (x % 2));
-
-        GameObject baseTile = Instantiate(baseTilePrefab, new Vector3((float)X, height, (float)Z), Quaternion.identity);
-        baseTile.name = "tile" + tileID;
-
-        Renderer renderer = baseTile.GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            switch (resourceType)
-            {
-                case "water":
-                    renderer.material.color = materialColors["water"];
-                    break;
-                case "earth":
-                    renderer.material.color = materialColors["earth"];
-                    break;
-                case "coal-ore":
-                    renderer.material.color = materialColors["coal-ore"];
-                    break;
-                case "iron-ore":
-                    renderer.material.color = materialColors["iron-ore"];
-                    break;
-                case "copper-ore":
-                    renderer.material.color = materialColors["copper-ore"];
-                    break;
-                case "gold-ore":
-                    renderer.material.color = materialColors["gold-ore"];
-                    break;
-                case "uranium-ore":
-                    renderer.material.color = materialColors["uranium-ore"];
-                    break;
-                case "stone":
-                    renderer.material.color = materialColors["stone"];
-                    break;
-                case "oil":
-                    renderer.material.color = materialColors["oil"];
-                    break;
-                case "natural-gas":
-                    renderer.material.color = materialColors["natural-gas"];
-                    break;
-                case "tree":
-                    renderer.material.color = materialColors["tree"];
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        tiles[x, y] = baseTile;
-
-        return baseTile;
+        GameObject resource = Instantiate(resourcePrefab, new Vector3((float)X, height + 1.5f, (float)Z), Quaternion.identity);
+        resource.name = resourceType + tileID;
     }
+    else
+    {
+        Debug.LogWarning($"Resource type '{resourceType}' not found. Skipping resource instantiation.");
+    }
+
+    Renderer renderer = baseTile.GetComponent<Renderer>();
+    if (renderer != null)
+    {
+        if (materialColors.TryGetValue(resourceType, out Color color))
+        {
+            renderer.material.color = color;
+        }
+        else
+        {
+            Debug.LogWarning($"Resource type '{resourceType}' not found in materialColors. No color applied.");
+        }
+    }
+
+    tiles[x, y] = baseTile;
+    return baseTile;
+}
+
 
 
     public void RegenerateGrid()
@@ -330,6 +352,7 @@ public class WorldGen : MonoBehaviour
                 int tileID = q * gridWidth + r;
                 float perlinValue = noiseMap[q, r];
                 string resourceType = DetermineResourceType(perlinValue);
+
                 tileData[q, r] = new TileData(tileID, q, r, resourceType, "");
                 tileDataDictionary[tileID] = tileData[q, r];
 
