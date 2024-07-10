@@ -99,7 +99,7 @@ public class WorldGen : MonoBehaviour
 
     private void InitializeMaterials()
     {
-        /*materialColors = new Dictionary<string, Color>
+        materialColors = new Dictionary<string, Color>
         {
             { "water", new Color(0.0f, 0.0f, 1.0f) },          // Blue
             { "earth", new Color(0.545f, 0.271f, 0.075f) },    // Brown
@@ -112,8 +112,8 @@ public class WorldGen : MonoBehaviour
             { "oil", new Color(0.1f, 0.1f, 0.1f) },            // Black
             { "natural-gas", new Color(0.68f, 0.85f, 0.9f) },  // Light Blue
             { "tree", new Color(0.13f, 0.55f, 0.13f) }         // Forest Green
-        };*/
-        materialColors = new Dictionary<string, Color>
+        };
+        /*materialColors = new Dictionary<string, Color>
         {
             { "water", new Color(0.0f, 0.0f, 1.0f) },          // Blue
             { "earth", new Color(0.545f, 0.271f, 0.075f) },    // Brown
@@ -126,7 +126,7 @@ public class WorldGen : MonoBehaviour
             { "oil", new Color(0.13f, 0.55f, 0.13f) },            // Black
             { "natural-gas", new Color(0.68f, 0.85f, 0.9f) },  // Light Blue
             { "tree", new Color(0.13f, 0.55f, 0.13f) }         // Forest Green
-        };
+        };*/
     }
 
     public float[,] GenerateNoiseMap(int width, int height, float scale, int seed, int octaves, float persistence, float lacunarity)
@@ -362,32 +362,31 @@ public class WorldGen : MonoBehaviour
         Debug.Log("Grid regeneration complete.");
     }
 
-    public string DetermineResourceType(float perlinValue)
+    private string DetermineResourceType(float perlinValue)
     {
-        if (perlinValue < 0.1f)
-            return "water";
-        else if (perlinValue < 0.2f)
-            return "earth";
-        else if (perlinValue < 0.3f)
-            return "coal-ore";
+        if (perlinValue < 0.3f)
+            return "earth"; // Most common
         else if (perlinValue < 0.4f)
-            return "iron-ore";
+            return "water";
         else if (perlinValue < 0.5f)
-            return "copper-ore";
-        else if (perlinValue < 0.6f)
-            return "gold-ore";
-        else if (perlinValue < 0.7f)
-            return "uranium-ore";
-        else if (perlinValue < 0.8f)
             return "stone";
+        else if (perlinValue < 0.6f)
+            return "tree";
+        else if (perlinValue < 0.7f)
+            return "coal-ore";
+        else if (perlinValue < 0.75f)
+            return "copper-ore";
+        else if (perlinValue < 0.8f)
+            return "iron-ore";
         else if (perlinValue < 0.85f)
-            return "oil";
+            return "gold-ore";
         else if (perlinValue < 0.9f)
+            return "oil";
+        else if (perlinValue < 0.95f)
             return "natural-gas";
         else
-            return "tree";
+            return "uranium-ore"; // Rarest
     }
-
 
     public void DeleteGrid()
     {

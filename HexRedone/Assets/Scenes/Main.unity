@@ -7472,7 +7472,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 342.56
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -7528,16 +7528,16 @@ MonoBehaviour:
   treePrefab: {fileID: 293155242}
   defaultPrefab: {fileID: 1715923715}
   baseTilePrefab: {fileID: 8008009365237590339}
-  gridLength: 100
-  gridWidth: 100
+  gridLength: 32
+  gridWidth: 32
   tileWidth: 1
   tileHeight: 1
   pHeight: 8192
   pWidth: 8192
   scaleFactor: 9.05
-  seed: 0
+  seed: 204
   octaveAmount: 8
-  lacuAmount: 0.25
+  lacuAmount: 0.79
   persAmount: 0.3
 --- !u!114 &1902648776
 MonoBehaviour:
@@ -7577,7 +7577,7 @@ MonoBehaviour:
   buildingPlaceholder: {fileID: 130226028}
   effect: {fileID: 1336644736}
   camTransform: {fileID: 1902648774}
-  shakeAmount: 10
+  shakeAmount: 5
   decreaseFactor: 1
   shakeTime: 0.15
   nextMove: {x: 0, y: 0, z: 0}
