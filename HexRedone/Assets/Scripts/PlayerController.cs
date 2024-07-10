@@ -110,9 +110,28 @@ public class PlayerController : MonoBehaviour
 
     public Dictionary<string, int> buildingCounts = new Dictionary<string, int>();
     private Dictionary<string, Text> buildingTexts = new Dictionary<string, Text>();
+    [Header("Matej´s Gamefeel things")]
+    public GameObject effect;
+    public Transform camTransform;
+	
+	// How long the object should shake for.
+	private float shakeDuration = 0f;
+	
+	// Amplitude of the shake. A larger value shakes the camera harder.
+	public float shakeAmount = 0.7f;
+	public float decreaseFactor = 1.0f;
+    public float shakeTime;
+	
+	//Vector3 originalPos;
+    
+    public Vector3 nextMove;
+    public float AdjustSpeed;
 
     public void Awake()
     {
+        //originalPos = camTransform.localPosition;
+        
+        nextMove = transform.position;
         Logger.Log(LogLevel.Error, Application.streamingAssetsPath);
 
         string pathToAssets = Application.dataPath + "/StreamingAssets";
@@ -131,6 +150,24 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HandleInput();
+        //transform.position = nextMove;
+        transform.position = Vector3.Lerp(transform.position, nextMove, Time.deltaTime * AdjustSpeed);
+        if(Input.GetKey(KeyCode.W)) nextMove.x += 0.05f;
+        if(Input.GetKey(KeyCode.A)) nextMove.z += 0.05f;
+        if(Input.GetKey(KeyCode.S)) nextMove.x -= 0.05f; 
+        if(Input.GetKey(KeyCode.D)) nextMove.z -= 0.05f; 
+
+        if (shakeDuration > 0)
+		{
+			camTransform.localPosition = Vector3.Lerp(camTransform.localPosition, nextMove + Random.insideUnitSphere * shakeAmount, Time.deltaTime);
+			
+			shakeDuration -= Time.deltaTime * decreaseFactor;
+		}
+		else
+		{
+			shakeDuration = 0f;
+			//camTransform.localPosition = originalPos;
+		}
     }
 
     /**
@@ -250,6 +287,8 @@ public class PlayerController : MonoBehaviour
                 InstantiateBuildingPlaceholder(clickedObject.transform.position, tileID);
                 // Update the count of the built buildings
                 UpdateBuildingCounts(buildingToBuild, 1);
+                shakeDuration += shakeTime;
+                Instantiate(effect, hit.transform.position, Quaternion.identity);
             }
         }
     }
@@ -298,6 +337,10 @@ public class PlayerController : MonoBehaviour
             LeanTween.moveLocal(WarningText, WTEndPos, WTime).setEaseInOutCubic();
             LeanTween.delayedCall(5f, () => { resetTweenedObjects(WTStartPos, WarningText); });
             return new List<string>();
+        }
+        else
+        {
+            ;
         }
 
         Logger.Log(LogLevel.Info, "Resource type on tile " + tileID + ": " + resourceType);
