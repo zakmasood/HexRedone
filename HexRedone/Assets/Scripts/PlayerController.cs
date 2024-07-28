@@ -176,9 +176,12 @@ public class PlayerController : MonoBehaviour
     */
     private GameObject DetectClickedObject()
     {
-        RaycastHit hit;
+        /*RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 100.0f))
+        {*/
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100.0f))
         {
             GameObject clickedObject = hit.transform.gameObject;
 
@@ -195,9 +198,12 @@ public class PlayerController : MonoBehaviour
         // Return early if the left mouse button is not clicked
         if (!Input.GetMouseButtonDown(0)) return;
 
-        RaycastHit hit;
+        /*RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 100.0f))
+        {*/
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100.0f))
         {
             GameObject clickedObject = hit.transform.gameObject;
 
