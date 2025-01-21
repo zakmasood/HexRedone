@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6d2991a5cbd0f2f4b9b2e85b08d3c6f9
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 211041
+  packageName: Editor Themes Plugin FREE
+  packageVersion: 0.6
+  assetPath: Assets/EditorThemes/Editor/Themes/Bluinty.json
+  uploadId: 480672

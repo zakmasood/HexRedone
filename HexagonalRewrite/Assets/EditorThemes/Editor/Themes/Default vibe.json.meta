@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c2ebcd67f1ade4749a6b6eb0bffee19b
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 211041
+  packageName: Editor Themes Plugin FREE
+  packageVersion: 0.6
+  assetPath: Assets/EditorThemes/Editor/Themes/Default vibe.json
+  uploadId: 480672

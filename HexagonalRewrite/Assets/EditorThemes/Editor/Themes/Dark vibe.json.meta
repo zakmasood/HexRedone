@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 69a0f65317b92f340a0c6a595dae720b
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 211041
+  packageName: Editor Themes Plugin FREE
+  packageVersion: 0.6
+  assetPath: Assets/EditorThemes/Editor/Themes/Dark vibe.json
+  uploadId: 480672

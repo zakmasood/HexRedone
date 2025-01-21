@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1ab5e588ed9feec498b8be1fcf27d3a1
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 211041
+  packageName: Editor Themes Plugin FREE
+  packageVersion: 0.6
+  assetPath: Assets/EditorThemes/Editor/StyleSheets/Extensions/Info.txt
+  uploadId: 480672

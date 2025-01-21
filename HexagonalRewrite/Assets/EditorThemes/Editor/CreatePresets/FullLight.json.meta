@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1e39a5026b249214cb36bb735ffab217
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 211041
+  packageName: Editor Themes Plugin FREE
+  packageVersion: 0.6
+  assetPath: Assets/EditorThemes/Editor/CreatePresets/FullLight.json
+  uploadId: 480672

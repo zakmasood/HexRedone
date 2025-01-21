@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 346c3d6b376df7248b378ab1caf08866
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 211041
+  packageName: Editor Themes Plugin FREE
+  packageVersion: 0.6
+  assetPath: Assets/EditorThemes/Editor/Themes/Darker.json
+  uploadId: 480672

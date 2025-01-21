@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 96594c845a82605468767caa6ef3e811
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 211041
+  packageName: Editor Themes Plugin FREE
+  packageVersion: 0.6
+  assetPath: Assets/EditorThemes/Editor/Themes/_deafault.json
+  uploadId: 480672

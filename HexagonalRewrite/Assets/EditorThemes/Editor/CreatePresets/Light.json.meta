@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 26d3cf88ff41f6f4989fc364de1c6898
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 211041
+  packageName: Editor Themes Plugin FREE
+  packageVersion: 0.6
+  assetPath: Assets/EditorThemes/Editor/CreatePresets/Light.json
+  uploadId: 480672

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 98a4b3a061fe07f4c83b6e25d9eb1a38
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 211041
+  packageName: Editor Themes Plugin FREE
+  packageVersion: 0.6
+  assetPath: Assets/EditorThemes/Editor/ThemesUtility.cs
+  uploadId: 480672

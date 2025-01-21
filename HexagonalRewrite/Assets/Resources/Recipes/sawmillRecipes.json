@@ -1,0 +1,11 @@
+{
+    "recipes": [
+        {
+            "inputResource": "Wood",
+            "inputAmount": 1,
+            "outputResource": "Plank",
+            "outputAmount": 2,
+            "processingTime": 3
+        }
+    ]
+}

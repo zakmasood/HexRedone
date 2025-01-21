@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9add119f1716ff245bb28e0fd6eecd5f
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 211041
+  packageName: Editor Themes Plugin FREE
+  packageVersion: 0.6
+  assetPath: Assets/EditorThemes/Editor/Themes/Fruity light.json
+  uploadId: 480672

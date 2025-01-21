@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cf925884de3aef045979172dea3a4184
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 211041
+  packageName: Editor Themes Plugin FREE
+  packageVersion: 0.6
+  assetPath: Assets/EditorThemes/Editor/Themes/Super Light.json
+  uploadId: 480672

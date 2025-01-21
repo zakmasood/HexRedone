@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5d3226bda1ca8d8429c609bed87aeeb2
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 211041
+  packageName: Editor Themes Plugin FREE
+  packageVersion: 0.6
+  assetPath: Assets/EditorThemes/Editor/Themes/Deep blue.json
+  uploadId: 480672

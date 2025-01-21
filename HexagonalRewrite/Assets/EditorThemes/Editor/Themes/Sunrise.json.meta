@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f04e428d92805cd4ca2c8244bb70f508
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 211041
+  packageName: Editor Themes Plugin FREE
+  packageVersion: 0.6
+  assetPath: Assets/EditorThemes/Editor/Themes/Sunrise.json
+  uploadId: 480672
