@@ -16,6 +16,9 @@ public class Sawmill : ConnectableBuilding
 
     public float transferTime = 1f;
 
+    [SerializeField]
+    private TMP_Text floatingText;
+
     private void Start()
     {
         ConnectionPoints.Clear(); // Ensure the dictionary starts fresh for each instance
@@ -31,6 +34,21 @@ public class Sawmill : ConnectableBuilding
 
         Debug.Log($"Total connection points: {ConnectionPoints.Count}");
     }
+
+    /* # -----| Hover Handling |----- # */
+
+    private void OnMouseEnter()
+    {
+        // Get the position slightly above the building
+        Vector3 textPosition = transform.position + Vector3.up * 2f;
+        if (currentRecipe != null && currentRecipe.outputResource != null)
+        {
+            FloatingTextManager.Instance.ShowText(textPosition, currentRecipe.outputResource.ToString(), 0.5f);
+        }
+        else { FloatingTextManager.Instance.ShowText(textPosition, "No Output", 0.5f); }
+    }
+
+    private void OnMouseExit() { FloatingTextManager.Instance.HideText(0.5f); }
 
     private void Update()
     {

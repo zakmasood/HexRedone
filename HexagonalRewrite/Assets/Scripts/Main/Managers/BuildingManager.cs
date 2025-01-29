@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,15 +11,67 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] private TileUtils tileUtils;
 
     public bool deleteFlag;
-
     public BuildingData selectedBuilding;
+    public LayerMask tileLayer;
+
+    public GameObject placementMarkerPrefab;
+    private GameObject placementMarker; // Instance
 
     public void DeleteMode() { deleteFlag = true; }
 
     public void SelectBuilding(BuildingData building)
     {
-        if (resourceManager.CanAfford(building.resourceCosts)) { selectedBuilding = building; }
-        else { Debug.LogWarning($"Not enough resources for building: {building.buildingName}"); }
+        selectedBuilding = building; 
+        StartPlacementMarkerLoop();
+    }
+
+    private void StartPlacementMarkerLoop()
+    {
+        if (placementMarker == null) 
+        { 
+            placementMarker = Instantiate(placementMarkerPrefab); 
+            placementMarker.SetActive(false);
+        }
+
+        StartCoroutine(PlacementLoop());
+    }
+
+    private IEnumerator PlacementLoop()
+    {
+        while (selectedBuilding != null)
+        {
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, tileLayer))
+            {
+                TileData tile = tileUtils.GetTileDataFromObject(hit.collider.gameObject);
+                if (tile != null)
+                {
+                    placementMarker.SetActive(true);
+                    placementMarker.transform.position = new Vector3(tile.tilePosition.x, 0.983f, tile.tilePosition.z);
+
+                    if (IsValidPlacement(tile) && resourceManager.CanAfford(selectedBuilding.resourceCosts)) { SetMarkerColor(Color.green); }
+                    else { SetMarkerColor(Color.red); }
+
+                    if (Input.GetMouseButtonDown(0) && IsValidPlacement(tile) && resourceManager.CanAfford(selectedBuilding.resourceCosts)) // Left-click to place
+                    {
+                        PlaceBuilding(selectedBuilding);
+                        yield break; // Exit the loop after placing the building
+                    }
+                }
+            }
+            else { placementMarker.SetActive(false); }
+            yield return null;
+        }
+        // Cleanup if placement loop ends
+        if (placementMarker != null) Destroy(placementMarker);
+    }
+
+    private bool IsValidPlacement(TileData tile) { return tile.buildingData == null; } 
+
+    private void SetMarkerColor(Color color)
+    {
+        Renderer renderer = placementMarker.GetComponent<Renderer>();
+        if (renderer != null) { renderer.material.color = color; }
     }
 
     public void DeleteBuilding()
@@ -27,7 +80,7 @@ public class BuildingManager : MonoBehaviour
 
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit, tileLayer))
         {
             TileData tile = tileUtils.GetTileDataFromObject(hit.collider.gameObject);
 
@@ -61,7 +114,7 @@ public class BuildingManager : MonoBehaviour
 
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit, tileLayer))
         {
             // Retrieve the tile data from the clicked object
             TileData tile = tileUtils.GetTileDataFromObject(hit.collider.gameObject);
@@ -97,22 +150,37 @@ public class BuildingManager : MonoBehaviour
         switch (selectedBuilding.name)
         {
             case "Drill":
-                Drill drill = placedBuilding.AddComponent<Drill>();
-                drill.tileData = tile;
-                drill.resourceManager = resourceManager;
+                InitializeDrill(placedBuilding, tile);
                 break;
             case "Storage":
-                Storage storage = placedBuilding.AddComponent<Storage>();
-                storage.tileData = tile;
-                storage.storageCapacity = selectedBuilding.storageCapacity;
+                InitializeStorage(placedBuilding, tile);
                 break;
             case "Sawmill":
-                Sawmill sawmill = placedBuilding.AddComponent<Sawmill>();
-                sawmill.recipeLoader = recipeLoader;
+                InitializeSawmill(placedBuilding);
                 break;
             default:
                 Debug.LogWarning($"Unknown building type: {selectedBuilding.name}");
                 break;
         }
+    }
+
+    private void InitializeDrill(GameObject placedBuilding, TileData tile)
+    {
+        Drill drill = placedBuilding.AddComponent<Drill>();
+        drill.tileData = tile;
+        drill.resourceManager = resourceManager;
+    }
+
+    private void InitializeStorage(GameObject placedBuilding, TileData tile)
+    {
+        Storage storage = placedBuilding.AddComponent<Storage>();
+        storage.tileData = tile;
+        storage.storageCapacity = selectedBuilding.storageCapacity;
+    }
+
+    private void InitializeSawmill(GameObject placedBuilding)
+    {
+        Sawmill sawmill = placedBuilding.AddComponent<Sawmill>();
+        sawmill.recipeLoader = recipeLoader;
     }
 }

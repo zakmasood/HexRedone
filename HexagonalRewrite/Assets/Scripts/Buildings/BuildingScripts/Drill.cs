@@ -2,17 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Drill : ConnectableBuilding
 {
     public TileData tileData; // The tile this drill is placed on
-    public ResourceManager resourceManager;
-    private Storage connectedStorage;
-    private DrillAnimator drillAnimator;
+    public ResourceManager resourceManager; // Global resource manager
+    private Storage connectedStorage; // The storage this drill is connected to
+    private DrillAnimator drillAnimator; // Animator for the drill
 
     public float collectionInterval = 1f; // Time in seconds between collections
     private bool isCollecting = false;
+
+    [SerializeField]
+    private TMP_Text floatingText;
 
     private void Start()
     {
@@ -30,8 +35,24 @@ public class Drill : ConnectableBuilding
             ConnectionPoints[point] = true;
             Debug.Log($"Added connection point: {point.name} | {ConnectionPoints[point]}");
         }
-        Debug.Log($"Total connection points: {ConnectionPoints.Count}");
+        // Debug.Log($"Total connection points: {ConnectionPoints.Count}");
     }
+
+    /* # -----| Hover Handling |----- # */
+
+    private void OnMouseEnter()
+    {
+        // Get the position slightly above the building
+        Vector3 textPosition = transform.position + Vector3.up * 3.5f;
+
+        FloatingTextManager.Instance.ShowText(textPosition, tileData.resourceType.ToString(), 0.5f);
+        Debug.Log("Hovering over drill.");
+    }
+
+    private void OnMouseExit() { FloatingTextManager.Instance.HideText(0.5f); }
+
+
+    /* # -----| Collection Handling |----- # */
 
     // If the drill is not collecting -> Set bool to true -> Start Coroutine
     public void StartCollection() { if (!isCollecting) { isCollecting = true; StartCoroutine(CollectResources()); } }
@@ -42,28 +63,24 @@ public class Drill : ConnectableBuilding
     {
         while (isCollecting)
         {
-            if (connectedStorage != null)
+            if (connectedStorage != null && (connectedStorage.currentStorage < connectedStorage.storageCapacity))
             {
-                if (connectedStorage.currentStorage < connectedStorage.storageCapacity)
-                {
-                    // If the drill is not lowered -> Lower drill -> Wait for animation to end
-                    if (!drillAnimator.IsLowered) { drillAnimator.LowerDrill(); yield return new WaitForSeconds(drillAnimator.LoweringDuration); }
+                // If the drill is not lowered -> Lower drill -> Wait for animation to end
+                if (!drillAnimator.IsLowered) { drillAnimator.LowerDrill(); yield return new WaitForSeconds(drillAnimator.LoweringDuration); }
 
-                    connectedStorage.AddResource(1, tileData.resourceType);
-                    // Debug.Log($"Tile resouce under drill is | {tileData.resourceType}");
-                    drillAnimator.StartDrilling();
-                }
-                // Debug -> Stop Collecting -> Stop Animation Play -> Pause, no further action
-                else { Debug.LogWarning("Connected storage is full!"); StopCollection(); drillAnimator.StopDrilling(); yield return null; }
+                connectedStorage.AddResource(1, tileData.resourceType);
+                // Debug.Log($"Tile resouce under drill is | {tileData.resourceType}");
+                drillAnimator.StartDrilling();
             }
             // Debug -> Stop Collecting -> Stop Animation Play -> Pause, no further action
-            else { Debug.LogWarning("Drill has no connected storage!"); StopCollection(); drillAnimator.StopDrilling(); yield return null; }
+            else { Debug.LogWarning("Connected storage is full!"); StopCollection(); drillAnimator.StopDrilling(); yield return null; }
 
+            // Wait for the collection interval
             yield return new WaitForSeconds(collectionInterval);
         }
     }
 
-    // Write / use a function from ConnectableBuilding to run the StartCollection function
+    // Override the ConnectTo method from ConnectableBuilding
     public override void ConnectTo(ConnectableBuilding otherBuilding)
     {
         if (otherBuilding is Storage storage)
@@ -73,10 +90,12 @@ public class Drill : ConnectableBuilding
         }
     }
 
+    // Return building type that can be connected to
     public override bool CanConnectTo(ConnectableBuilding otherBuilding)
     {
         return otherBuilding is Sawmill or Storage;
     }
 
+    // Remove connections when the drill is destroyed
     private void OnDestroy() { FindFirstObjectByType<ConnectionManager>().RemoveConnections(this); }
 }

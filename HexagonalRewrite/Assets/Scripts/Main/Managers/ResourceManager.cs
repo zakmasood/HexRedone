@@ -24,7 +24,7 @@ public class ResourceManager : MonoBehaviour
         {
             if (type != ResourceType.None)
             {
-                resources[type] = 100;
+                resources[type] = 0;
                 CreateResourceUIElement(type);
             }
         }

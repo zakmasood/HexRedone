@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Drill
   m_EditorClassIdentifier: 
   buildingName: Drill
-  buildingPrefab: {fileID: 6336177291393652479, guid: 0fc6baab61eaad247bac545290ce3ed4, type: 3}
+  buildingPrefab: {fileID: 8965463175422921369, guid: 0fc6baab61eaad247bac545290ce3ed4, type: 3}
   resourceCosts:
   - resourceType: 1
     amount: 10

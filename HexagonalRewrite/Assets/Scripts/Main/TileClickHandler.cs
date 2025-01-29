@@ -7,59 +7,56 @@ public class TileClickHandler : MonoBehaviour
     [SerializeField] private ResourceManager resourceManager; // Reference to ResourceManager;
     [SerializeField] private BuildingManager buildingManager; // Reference to ResourceManager;
 
+    public LayerMask tileLayer;
+
     private List<TileData> selectedTiles = new List<TileData>();
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftShift)) // Left mouse button click
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, tileLayer))
             {
                 GameObject clickedObject = hit.collider.gameObject;
                 TileData tileData = tileUtils.GetTileDataFromObject(clickedObject);
 
                 if (tileData != null)
                 {
-                    if (buildingManager.selectedBuilding != null) { buildingManager.PlaceBuilding(buildingManager.selectedBuilding); }
-
-                    if (buildingManager.selectedBuilding == null && buildingManager.deleteFlag == true)
-                    {
-                        buildingManager.DeleteBuilding();
-                        Debug.Log("Building is being deleted");
-                    }
-
-                    if (tileData.resourceType != ResourceType.None) { resourceManager.AddResource(tileData.resourceType, 1); }
-                    else { Debug.LogWarning("Tile has no resource type"); }
+                    if (!Input.GetKey(KeyCode.LeftShift)) { HandleLeftClick(tileData); }
+                    else { HandleShiftLeftClick(tileData, clickedObject); }
                 }
                 else { Debug.LogWarning("Tile does not exist"); }
             }
         }
+    }
 
-        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftShift))
+    private void HandleLeftClick(TileData tileData)
+    {
+        // Place building
+        if (buildingManager.selectedBuilding != null) { buildingManager.PlaceBuilding(buildingManager.selectedBuilding); }
+        // Delete building
+        if (buildingManager.selectedBuilding == null && buildingManager.deleteFlag) { buildingManager.DeleteBuilding(); }
+        // Collect resource on click
+        if (tileData.resourceType != ResourceType.None) { resourceManager.AddResource(tileData.resourceType, 1); }
+
+        else { Debug.LogWarning("Tile has no resource type"); }
+    }
+
+    private void HandleShiftLeftClick(TileData tileData, GameObject clickedObject)
+    {
+        if (tileData.buildingData != null)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            MonoBehaviour building = clickedObject.GetComponentInChildren<MonoBehaviour>();
 
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            if (building != null)
             {
-                GameObject clickedObject = hit.collider.gameObject;
-                TileData tileData = tileUtils.GetTileDataFromObject(clickedObject);
-
-                if (tileData != null && tileData.buildingData != null)
-                {
-                    MonoBehaviour building = clickedObject.GetComponentInChildren<MonoBehaviour>();
-
-                    if (building != null)
-                    {
-                        FindAnyObjectByType<ConnectionManager>().SelectBuilding(building);
-                        Debug.Log($"Selected building: {tileData.buildingData.buildingName} on tile {tileData.tileID}");
-                    }
-                    else { Debug.LogWarning("No building component found on the selected tile."); }
-                }
-                else { Debug.LogWarning("No building found on the selected tile."); }
+                FindAnyObjectByType<ConnectionManager>().SelectBuilding(building);
+                Debug.Log($"Selected building: {tileData.buildingData.buildingName} on tile {tileData.tileID}");
             }
         }
+        else { Debug.LogWarning("No building found on the selected tile."); }
     }
 
     private void SelectTile()

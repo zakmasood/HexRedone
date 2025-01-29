@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1038712001427558560}
   - component: {fileID: 2258054062467334041}
   - component: {fileID: 1960176681610064600}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Saw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4191981288241357677}
-  m_Layer: 0
+  - component: {fileID: 3416529818806181101}
+  m_Layer: 6
   m_Name: Sawmill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,6 +131,27 @@ Transform:
   - {fileID: 5324286084955361892}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3416529818806181101
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050017596937490512}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 59
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7485509, y: 1.5974282, z: 1.9442301}
+  m_Center: {x: -0.006156683, y: 0.64727396, z: -0.02009821}
 --- !u!1 &1571788373936539389
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +163,7 @@ GameObject:
   - component: {fileID: 3395960150773607754}
   - component: {fileID: 3391930368710955459}
   - component: {fileID: 5771178185648006350}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InsulatorInner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +249,7 @@ GameObject:
   - component: {fileID: 5015151659582380169}
   - component: {fileID: 8746974518175929639}
   - component: {fileID: 1872412871375776816}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +335,7 @@ GameObject:
   - component: {fileID: 3531685842591755637}
   - component: {fileID: 7624878250013890498}
   - component: {fileID: 1299541731600429024}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InsulatorLower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +422,7 @@ GameObject:
   - component: {fileID: 6545165348897223144}
   - component: {fileID: 8157224983550894613}
   - component: {fileID: 3139154892352887189}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CableTerminalB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +529,7 @@ GameObject:
   - component: {fileID: 7136534693473535779}
   - component: {fileID: 4865174884938504104}
   - component: {fileID: 4743170478843786157}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Supports
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,7 +615,7 @@ GameObject:
   - component: {fileID: 3260780504958160176}
   - component: {fileID: 6759327188031979626}
   - component: {fileID: 8238431388401889157}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InsulatorMid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,7 +702,7 @@ GameObject:
   - component: {fileID: 1914510116542137817}
   - component: {fileID: 7141080085846428277}
   - component: {fileID: 5935429644331498063}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CableTerminalC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -787,7 +809,7 @@ GameObject:
   - component: {fileID: 7743064330394981823}
   - component: {fileID: 946454444164018305}
   - component: {fileID: 2367536395123591495}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SawmillBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -873,7 +895,7 @@ GameObject:
   - component: {fileID: 2952957937886415728}
   - component: {fileID: 121248041033199099}
   - component: {fileID: 2299593687339089024}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SawmillSupportFlanges
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -959,7 +981,7 @@ GameObject:
   - component: {fileID: 2464979146983111779}
   - component: {fileID: 8180160020499109344}
   - component: {fileID: 5432966756172559377}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InsulatorCones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1046,7 +1068,7 @@ GameObject:
   - component: {fileID: 4718592283712388508}
   - component: {fileID: 6664736572975014947}
   - component: {fileID: 1021004318314177984}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CableTerminalA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1153,7 +1175,7 @@ GameObject:
   - component: {fileID: 3158429627254365883}
   - component: {fileID: 8472994105591197822}
   - component: {fileID: 5412538871520053683}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InsulatorUpper
   m_TagString: Untagged
   m_Icon: {fileID: 0}

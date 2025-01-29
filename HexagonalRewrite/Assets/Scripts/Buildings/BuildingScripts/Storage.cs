@@ -17,9 +17,6 @@ public class Storage : ConnectableBuilding
     public ResourceType allowedResourceType;
     public ResourceType currentResourceType;
 
-    [Header("UI Settings")]
-    [SerializeField] private TMP_Text counterText; // Reference to the TextMeshPro counter
-
     public TileData tileData;
 
     // Reference to the next storage in the cascade
@@ -29,16 +26,6 @@ public class Storage : ConnectableBuilding
     private void Start()
     {
         ConnectionPoints.Clear(); // Ensure the dictionary starts fresh for each instance
-        counterText = GetComponentInChildren<TMP_Text>();
-
-        counterText.enableWordWrapping = true;
-        counterText.alignment = TextAlignmentOptions.Center;
-        counterText.color = Color.white;
-        counterText.fontSize = 0.03f;
-
-        // Validate that the counterText is assigned
-        if (counterText == null) { Debug.LogError("Counter Text is not assigned in the Storage prefab!"); return; }
-        UpdateCounterUI(); // Initialize the counter UI
 
         allowedResourceType = ResourceType.None; // Set on instantiation
 
@@ -50,6 +37,23 @@ public class Storage : ConnectableBuilding
 
         Debug.Log($"Total connection points: {ConnectionPoints.Count}");
     }
+
+    private void OnMouseEnter()
+    {
+        // Get the position slightly above the building
+        Vector3 textPosition = transform.position + Vector3.up * 2f;
+
+        if (currentResourceType != null)
+        {
+            FloatingTextManager.Instance.ShowText(textPosition, $"{currentResourceType.ToString()}: {currentStorage} | {storageCapacity}", 0.5f);
+        }
+        else
+        {
+            FloatingTextManager.Instance.ShowText(textPosition, $"Empty: {currentStorage} | {storageCapacity}", 0.5f);
+        }
+    }
+
+    private void OnMouseExit() { FloatingTextManager.Instance.HideText(0.5f); }
 
     public void AddResource(int amount, ResourceType resourceType, Storage source = null)
     {
@@ -66,14 +70,9 @@ public class Storage : ConnectableBuilding
         currentStorage += amount;
         currentResourceType = resourceType; // Update the current resource type
         sourceStorage = source; // Track the source storage
-
-        // Update the UI
-        UpdateCounterUI();
     }
 
-    public void RemoveResource(int amount) { currentStorage = Mathf.Clamp(currentStorage - amount, 0, storageCapacity); UpdateCounterUI(); }
-
-    private void UpdateCounterUI() { if (counterText != null) { counterText.text = $"{currentResourceType}: {currentStorage}"; } }
+    public void RemoveResource(int amount) { currentStorage = Mathf.Clamp(currentStorage - amount, 0, storageCapacity); }
 
     private IEnumerator CascadeResources()
     {
