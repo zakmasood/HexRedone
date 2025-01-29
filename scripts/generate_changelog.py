@@ -1,33 +1,54 @@
 import os
 import openai
 import subprocess
+import tiktoken  # New import for tokenization
 
-# Fetch changed .cs file diffs from Git
-def get_cs_file_diffs():
+def get_latest_committed_cs_diffs():
     try:
-        # Get the list of changed .cs files in the last 10 commits
-        changed_files_result = subprocess.run(
-            ["git", "diff", "--name-only", "HEAD~10", "--", "*.cs"],
+        # Get the repository root directory
+        repo_root_result = subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            text=True,
-            encoding="utf-8",
-            errors="replace"
+            text=True
         )
+        if repo_root_result.returncode != 0:
+            print("Error: Not a Git repository or Git is not available.")
+            return ""
+        repo_root = repo_root_result.stdout.strip()
+        os.chdir(repo_root)  # Change to repo root to ensure correct pathspec matching
+
+        # Get the latest commit modifying any .cs file
+        latest_commit_result = subprocess.run(
+            ["git", "log", "-1", "--pretty=format:%H", "--", "*.cs"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+        latest_commit = latest_commit_result.stdout.strip()
         
-        changed_files = changed_files_result.stdout.strip().split("\n")
-        if not changed_files or changed_files[0] == "":
-            print("No .cs file changes detected.")
+        if not latest_commit:
+            print("No recent commits modifying .cs files found.")
             return ""
 
-        # Get the actual diffs for the changed .cs files
-        diff_result = subprocess.run(
-            ["git", "diff", "-p", "--"] + changed_files,
+        # Get the parent of the latest commit
+        parent_commit_result = subprocess.run(
+            ["git", "rev-parse", f"{latest_commit}^"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            text=True,
-            encoding="utf-8",
-            errors="replace"
+            text=True
+        )
+        if parent_commit_result.returncode != 0:
+            print(f"Error finding parent commit: {parent_commit_result.stderr.strip()}")
+            return ""
+        parent_commit = parent_commit_result.stdout.strip()
+
+        # Generate diff between parent and latest commit for .cs files
+        diff_result = subprocess.run(
+            ["git", "diff", parent_commit, latest_commit, "--", "*.cs"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
         )
 
         if diff_result.returncode != 0:
@@ -43,14 +64,12 @@ def get_cs_file_diffs():
         print(f"Error fetching .cs file diffs: {e}")
         return ""
 
-# Use OpenAI API to generate a changelog
 def generate_changelog(diffs):
     if not diffs or diffs.strip() == "No significant changes detected in .cs files.":
         print("No meaningful diffs to process.")
         return "No significant changes detected."
 
     try:
-        # Set OpenAI API key
         openai.api_key = os.getenv("OPENAI_API_KEY")
         if not openai.api_key:
             raise Exception("OpenAI API key not found. Ensure OPENAI_API_KEY is set in the environment.")
@@ -68,17 +87,32 @@ def generate_changelog(diffs):
         - Updated: For changes or improvements.
         - Removed: For features or code that were removed.
 
-        Use Markdown formatting with bullet points.
+        Use Markdown formatting with bullet points, headers for notable features, etc.
+        Reduce specific jargon, elaborate on more complex features to the best of your knowledge.
         """
 
-        # Call OpenAI's Chat API
+        # ChatCompletion messages structure
+        messages = [
+            {"role": "system", "content": "You are a helpful assistant that generates professional and categorized changelogs."},
+            {"role": "user", "content": prompt.strip()}
+        ]
+
+        # Calculate approximate number of tokens using tiktoken
+        model_name = "gpt-4o-mini"  # The model you plan to use
+        encoding = tiktoken.encoding_for_model(model_name)
+        
+        total_tokens = 0
+        for m in messages:
+            # Add the tokens for each message's content
+            total_tokens += len(encoding.encode(m["content"]))
+
+        # Print the approximate token count
+        print(f"Approximate number of tokens in prompt: {total_tokens}")
+
         response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant that generates professional and categorized changelogs."},
-                {"role": "user", "content": prompt.strip()}
-            ],
-            max_tokens=1500,  # Limit token usage to prevent exceeding API limits
+            model=model_name,
+            messages=messages,
+            max_tokens=4096,
             temperature=0.7,
         )
         return response.choices[0].message.content.strip()
@@ -86,9 +120,8 @@ def generate_changelog(diffs):
         print(f"Error generating changelog: {e}")
         return "Failed to generate changelog."
 
-# Main function
 def main():
-    diffs = get_cs_file_diffs()
+    diffs = get_latest_committed_cs_diffs()
     if not diffs:
         print("No diffs found to process.")
         return
@@ -97,7 +130,6 @@ def main():
     print("Generated Changelog:\n")
     print(changelog)
 
-    # Save the changelog to CHANGELOG.md
     try:
         with open("CHANGELOG.md", "a", encoding="utf-8") as changelog_file:
             changelog_file.write("\n## [Latest Changes]\n")

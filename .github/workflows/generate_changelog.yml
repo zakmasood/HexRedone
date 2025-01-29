@@ -1,0 +1,32 @@
+name: Generate Changelog
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  generate-changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # Ensure Git history is present (particularly important for `git log` and `git diff`)
+          fetch-depth: 2
+
+      - name: Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install openai tiktoken
+
+      - name: Run Script
+        run: |
+          python generate_changelog.py
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

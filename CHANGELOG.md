@@ -1,15 +1,28 @@
+## [Latest Changes]
 # Changelog
 
-## v1.0.0
+## Added
+- **Floating Text Functionality**: 
+  - Introduced `FloatingTextManager` for displaying contextual information above buildings (e.g., resource type, storage status).
+  - Integrated floating text display in `Drill`, `Sawmill`, and `Storage` classes upon mouse hover.
 
-### Added or Changed
-- Added this changelog :)
-- Fixed typos in both templates
-- Back to top links
-- Added more "Built With" frameworks/libraries
-- Changed table of contents to start collapsed
-- Added checkboxes for major features on roadmap
+## Fixed
+- **Resource Initialization in ResourceManager**: 
+  - Changed initial resource count from 100 to 0 to ensure correct resource tracking.
+  
+## Updated
+- **Drill Class Enhancements**: 
+  - Added serialized field for floating text to improve UI interaction.
+  - Improved collection logic to handle resource management more efficiently.
+- **Sawmill Class Enhancements**: 
+  - Added hover text display indicating output resource and its status.
+- **Storage Class Enhancements**: 
+  - Added hover text display for showing current resource type and storage status.
+- **BuildingManager Improvements**: 
+  - Refactored building placement logic into separate initializer methods for `Drill`, `Storage`, and `Sawmill` to enhance code readability and maintainability.
+- **TileClickHandler Improvements**: 
+  - Refined mouse click handling to differentiate between building placement, deletion, and resource collection, improving user experience.
 
-### Removed
-
-- Some packages/libraries from acknowledgements I no longer use
+## Removed
+- **UI Counter Text in Storage**: 
+  - Removed the counter text setup in `Storage` as it was deemed unnecessary for the current UI design.
