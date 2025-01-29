@@ -27,6 +27,6 @@ jobs:
 
       - name: Run Script
         run: |
-          python generate_changelog.py
+          python scripts/generate_changelog.py
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
