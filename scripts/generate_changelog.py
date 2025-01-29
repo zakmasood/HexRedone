@@ -109,7 +109,7 @@ def generate_changelog(diffs):
         # Print the approximate token count
         print(f"Approximate number of tokens in prompt: {total_tokens}")
 
-        response = openai.ChatCompletion.create(
+        response = openai.chat.completions.create(
             model=model_name,
             messages=messages,
             max_tokens=4096,

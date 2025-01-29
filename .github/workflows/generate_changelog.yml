@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install openai tiktoken
+          pip install openai==0.28.0 tiktoken
 
       - name: Run Script
         run: |
